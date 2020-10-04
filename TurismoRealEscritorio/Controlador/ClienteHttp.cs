@@ -17,7 +17,6 @@ namespace TurismoRealEscritorio.Controlador
         public static ClienteHttp Peticion { get { return instancia; } }
         //static String UrlBase = "http://localhost:51936/api"; //OFFLINE
         static String UrlBase = "http://turismoreal.xyz/api";   //ONLINE
-        static object Body;
         private ClienteHttp()
         {
             http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("Application/json"));
