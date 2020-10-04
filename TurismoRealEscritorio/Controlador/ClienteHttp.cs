@@ -13,6 +13,7 @@ namespace TurismoRealEscritorio.Controlador
     class ClienteHttp
     {
         static HttpClient http = new HttpClient();
+        static HttpClient httpTest = new HttpClient();
         static ClienteHttp instancia = new ClienteHttp();
         public static ClienteHttp Peticion { get { return instancia; } }
         //static String UrlBase = "http://localhost:51936/api"; //OFFLINE
@@ -22,6 +23,10 @@ namespace TurismoRealEscritorio.Controlador
             http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("Application/json"));
             http.DefaultRequestHeaders.UserAgent.ParseAdd("TurismoRealDesktop");
             http.Timeout = TimeSpan.FromSeconds(25);
+
+            httpTest.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("Application/json"));
+            httpTest.DefaultRequestHeaders.UserAgent.ParseAdd("TurismoRealDesktop");
+            httpTest.Timeout = TimeSpan.FromSeconds(16);
         }
 
         public async Task<T> Get<T>(String url, T body, String token = "none", Label txt = null) where T : class, new()
@@ -214,7 +219,7 @@ namespace TurismoRealEscritorio.Controlador
             try
             {
                 HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/usuario/test");
-                r = await http.SendAsync(m);
+                r = await httpTest.SendAsync(m);
                 if (r.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     r.Dispose();

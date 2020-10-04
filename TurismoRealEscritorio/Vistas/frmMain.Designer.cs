@@ -28,17 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pReconectando = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnLogistica = new System.Windows.Forms.Button();
+            this.btnDeptos = new System.Windows.Forms.Button();
+            this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnFinanzas = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnUsuarios = new System.Windows.Forms.Button();
-            this.btnDeptos = new System.Windows.Forms.Button();
-            this.btnLogistica = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pContainer = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timerConexion = new System.Windows.Forms.Timer(this.components);
             this.pReconectando.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -80,6 +83,50 @@
             this.panel1.Size = new System.Drawing.Size(161, 510);
             this.panel1.TabIndex = 4;
             // 
+            // btnSalir
+            // 
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(0, 427);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(160, 35);
+            this.btnSalir.TabIndex = 10;
+            this.btnSalir.Text = "Cerrar Sesión";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            // 
+            // btnLogistica
+            // 
+            this.btnLogistica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogistica.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogistica.Location = new System.Drawing.Point(0, 250);
+            this.btnLogistica.Name = "btnLogistica";
+            this.btnLogistica.Size = new System.Drawing.Size(160, 35);
+            this.btnLogistica.TabIndex = 8;
+            this.btnLogistica.Text = "Logistica";
+            this.btnLogistica.UseVisualStyleBackColor = true;
+            // 
+            // btnDeptos
+            // 
+            this.btnDeptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeptos.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeptos.Location = new System.Drawing.Point(0, 209);
+            this.btnDeptos.Name = "btnDeptos";
+            this.btnDeptos.Size = new System.Drawing.Size(160, 35);
+            this.btnDeptos.TabIndex = 7;
+            this.btnDeptos.Text = "Departamentos";
+            this.btnDeptos.UseVisualStyleBackColor = true;
+            // 
+            // btnUsuarios
+            // 
+            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuarios.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarios.Location = new System.Drawing.Point(0, 168);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(160, 35);
+            this.btnUsuarios.TabIndex = 6;
+            this.btnUsuarios.Text = "Usuarios";
+            this.btnUsuarios.UseVisualStyleBackColor = true;
+            // 
             // btnFinanzas
             // 
             this.btnFinanzas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -102,57 +149,22 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
-            // btnUsuarios
+            // pContainer
             // 
-            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsuarios.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuarios.Location = new System.Drawing.Point(0, 168);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(160, 35);
-            this.btnUsuarios.TabIndex = 6;
-            this.btnUsuarios.Text = "Usuarios";
-            this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.pContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pContainer.Location = new System.Drawing.Point(161, 0);
+            this.pContainer.Name = "pContainer";
+            this.pContainer.Size = new System.Drawing.Size(825, 510);
+            this.pContainer.TabIndex = 5;
             // 
-            // btnDeptos
+            // timer1
             // 
-            this.btnDeptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeptos.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeptos.Location = new System.Drawing.Point(0, 209);
-            this.btnDeptos.Name = "btnDeptos";
-            this.btnDeptos.Size = new System.Drawing.Size(160, 35);
-            this.btnDeptos.TabIndex = 7;
-            this.btnDeptos.Text = "Departamentos";
-            this.btnDeptos.UseVisualStyleBackColor = true;
+            this.timer1.Interval = 14;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btnLogistica
+            // timerConexion
             // 
-            this.btnLogistica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogistica.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogistica.Location = new System.Drawing.Point(0, 250);
-            this.btnLogistica.Name = "btnLogistica";
-            this.btnLogistica.Size = new System.Drawing.Size(160, 35);
-            this.btnLogistica.TabIndex = 8;
-            this.btnLogistica.Text = "Logistica";
-            this.btnLogistica.UseVisualStyleBackColor = true;
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(0, 427);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(160, 35);
-            this.btnSalir.TabIndex = 10;
-            this.btnSalir.Text = "Cerrar Sesión";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(161, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(825, 510);
-            this.panel2.TabIndex = 5;
+            this.timerConexion.Tick += new System.EventHandler(this.timerConexion_Tick);
             // 
             // frmMain
             // 
@@ -160,7 +172,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(986, 510);
             this.Controls.Add(this.pReconectando);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pContainer);
             this.Controls.Add(this.panel1);
             this.Name = "frmMain";
             this.Text = "Main";
@@ -183,6 +195,8 @@
         private System.Windows.Forms.Button btnLogistica;
         private System.Windows.Forms.Button btnDeptos;
         private System.Windows.Forms.Button btnUsuarios;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pContainer;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timerConexion;
     }
 }

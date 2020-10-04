@@ -17,7 +17,6 @@ namespace TurismoRealEscritorio
         public bool suma = true;
         public bool anim = false;
         public bool Conectado = true;
-        Boolean Autenticado;
         public frmLogin()
         {
             InitializeComponent();
