@@ -53,17 +53,17 @@
             this.pReconectando.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pReconectando.Controls.Add(this.pictureBox1);
             this.pReconectando.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pReconectando.Location = new System.Drawing.Point(161, 468);
+            this.pReconectando.Location = new System.Drawing.Point(161, 459);
             this.pReconectando.Name = "pReconectando";
-            this.pReconectando.Size = new System.Drawing.Size(825, 42);
+            this.pReconectando.Size = new System.Drawing.Size(867, 42);
             this.pReconectando.TabIndex = 3;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(285, 7);
+            this.pictureBox1.Location = new System.Drawing.Point(267, 7);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(275, 29);
+            this.pictureBox1.Size = new System.Drawing.Size(333, 29);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -80,14 +80,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(161, 510);
+            this.panel1.Size = new System.Drawing.Size(161, 501);
             this.panel1.TabIndex = 4;
             // 
             // btnSalir
             // 
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(0, 427);
+            this.btnSalir.Location = new System.Drawing.Point(0, 454);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(160, 35);
             this.btnSalir.TabIndex = 10;
@@ -126,6 +126,7 @@
             this.btnUsuarios.TabIndex = 6;
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // btnFinanzas
             // 
@@ -154,7 +155,7 @@
             this.pContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pContainer.Location = new System.Drawing.Point(161, 0);
             this.pContainer.Name = "pContainer";
-            this.pContainer.Size = new System.Drawing.Size(825, 510);
+            this.pContainer.Size = new System.Drawing.Size(867, 501);
             this.pContainer.TabIndex = 5;
             // 
             // timer1
@@ -170,7 +171,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(986, 510);
+            this.ClientSize = new System.Drawing.Size(1028, 501);
             this.Controls.Add(this.pReconectando);
             this.Controls.Add(this.pContainer);
             this.Controls.Add(this.panel1);

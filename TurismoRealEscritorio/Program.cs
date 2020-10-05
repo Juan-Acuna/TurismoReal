@@ -18,11 +18,11 @@ namespace TurismoRealEscritorio
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmLogin());
-            //if (SesionManager.Sesion.Autenticado)
-            //{
+            Application.Run(new frmLogin());
+            if (SesionManager.Sesion.Autenticado)
+            {
                 Application.Run(new frmMain());
-            //}
+            }
         }
     }
 }

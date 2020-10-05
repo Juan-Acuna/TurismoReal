@@ -68,7 +68,7 @@ namespace TurismoRealEscritorio.Controlador
 
         public async Task<List<T>> GetList<T>(String token = "none", Label txt = null) where T: class, new()
         {
-            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/" + typeof(T).Name);
+            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/" + typeof(T).Name.Replace("Persona",""));
             if (!token.Equals("none"))
             {
                 m.Headers.Authorization = new AuthenticationHeaderValue("Bearer",token);
@@ -111,7 +111,7 @@ namespace TurismoRealEscritorio.Controlador
                 m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }
             var jsonbody = JsonConvert.SerializeObject(body);
-            var carga = new ByteArrayContent(Encoding.UTF8.GetBytes(jsonbody));
+            var carga = new StringContent(jsonbody, Encoding.UTF8, "Application/json");
             m.Content = carga;
             m.Headers.Add("Content-type","Applicacion/json");
             var r = await http.SendAsync(m);

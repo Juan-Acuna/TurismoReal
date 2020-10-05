@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TurismoRealEscritorio.Controlador;
+using TurismoRealEscritorio.Vistas.Usuarios;
 
 namespace TurismoRealEscritorio.Vista
 {
@@ -17,6 +18,7 @@ namespace TurismoRealEscritorio.Vista
         public bool suma = true;
         public bool anim = false;
         public bool Conectado = true;
+        public Repositorios Repo = new Repositorios();
 
         public frmMain()
         {
@@ -25,6 +27,7 @@ namespace TurismoRealEscritorio.Vista
             pReconectando.Height = 0;
             timerConexion.Start();
             ConfigurarBotones(panel1);
+
         }
 
         public void ConfigurarBotones(Control cont)
@@ -37,11 +40,26 @@ namespace TurismoRealEscritorio.Vista
                     ((Button)c).ForeColor = ColorTranslator.FromHtml("#ffffff");
                     ((Button)c).MouseEnter += new EventHandler(_MouseEnter);
                     ((Button)c).MouseLeave += new EventHandler(_MouseLeave);
+                    ((Button)c).FlatStyle = FlatStyle.Flat;
                 }
             }
         }
-
+        
         public void AbrirForm(Form form)
+        {
+            if (pContainer.Controls != null)
+            {
+                pContainer.Controls.Clear();
+            }
+            ConfigurarBotones(form);
+            form.TopLevel = false;
+            form.Dock = DockStyle.Fill;
+            pContainer.Controls.Add(form);
+            pContainer.Tag = form;
+            form.Show();
+        }
+        /*
+         public void AbrirForm(Form form)
         {
             if (pContainer.Controls != null)
             {
@@ -49,10 +67,15 @@ namespace TurismoRealEscritorio.Vista
             }
             form.TopLevel = false;
             form.Dock = DockStyle.Fill;
-            this.pContainer.Controls.Add(form);
-            this.pContainer.Tag = form;
-            form.Show();
+            foreach(Control c in form.Controls)
+            {
+                pContainer.Controls.Add(c);
+            }
+            pContainer.Tag = form;
+            form.Dispose();
+            pContainer.Refresh();
         }
+             */
         public void _MouseEnter(object sender, EventArgs e)
         {
             ((Button)sender).BackColor = ColorTranslator.FromHtml("#fed136");
@@ -65,6 +88,26 @@ namespace TurismoRealEscritorio.Vista
             ((Button)sender).ForeColor = ColorTranslator.FromHtml("#ffffff");
         }
         #region Conexion
+        public void BloquearBotones(Control cont)
+        {
+            foreach (var c in cont.Controls)
+            {
+                if (c is Button)
+                {
+                    ((Button)c).Enabled = false;
+                }
+            }
+        }
+        public void DesbloquearBotones(Control cont)
+        {
+            foreach (var c in cont.Controls)
+            {
+                if (c is Button)
+                {
+                    ((Button)c).Enabled = true;
+                }
+            }
+        }
         public async Task<bool> ComprobarConexion()
         {
             //Se comprueba conexion
@@ -102,6 +145,7 @@ namespace TurismoRealEscritorio.Vista
                         suma = !suma;
                         expand = false;
                         anim = true;
+                        DesbloquearBotones(pContainer.Controls[0]);
                         timer1.Stop();
                     }
                 }
@@ -121,8 +165,16 @@ namespace TurismoRealEscritorio.Vista
             }
             else
             {
+                BloquearBotones(pContainer.Controls[0]);
                 Reconectar();
             }
+        }
+        #endregion
+
+        #region Botones
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new frmUsuarios(this));
         }
         #endregion
     }

@@ -9,16 +9,19 @@ namespace TurismoRealEscritorio.Controlador
     static class SesionManager
     {
         private static Sesion sesion = Sesion.SesionVacia;
+        private static String tkn = String.Empty;
         public static Sesion Sesion { get { return sesion; } }
-
+        public static String Token { get { return tkn; } }
         public static void IniciarSesion(Token token)
         {
             sesion = new Sesion(token);
+            tkn = sesion.Token.token;
         }
 
         public static void CerrarSesion()
         {
             sesion = Sesion.SesionVacia;
+            tkn = String.Empty;
         }
     }
     class Sesion
