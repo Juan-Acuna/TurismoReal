@@ -67,7 +67,7 @@
             this.panel1.Location = new System.Drawing.Point(339, 21);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(215, 390);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 8;
             this.panel1.Click += new System.EventHandler(this.txtUsername_Click);
             // 
             // lbError
@@ -88,7 +88,7 @@
             this.btnRecuperar.Location = new System.Drawing.Point(45, 360);
             this.btnRecuperar.Name = "btnRecuperar";
             this.btnRecuperar.Size = new System.Drawing.Size(122, 16);
-            this.btnRecuperar.TabIndex = 6;
+            this.btnRecuperar.TabIndex = 4;
             this.btnRecuperar.TabStop = true;
             this.btnRecuperar.Text = "Recuperar contraseña";
             this.btnRecuperar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnRecuperar_LinkClicked);
@@ -100,7 +100,7 @@
             this.btnIniciar.Location = new System.Drawing.Point(26, 322);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(160, 35);
-            this.btnIniciar.TabIndex = 5;
+            this.btnIniciar.TabIndex = 3;
             this.btnIniciar.Text = "Iniciar Sesion";
             this.btnIniciar.UseVisualStyleBackColor = true;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
@@ -114,7 +114,7 @@
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(160, 28);
-            this.txtClave.TabIndex = 4;
+            this.txtClave.TabIndex = 2;
             this.txtClave.Click += new System.EventHandler(this.txtUsername_Click);
             // 
             // label2
@@ -124,7 +124,7 @@
             this.label2.Location = new System.Drawing.Point(58, 208);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 21);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 7;
             this.label2.Text = "Contraseña";
             // 
             // txtUsername
@@ -133,7 +133,7 @@
             this.txtUsername.Location = new System.Drawing.Point(26, 148);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(160, 28);
-            this.txtUsername.TabIndex = 2;
+            this.txtUsername.TabIndex = 0;
             this.txtUsername.Click += new System.EventHandler(this.txtUsername_Click);
             // 
             // label1
@@ -143,7 +143,7 @@
             this.label1.Location = new System.Drawing.Point(72, 124);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 21);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 6;
             this.label1.Text = "Usuario";
             // 
             // pictureBox2
@@ -178,7 +178,7 @@
             this.pReconectando.Location = new System.Drawing.Point(0, 435);
             this.pReconectando.Name = "pReconectando";
             this.pReconectando.Size = new System.Drawing.Size(893, 42);
-            this.pReconectando.TabIndex = 2;
+            this.pReconectando.TabIndex = 9;
             // 
             // pictureBox1
             // 

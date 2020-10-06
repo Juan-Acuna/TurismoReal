@@ -58,24 +58,6 @@ namespace TurismoRealEscritorio.Vista
             pContainer.Tag = form;
             form.Show();
         }
-        /*
-         public void AbrirForm(Form form)
-        {
-            if (pContainer.Controls != null)
-            {
-                pContainer.Controls.Clear();
-            }
-            form.TopLevel = false;
-            form.Dock = DockStyle.Fill;
-            foreach(Control c in form.Controls)
-            {
-                pContainer.Controls.Add(c);
-            }
-            pContainer.Tag = form;
-            form.Dispose();
-            pContainer.Refresh();
-        }
-             */
         public void _MouseEnter(object sender, EventArgs e)
         {
             ((Button)sender).BackColor = ColorTranslator.FromHtml("#fed136");
@@ -110,7 +92,6 @@ namespace TurismoRealEscritorio.Vista
         }
         public async Task<bool> ComprobarConexion()
         {
-            //Se comprueba conexion
             Conectado = await ClienteHttp.Peticion.Test();
             return Conectado;
         }

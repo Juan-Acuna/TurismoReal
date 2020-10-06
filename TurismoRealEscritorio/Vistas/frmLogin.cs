@@ -17,6 +17,7 @@ namespace TurismoRealEscritorio
         public bool suma = true;
         public bool anim = false;
         public bool Conectado = true;
+        public bool Changed = false;
         public frmLogin()
         {
             InitializeComponent();
@@ -76,23 +77,19 @@ namespace TurismoRealEscritorio
                 pReconectando.Refresh();
             }
         }
-
         private void btnIniciar_Click(object sender, EventArgs e)
         {
+            btnIniciar.Enabled = false;
             lbError.Text = "";
             if (Conectado)
             {
-                ClienteHttp.Peticion.Autenticar(txtUsername.Text, txtClave.Text, lbError);
-                if (SesionManager.Sesion.Autenticado)
-                {
-                    this.Dispose();
-                }
+                ClienteHttp.Peticion.Autenticar(txtUsername.Text, txtClave.Text, lbError,btnIniciar,this);
             }
             else
             {
                 lbError.Text = "";
             }
-
+            
         }
 
         private async void timerConexion_Tick(object sender, EventArgs e)

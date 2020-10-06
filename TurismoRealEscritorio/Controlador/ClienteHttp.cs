@@ -178,8 +178,7 @@ namespace TurismoRealEscritorio.Controlador
             r.Dispose();
             return false;
         }
-
-        public async void Autenticar(String username, String clave, Label txt = null)
+        public async void Autenticar(String username, String clave, Label txt = null, Button btn = null, Form form = null)
         {
             HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Post,UrlBase+"/usuario/autenticar");
             var credenciales = JsonConvert.SerializeObject(new { Username=username, Clave=clave });
@@ -189,23 +188,26 @@ namespace TurismoRealEscritorio.Controlador
             switch((int)r.StatusCode){
                 case 200:
                     SesionManager.IniciarSesion(JsonConvert.DeserializeObject<Token>(await r.Content.ReadAsStringAsync()));
+                    form.Dispose();
                     break;
                 case 401:
                     if (txt != null)
                     {
                         txt.Text = "Acceso Denegado.";
+                        btn.Enabled = true;
                     }
                     break;
                 case 500:
                     if (txt != null)
                     {
                         txt.Text = "Error de servidor.";
+                        btn.Enabled = true;
                     }
                     break;
                 default:
                     if (txt != null)
                     {
-                        Console.WriteLine(r.StatusCode);
+                        btn.Enabled = true;
                         var a = await r.Content.ReadAsStringAsync();
                         txt.Text = JsonConvert.DeserializeObject<MensajeError>(a).Error;
                     }
