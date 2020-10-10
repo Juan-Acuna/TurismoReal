@@ -79,9 +79,18 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             cbGenero.ValueMember = "Id_genero";
             cbRol.DisplayMember = "Nombre";
             cbRol.ValueMember = "Id_rol";
-            cbRegion.DataSource = Main.Repos.Regiones;
-            cbGenero.DataSource = Main.Repos.Generos;
-            cbRol.DataSource = Main.Repos.Roles;
+            do
+            {
+                cbRegion.DataSource = Main.Repos.Regiones;
+            } while (cbRegion.DataSource==null);
+            do
+            {
+                cbGenero.DataSource = Main.Repos.Generos;
+            } while (cbGenero.DataSource == null);
+            do
+            {
+                cbRol.DataSource = Main.Repos.Roles;
+            } while (cbRol.DataSource == null);
         }
 
 
@@ -162,6 +171,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
         }
         private async void PrepararModificar()
         {
+            usuarioActual = null;
             usuarioActual = await ClienteHttp.Peticion.Get<PersonaUsuario>(tablaUsuarios.SelectedRows[0].Cells[0].Value.ToString(), SesionManager.Token);
             btnAplicar.Text = "Aplicar";
             PrepararComboboxes();
@@ -170,7 +180,6 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             var p = usuarioActual.Persona;
             txtUsername.Text = u.Username;
             txtUsername.Enabled = false;
-            cbRol.SelectedItem = Main.Repos.Buscar((List<Rol>)cbRol.DataSource,"Id_rol",u.Id_rol);
             chkActivo.Checked = u.Activo == '1';
             lbFrecuente.Text = (u.Frecuente == '1') ? "Si" : "No";
             txtRut.Text = p.Rut;
@@ -181,10 +190,35 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             txtEmail.Text = p.Email;
             txtTelefono.Text = p.Telefono.ToString();
             txtDireccion.Text = p.Direccion;
-            cbRegion.SelectedItem = Main.Repos.Buscar((List<ProxyRegion>)cbRegion.DataSource,"Region",p.Region);
+            do
+            {
+                if (cbRol.DataSource != null)
+                {
+                    cbRol.SelectedItem = Main.Repos.Buscar((List<Rol>)cbRol.DataSource, "Id_rol", u.Id_rol);
+                }
+            } while (cbRol.DataSource == null);
+            do
+            {
+                if (cbRegion.DataSource != null)
+                {
+                    cbRegion.SelectedItem = Main.Repos.Buscar((List<ProxyRegion>)cbRegion.DataSource, "Region", p.Region);
+                }
+            } while (cbRegion.DataSource == null);
             cbRegion_SelectionChangeCommitted(cbRegion);
-            cbComuna.SelectedItem = Main.Repos.Buscar((List<Comuna>)cbComuna.DataSource,"Nombre",p.Comuna);
-            cbGenero.SelectedItem = Main.Repos.Buscar((List<Genero>)cbGenero.DataSource,"Id_genero",p.Id_genero);
+            do
+            {
+                if (cbComuna.DataSource != null)
+                {
+                    cbComuna.SelectedItem = Main.Repos.Buscar((List<Comuna>)cbComuna.DataSource, "Nombre", p.Comuna);
+                }
+            } while (cbComuna.DataSource == null);
+            do
+            {
+                if (cbGenero.DataSource != null)
+                {
+                    cbGenero.SelectedItem = Main.Repos.Buscar((List<Genero>)cbGenero.DataSource, "Id_genero", p.Id_genero);
+                }
+            } while (cbGenero.DataSource == null);
             cbRegion.Refresh();
             cbComuna.Refresh();
             cbGenero.Refresh();

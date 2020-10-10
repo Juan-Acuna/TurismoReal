@@ -26,10 +26,22 @@ namespace TurismoRealEscritorio.Controlador
 
         private async void CargarRepos()
         {
-            roles = await ClienteHttp.Peticion.GetList<Rol>(SesionManager.Token);
-            estadoDeptos = await ClienteHttp.Peticion.GetList<EstadoDepto>();
-            generos = await ClienteHttp.Peticion.GetList<Genero>();
-            regiones = await ClienteHttp.Peticion.Util_ProxyRegion<ProxyRegion>();
+            do
+            {
+                roles = await ClienteHttp.Peticion.GetList<Rol>(SesionManager.Token);
+            } while (roles == null);
+            do
+            {
+                estadoDeptos = await ClienteHttp.Peticion.GetList<EstadoDepto>();
+            } while (estadoDeptos==null);
+            do
+            {
+                generos = await ClienteHttp.Peticion.GetList<Genero>();
+            } while (generos==null);
+            do
+            {
+                regiones = await ClienteHttp.Peticion.Util_ProxyRegion<ProxyRegion>();
+            } while (regiones==null);
         }
 
         public T Buscar<T>(List<T> lista, String campo, object valor)
