@@ -42,6 +42,7 @@
             this.pContainer = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerConexion = new System.Windows.Forms.Timer(this.components);
+            this.lbNombre = new System.Windows.Forms.Label();
             this.pReconectando.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -71,6 +72,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lbNombre);
             this.panel1.Controls.Add(this.btnSalir);
             this.panel1.Controls.Add(this.btnLogistica);
             this.panel1.Controls.Add(this.btnDeptos);
@@ -167,6 +169,17 @@
             // 
             this.timerConexion.Tick += new System.EventHandler(this.timerConexion_Tick);
             // 
+            // lbNombre
+            // 
+            this.lbNombre.AutoSize = true;
+            this.lbNombre.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNombre.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lbNombre.Location = new System.Drawing.Point(2, 431);
+            this.lbNombre.Name = "lbNombre";
+            this.lbNombre.Size = new System.Drawing.Size(153, 20);
+            this.lbNombre.TabIndex = 11;
+            this.lbNombre.Text = "{Nombre+Apellido}";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -180,6 +193,7 @@
             this.pReconectando.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
@@ -199,5 +213,6 @@
         private System.Windows.Forms.Panel pContainer;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timerConexion;
+        private System.Windows.Forms.Label lbNombre;
     }
 }

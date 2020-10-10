@@ -75,11 +75,12 @@
             this.lbError.AutoSize = true;
             this.lbError.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbError.ForeColor = System.Drawing.Color.Red;
-            this.lbError.Location = new System.Drawing.Point(49, 289);
+            this.lbError.Location = new System.Drawing.Point(29, 286);
             this.lbError.Name = "lbError";
-            this.lbError.Size = new System.Drawing.Size(122, 17);
+            this.lbError.Size = new System.Drawing.Size(142, 17);
             this.lbError.TabIndex = 7;
-            this.lbError.Text = "{Mensaje de error}";
+            this.lbError.Text = "     {Mensaje de error}";
+            this.lbError.TextChanged += new System.EventHandler(this.lbError_TextChanged);
             // 
             // btnRecuperar
             // 

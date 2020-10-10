@@ -69,6 +69,8 @@
     <Compile Include="Modelos\PersonaUsuario.cs" />
     <Compile Include="Modelos\Rol.cs" />
     <Compile Include="Modelos\Usuario.cs" />
+    <Compile Include="Modelos\Util\Comuna.cs" />
+    <Compile Include="Modelos\Util\ProxyRegion.cs" />
     <Compile Include="Modelos\Vehiculo.cs" />
     <Compile Include="Vistas\frmLogin.cs">
       <SubType>Form</SubType>

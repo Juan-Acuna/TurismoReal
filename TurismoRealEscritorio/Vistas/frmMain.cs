@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TurismoRealEscritorio.Controlador;
+using TurismoRealEscritorio.Modelos;
 using TurismoRealEscritorio.Vistas.Usuarios;
 
 namespace TurismoRealEscritorio.Vista
@@ -18,7 +19,8 @@ namespace TurismoRealEscritorio.Vista
         public bool suma = true;
         public bool anim = false;
         public bool Conectado = true;
-        public Repositorios Repo = new Repositorios();
+        public Repositorios Repos = new Repositorios();
+        public EstadoTrabajo EstadoTrabajo = EstadoTrabajo.Espera;
 
         public frmMain()
         {
@@ -27,7 +29,7 @@ namespace TurismoRealEscritorio.Vista
             pReconectando.Height = 0;
             timerConexion.Start();
             ConfigurarBotones(panel1);
-
+            AsignarNombre();
         }
 
         public void ConfigurarBotones(Control cont)
@@ -49,6 +51,10 @@ namespace TurismoRealEscritorio.Vista
         {
             if (pContainer.Controls != null)
             {
+                if (pContainer.Controls.Count>0)
+                {
+                    pContainer.Controls[0].Dispose();
+                }
                 pContainer.Controls.Clear();
             }
             ConfigurarBotones(form);
@@ -57,6 +63,13 @@ namespace TurismoRealEscritorio.Vista
             pContainer.Controls.Add(form);
             pContainer.Tag = form;
             form.Show();
+        }
+        private async void AsignarNombre()
+        {
+            var pu = await ClienteHttp.Peticion.Get<PersonaUsuario>(SesionManager.Usuario,SesionManager.Token);
+            String nom = pu.Persona.Nombres.Split(' ')[0];
+            String ape = pu.Persona.Apellidos.Split(' ')[0];
+            lbNombre.Text = nom + " " + ape;
         }
         public void _MouseEnter(object sender, EventArgs e)
         {
@@ -158,5 +171,11 @@ namespace TurismoRealEscritorio.Vista
             AbrirForm(new frmUsuarios(this));
         }
         #endregion
+    }
+    public enum EstadoTrabajo
+    {
+        Espera,
+        Agregando,
+        Modificando
     }
 }

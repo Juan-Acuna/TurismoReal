@@ -94,9 +94,9 @@ namespace TurismoRealEscritorio
 
         private async void timerConexion_Tick(object sender, EventArgs e)
         {
-            btnIniciar.Enabled = Conectado;
             if (await ComprobarConexion())
             {
+                btnIniciar.Enabled = true;
                 if (pReconectando.Height>=42)
                 {
                     suma = false;
@@ -106,6 +106,7 @@ namespace TurismoRealEscritorio
             }
             else
             {
+                btnIniciar.Enabled = false;
                 Reconectar();
             }
         }
@@ -132,6 +133,11 @@ namespace TurismoRealEscritorio
         private void txtUsername_Click(object sender, EventArgs e)
         {
             lbError.Text = "";
+        }
+
+        private void lbError_TextChanged(object sender, EventArgs e)
+        {
+            lbError.Text = lbError.Text.PadLeft(23);
         }
     }
 }
