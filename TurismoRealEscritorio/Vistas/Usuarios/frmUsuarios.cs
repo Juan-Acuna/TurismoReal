@@ -169,6 +169,9 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
         }
         private void PrepararAgregar()
         {
+
+            pClave.Visible = false;
+            chkClave.Visible = false;
             PrepararComboboxes();
             btnAplicar.Text = "Crear";
             txtUsername.Text = "";
@@ -190,6 +193,13 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             usuarioActual = null;
             usuarioActual = await ClienteHttp.Peticion.Get<PersonaUsuario>(tablaUsuarios.SelectedRows[0].Cells[0].Value.ToString(), SesionManager.Token);
             btnAplicar.Text = "Aplicar";
+            txtClave.Text = null;
+            chkClave.Checked = false;
+            claveVisible = false;
+            btnOjo.Image = imgCerrado;
+            pClave.Visible = true;
+            chkClave.Visible = true;
+            pClave.Enabled = false;
             PrepararComboboxes();
             //Se preparan los campos
             var u = usuarioActual.Usuario;
@@ -198,6 +208,16 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             txtUsername.Enabled = false;
             chkActivo.Checked = u.Activo == '1';
             txtFrecuente.Text = (u.Frecuente == '1') ? "Si" : "No";
+            if (u.Id_rol == 5)
+            {
+                txtFrecuente.Visible = true;
+                lbFrecuente.Visible = true;
+            }
+            else
+            {
+                txtFrecuente.Visible = false;
+                lbFrecuente.Visible = false;
+            }
             txtRut.Text = p.Rut;
             txtRut.Enabled = false;
             txtNombres.Text = p.Nombres;
@@ -337,7 +357,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             pClave.Enabled = chkClave.Checked;
         }
 
-        private void btnOjo_Click(object sender, EventArgs e)
+        private void btnOjo_Click(object sender = null, EventArgs e = null)
         {
             claveVisible = !claveVisible;
             if (claveVisible)
