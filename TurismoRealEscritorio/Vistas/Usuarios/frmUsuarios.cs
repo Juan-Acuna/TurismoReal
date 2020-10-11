@@ -91,6 +91,9 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             {
                 cbRol.DataSource = Main.Repos.Roles;
             } while (cbRol.DataSource == null);
+            /*cbRegion.DataSource = Main.Repos.Regiones;
+            cbGenero.DataSource = Main.Repos.Generos;
+            cbRol.DataSource = Main.Repos.Roles;*/
         }
 
 
@@ -227,6 +230,10 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
         }
         private void PrepararComboboxes()
         {
+            cbRegion.SelectedItem = null;
+            cbRol.SelectedItem = null;
+            cbComuna.SelectedItem = null;
+            cbGenero.SelectedItem = null;
             cbComuna.Enabled = false;
             cbRegion.Text = "Seleccione Region";
             cbComuna.Text = "Seleccione Comuna";
