@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsuarios));
             this.tablaUsuarios = new System.Windows.Forms.DataGridView();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -37,6 +38,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pEdicion = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.cbComuna = new System.Windows.Forms.ComboBox();
             this.cbRegion = new System.Windows.Forms.ComboBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
@@ -60,22 +62,36 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pClave = new System.Windows.Forms.Panel();
+            this.btnOjo = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtClave = new System.Windows.Forms.TextBox();
+            this.chkClave = new System.Windows.Forms.CheckBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.lbFrecuente = new System.Windows.Forms.Label();
+            this.txtFrecuente = new System.Windows.Forms.Label();
             this.chkActivo = new System.Windows.Forms.CheckBox();
             this.cbRol = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lbFrecuente = new System.Windows.Forms.Label();
             this.timerEdicion = new System.Windows.Forms.Timer(this.components);
             this.btnRefrescar = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.imgAbiertoCont = new System.Windows.Forms.PictureBox();
+            this.imgCerradoCont = new System.Windows.Forms.PictureBox();
+            this.imgAbriendoCont = new System.Windows.Forms.PictureBox();
+            this.imgCerrandoCont = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaUsuarios)).BeginInit();
             this.panel1.SuspendLayout();
             this.pEdicion.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.pClave.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnOjo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgAbiertoCont)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCerradoCont)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgAbriendoCont)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCerrandoCont)).BeginInit();
             this.SuspendLayout();
             // 
             // tablaUsuarios
@@ -161,6 +177,7 @@
             this.pEdicion.Name = "pEdicion";
             this.pEdicion.Size = new System.Drawing.Size(842, 343);
             this.pEdicion.TabIndex = 1;
+            this.pEdicion.Visible = false;
             // 
             // groupBox2
             // 
@@ -194,6 +211,16 @@
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = " Datos Personales";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(415, 87);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 19);
+            this.label7.TabIndex = 29;
+            this.label7.Text = "(+56)";
             // 
             // cbComuna
             // 
@@ -407,14 +434,16 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pClave);
+            this.groupBox1.Controls.Add(this.chkClave);
             this.groupBox1.Controls.Add(this.txtUsername);
-            this.groupBox1.Controls.Add(this.lbFrecuente);
+            this.groupBox1.Controls.Add(this.txtFrecuente);
             this.groupBox1.Controls.Add(this.chkActivo);
             this.groupBox1.Controls.Add(this.cbRol);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lbFrecuente);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
@@ -422,6 +451,60 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " Datos de Usuario ";
+            // 
+            // pClave
+            // 
+            this.pClave.Controls.Add(this.btnOjo);
+            this.pClave.Controls.Add(this.label5);
+            this.pClave.Controls.Add(this.txtClave);
+            this.pClave.Enabled = false;
+            this.pClave.Location = new System.Drawing.Point(6, 242);
+            this.pClave.Name = "pClave";
+            this.pClave.Size = new System.Drawing.Size(199, 87);
+            this.pClave.TabIndex = 30;
+            // 
+            // btnOjo
+            // 
+            this.btnOjo.Location = new System.Drawing.Point(163, 46);
+            this.btnOjo.Name = "btnOjo";
+            this.btnOjo.Size = new System.Drawing.Size(22, 22);
+            this.btnOjo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnOjo.TabIndex = 30;
+            this.btnOjo.TabStop = false;
+            this.btnOjo.Click += new System.EventHandler(this.btnOjo_Click);
+            this.btnOjo.Paint += new System.Windows.Forms.PaintEventHandler(this.btnOjo_Paint);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(10, 19);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(126, 19);
+            this.label5.TabIndex = 29;
+            this.label5.Text = "Nueva Contraseña:";
+            // 
+            // txtClave
+            // 
+            this.txtClave.BackColor = System.Drawing.SystemColors.Window;
+            this.txtClave.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.txtClave.Location = new System.Drawing.Point(14, 46);
+            this.txtClave.Name = "txtClave";
+            this.txtClave.PasswordChar = '*';
+            this.txtClave.Size = new System.Drawing.Size(142, 24);
+            this.txtClave.TabIndex = 28;
+            // 
+            // chkClave
+            // 
+            this.chkClave.AutoSize = true;
+            this.chkClave.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.chkClave.Location = new System.Drawing.Point(4, 213);
+            this.chkClave.Name = "chkClave";
+            this.chkClave.Size = new System.Drawing.Size(153, 23);
+            this.chkClave.TabIndex = 28;
+            this.chkClave.Text = "Cambiar Contraseña";
+            this.chkClave.UseVisualStyleBackColor = true;
+            this.chkClave.CheckedChanged += new System.EventHandler(this.chkClave_CheckedChanged);
             // 
             // txtUsername
             // 
@@ -432,15 +515,15 @@
             this.txtUsername.Size = new System.Drawing.Size(115, 24);
             this.txtUsername.TabIndex = 25;
             // 
-            // lbFrecuente
+            // txtFrecuente
             // 
-            this.lbFrecuente.AutoSize = true;
-            this.lbFrecuente.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFrecuente.Location = new System.Drawing.Point(72, 176);
-            this.lbFrecuente.Name = "lbFrecuente";
-            this.lbFrecuente.Size = new System.Drawing.Size(90, 19);
-            this.lbFrecuente.TabIndex = 8;
-            this.lbFrecuente.Text = "<Frecuente>";
+            this.txtFrecuente.AutoSize = true;
+            this.txtFrecuente.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFrecuente.Location = new System.Drawing.Point(72, 176);
+            this.txtFrecuente.Name = "txtFrecuente";
+            this.txtFrecuente.Size = new System.Drawing.Size(90, 19);
+            this.txtFrecuente.TabIndex = 8;
+            this.txtFrecuente.Text = "<Frecuente>";
             // 
             // chkActivo
             // 
@@ -493,15 +576,15 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Estado:";
             // 
-            // label5
+            // lbFrecuente
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(0, 176);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 19);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Frecuente:";
+            this.lbFrecuente.AutoSize = true;
+            this.lbFrecuente.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFrecuente.Location = new System.Drawing.Point(0, 176);
+            this.lbFrecuente.Name = "lbFrecuente";
+            this.lbFrecuente.Size = new System.Drawing.Size(73, 19);
+            this.lbFrecuente.TabIndex = 3;
+            this.lbFrecuente.Text = "Frecuente:";
             // 
             // timerEdicion
             // 
@@ -518,15 +601,49 @@
             this.btnRefrescar.Text = "Refrescar";
             this.btnRefrescar.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // imgAbiertoCont
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(415, 87);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 19);
-            this.label7.TabIndex = 29;
-            this.label7.Text = "(+56)";
+            this.imgAbiertoCont.Image = ((System.Drawing.Image)(resources.GetObject("imgAbiertoCont.Image")));
+            this.imgAbiertoCont.Location = new System.Drawing.Point(359, 437);
+            this.imgAbiertoCont.Name = "imgAbiertoCont";
+            this.imgAbiertoCont.Size = new System.Drawing.Size(22, 22);
+            this.imgAbiertoCont.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgAbiertoCont.TabIndex = 31;
+            this.imgAbiertoCont.TabStop = false;
+            this.imgAbiertoCont.Visible = false;
+            // 
+            // imgCerradoCont
+            // 
+            this.imgCerradoCont.Image = ((System.Drawing.Image)(resources.GetObject("imgCerradoCont.Image")));
+            this.imgCerradoCont.Location = new System.Drawing.Point(401, 437);
+            this.imgCerradoCont.Name = "imgCerradoCont";
+            this.imgCerradoCont.Size = new System.Drawing.Size(22, 22);
+            this.imgCerradoCont.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgCerradoCont.TabIndex = 32;
+            this.imgCerradoCont.TabStop = false;
+            this.imgCerradoCont.Visible = false;
+            // 
+            // imgAbriendoCont
+            // 
+            this.imgAbriendoCont.Image = ((System.Drawing.Image)(resources.GetObject("imgAbriendoCont.Image")));
+            this.imgAbriendoCont.Location = new System.Drawing.Point(359, 465);
+            this.imgAbriendoCont.Name = "imgAbriendoCont";
+            this.imgAbriendoCont.Size = new System.Drawing.Size(22, 22);
+            this.imgAbriendoCont.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgAbriendoCont.TabIndex = 33;
+            this.imgAbriendoCont.TabStop = false;
+            this.imgAbriendoCont.Visible = false;
+            // 
+            // imgCerrandoCont
+            // 
+            this.imgCerrandoCont.Image = ((System.Drawing.Image)(resources.GetObject("imgCerrandoCont.Image")));
+            this.imgCerrandoCont.Location = new System.Drawing.Point(401, 467);
+            this.imgCerrandoCont.Name = "imgCerrandoCont";
+            this.imgCerrandoCont.Size = new System.Drawing.Size(22, 22);
+            this.imgCerrandoCont.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgCerrandoCont.TabIndex = 34;
+            this.imgCerrandoCont.TabStop = false;
+            this.imgCerrandoCont.Visible = false;
             // 
             // frmUsuarios
             // 
@@ -534,6 +651,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(867, 501);
             this.ControlBox = false;
+            this.Controls.Add(this.imgCerrandoCont);
+            this.Controls.Add(this.imgAbriendoCont);
+            this.Controls.Add(this.imgCerradoCont);
+            this.Controls.Add(this.imgAbiertoCont);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAgregar);
@@ -556,6 +677,13 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.pClave.ResumeLayout(false);
+            this.pClave.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnOjo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgAbiertoCont)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCerradoCont)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgAbriendoCont)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCerrandoCont)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -576,9 +704,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lbFrecuente;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label txtFrecuente;
         private System.Windows.Forms.CheckBox chkActivo;
         private System.Windows.Forms.ComboBox cbRol;
         private System.Windows.Forms.Label label18;
@@ -605,5 +733,14 @@
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Button btnRefrescar;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel pClave;
+        private System.Windows.Forms.PictureBox btnOjo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtClave;
+        private System.Windows.Forms.CheckBox chkClave;
+        private System.Windows.Forms.PictureBox imgAbiertoCont;
+        private System.Windows.Forms.PictureBox imgCerradoCont;
+        private System.Windows.Forms.PictureBox imgAbriendoCont;
+        private System.Windows.Forms.PictureBox imgCerrandoCont;
     }
 }

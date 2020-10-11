@@ -29,7 +29,7 @@ namespace TurismoRealEscritorio.Vista
             pReconectando.Height = 0;
             timerConexion.Start();
             ConfigurarBotones(panel1);
-            AsignarNombre();
+            lbNombre.Text = SesionManager.NombrePila;
         }
 
         public void ConfigurarBotones(Control cont)
@@ -63,13 +63,6 @@ namespace TurismoRealEscritorio.Vista
             pContainer.Controls.Add(form);
             pContainer.Tag = form;
             form.Show();
-        }
-        private async void AsignarNombre()
-        {
-            var pu = await ClienteHttp.Peticion.Get<PersonaUsuario>(SesionManager.Usuario,SesionManager.Token);
-            String nom = pu.Persona.Nombres.Split(' ')[0];
-            String ape = pu.Persona.Apellidos.Split(' ')[0];
-            lbNombre.Text = nom + " " + ape;
         }
         public void _MouseEnter(object sender, EventArgs e)
         {

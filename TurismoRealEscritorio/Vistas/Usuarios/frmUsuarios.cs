@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -22,12 +23,26 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
         public bool suma = true;
         public bool anim = false;
         bool primeraCarga = true;
+        bool claveVisible = false;
+        Image imgAbierto;
+        Image imgCerrado;
+        Image imgAbriendo;
+        Image imgCerrando;
+        int cuadros = 0;
+        int cuadroActual = 0;
         public PersonaUsuario usuarioActual;
 
         public frmUsuarios(frmMain main = null)
         {
             InitializeComponent();
             Main = main;
+            imgAbierto = imgAbiertoCont.Image;
+            imgCerrado = imgCerradoCont.Image;
+            imgAbriendo = imgAbriendoCont.Image;
+            imgCerrando = imgCerrandoCont.Image;
+            btnOjo.Image = imgCerrado;
+            FrameDimension dim = new FrameDimension(imgAbriendo.FrameDimensionsList[0]);
+            cuadros = imgAbriendo.GetFrameCount(dim);
         }
 
         private async void CargarUsuarios(object sender = null, EventArgs e = null)
@@ -65,6 +80,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
                 tablaUsuarios.MultiSelect = false;
                 tablaUsuarios.Rows[0].Selected = true;
                 primeraCarga = false;
+                pEdicion.Visible = true;
             }
         }
         private void frmUsuarios_Load(object sender, EventArgs e)
@@ -181,7 +197,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             txtUsername.Text = u.Username;
             txtUsername.Enabled = false;
             chkActivo.Checked = u.Activo == '1';
-            lbFrecuente.Text = (u.Frecuente == '1') ? "Si" : "No";
+            txtFrecuente.Text = (u.Frecuente == '1') ? "Si" : "No";
             txtRut.Text = p.Rut;
             txtRut.Enabled = false;
             txtNombres.Text = p.Nombres;
@@ -267,11 +283,11 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
-            usuarioActual = new PersonaUsuario();
-            usuarioActual.Persona = new Persona();
-            usuarioActual.Usuario = new Usuario();
-            var p = usuarioActual.Persona;
-            var u = usuarioActual.Usuario;
+            ProxyPersonaUsuario Actual = new ProxyPersonaUsuario();
+            Actual.Persona = new Persona();
+            Actual.Usuario = new ProxyUsuario();
+            var p = Actual.Persona;
+            var u = Actual.Usuario;
             switch (Main.EstadoTrabajo)
             {
                 case EstadoTrabajo.Agregando:
@@ -295,6 +311,10 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
                     u.Username = txtUsername.Text;
                     u.Id_rol = (int)cbRol.SelectedValue;
                     u.Activo = chkActivo.Checked ? '1' : '0';
+                    if (chkClave.Checked)
+                    {
+                        u.Clave = txtClave.Text;
+                    }
                     p.Rut = txtRut.Text;
                     p.Nombres = txtNombres.Text;
                     p.Apellidos = txtApellidos.Text;
@@ -310,6 +330,46 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             }
             expand = true;
             CargarUsuarios();
+        }
+
+        private void chkClave_CheckedChanged(object sender, EventArgs e)
+        {
+            pClave.Enabled = chkClave.Checked;
+        }
+
+        private void btnOjo_Click(object sender, EventArgs e)
+        {
+            claveVisible = !claveVisible;
+            if (claveVisible)
+            {
+                //imgOjo cambia de imagen(SE ABRE)
+                btnOjo.Image = imgAbriendo;
+                txtClave.PasswordChar = '\0';
+            }
+            else
+            {
+                //imgOjo cambia de imagen(SE CIERRA)
+                btnOjo.Image = imgCerrando;
+                txtClave.PasswordChar = '*';
+            }
+            btnOjo.Refresh();
+        }
+
+        private void btnOjo_Paint(object sender, PaintEventArgs e)
+        {
+            if (cuadroActual == cuadros && cuadroActual > 1)
+            {
+                if (claveVisible)
+                {
+                    btnOjo.Image = imgAbierto;
+                }
+                else
+                {
+                    btnOjo.Image = imgCerrado;
+                }
+                cuadroActual = 0;
+            }
+            cuadroActual++;
         }
     }
 }

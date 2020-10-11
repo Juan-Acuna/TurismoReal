@@ -11,14 +11,18 @@ namespace TurismoRealEscritorio.Controlador
         private static Sesion sesion = Sesion.SesionVacia;
         private static String tkn = String.Empty;
         private static String username = String.Empty;
+        private static String pila = String.Empty;
         public static Sesion Sesion { get { return sesion; } }
         public static String Usuario { get { return username; } }
+        public static String NombrePila { get { return pila; } }
         public static String Token { get { return tkn; } }
-        public static void IniciarSesion(Token token, String usuario)
+        public static void IniciarSesion(Token token)
         {
             sesion = new Sesion(token);
             tkn = sesion.Token.token;
-            username = usuario;
+            username = sesion.Token.username;
+            pila = sesion.Token.nombres.Split(' ')[0] +" "+ sesion.Token.apellidos.Split(' ')[0];
+
         }
 
         public static void CerrarSesion()
@@ -47,11 +51,17 @@ namespace TurismoRealEscritorio.Controlador
     {
         public String token { get; set; }
         public DateTime expiration { get; set; }
+        public String username { get; set; }
+        public String nombres { get; set; }
+        public String apellidos { get; set; }
 
-        public Token(String token, DateTime expiration)
+        public Token(String token, DateTime expiration,String username, String nombres, String apellidos)
         {
             this.token = token;
             this.expiration = expiration;
+            this.username = username;
+            this.apellidos = apellidos;
+            this.nombres = nombres;
         }
     }
     public class MensajeError

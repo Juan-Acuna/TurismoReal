@@ -33,6 +33,7 @@
             this.pReconectando = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbNombre = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnLogistica = new System.Windows.Forms.Button();
             this.btnDeptos = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.pContainer = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerConexion = new System.Windows.Forms.Timer(this.components);
-            this.lbNombre = new System.Windows.Forms.Label();
             this.pReconectando.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -84,6 +84,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(161, 501);
             this.panel1.TabIndex = 4;
+            // 
+            // lbNombre
+            // 
+            this.lbNombre.AutoSize = true;
+            this.lbNombre.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNombre.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lbNombre.Location = new System.Drawing.Point(2, 431);
+            this.lbNombre.Name = "lbNombre";
+            this.lbNombre.Size = new System.Drawing.Size(149, 20);
+            this.lbNombre.TabIndex = 11;
+            this.lbNombre.Text = "Cargando usuario...";
             // 
             // btnSalir
             // 
@@ -168,17 +179,6 @@
             // timerConexion
             // 
             this.timerConexion.Tick += new System.EventHandler(this.timerConexion_Tick);
-            // 
-            // lbNombre
-            // 
-            this.lbNombre.AutoSize = true;
-            this.lbNombre.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNombre.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lbNombre.Location = new System.Drawing.Point(2, 431);
-            this.lbNombre.Name = "lbNombre";
-            this.lbNombre.Size = new System.Drawing.Size(153, 20);
-            this.lbNombre.TabIndex = 11;
-            this.lbNombre.Text = "{Nombre+Apellido}";
             // 
             // frmMain
             // 
