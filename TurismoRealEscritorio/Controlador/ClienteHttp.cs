@@ -30,7 +30,7 @@ namespace TurismoRealEscritorio.Controlador
 
         public async Task<T> Get<T>(String url, String token = "none", Label txt = null) where T : class, new()
         {
-            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/" + typeof(T).Name.Replace("Persona", "") + "/" + url);
+            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "") + "/" + url);
             if (!token.Equals("none"))
             {
                 m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -67,7 +67,7 @@ namespace TurismoRealEscritorio.Controlador
 
         public async Task<List<T>> GetList<T>(String token = "none", Label txt = null) where T : class, new()
         {
-            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/" + typeof(T).Name.Replace("Persona", ""));
+            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", ""));
             if (!token.Equals("none"))
             {
                 m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -104,7 +104,7 @@ namespace TurismoRealEscritorio.Controlador
 
         public async Task<bool> Send<T>(HttpMethod metodo, T body, String url="", String token = "none", Label txt = null)
         {
-            HttpRequestMessage m = new HttpRequestMessage(metodo, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").ToLower()+url);
+            HttpRequestMessage m = new HttpRequestMessage(metodo, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "").ToLower()+url);
             if (!token.Equals("none"))
             {
                 m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -179,15 +179,25 @@ namespace TurismoRealEscritorio.Controlador
 
         public async void Autenticar(String username, String clave, Label txt = null, Button btn = null, Form form = null)
         {
+            HttpResponseMessage r;
             HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Post, UrlBase + "/usuario/autenticar");
             var credenciales = JsonConvert.SerializeObject(new { Username = username, Clave = clave });
             var carga = new StringContent(credenciales, Encoding.UTF8, "Application/json");
             m.Content = carga;
-            var r = await http.SendAsync(m);
+            try
+            {
+                r = await http.SendAsync(m);
+            }
+            catch (TaskCanceledException e)
+            {
+                txt.Text = "Error en la conexion.";
+                ((frmLogin)form).Conectado = false;
+                return;
+            }
             switch ((int)r.StatusCode)
             {
                 case 200:
-                    SesionManager.IniciarSesion(JsonConvert.DeserializeObject<Token>(await r.Content.ReadAsStringAsync()), username);
+                    SesionManager.IniciarSesion(JsonConvert.DeserializeObject<Token>(await r.Content.ReadAsStringAsync()));
                     form.Dispose();
                     break;
                 case 401:
