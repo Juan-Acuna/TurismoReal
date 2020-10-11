@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http.Headers;
+using System.Net.Mail;
+using System.Net;
 
 namespace TurismoRealEscritorio.Controlador
 {
@@ -18,6 +20,18 @@ namespace TurismoRealEscritorio.Controlador
         public static ClienteHttp Peticion { get { return instancia; } }
         //static String UrlBase = "http://localhost:51936/api";  //OFFLINE
         static String UrlBase = "http://turismoreal.xyz/api";  //ONLINE
+        static String Correo = "notificaciones@turismoreal.xyz";
+        static String Clave = Temp.CLAVE_CORREO;
+        //static MailAddress DireccionEmail = new MailAddress(Correo, "Turismo Real");
+        static SmtpClient smtp = new SmtpClient
+        {
+            Host = "smtp.WebSiteLive.net",
+            Port = 587,
+            EnableSsl = true,
+            DeliveryMethod = SmtpDeliveryMethod.Network,
+            UseDefaultCredentials = false,
+            Credentials = new NetworkCredential(Correo,Clave)
+        };
         private ClienteHttp()
         {
             http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("Application/json"));
@@ -306,6 +320,10 @@ namespace TurismoRealEscritorio.Controlador
             }
             txt.Text = "Problemas de conexion.";
             return false;
-        }///publico/util/disponible/
+        }
+        public async Task<bool> EnviarCorreo()
+        {
+            return true;
+        }
     }
 }

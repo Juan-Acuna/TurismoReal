@@ -74,6 +74,7 @@
     <Compile Include="Modelos\Util\ProxyRegion.cs" />
     <Compile Include="Modelos\Util\ProxyUsuario.cs" />
     <Compile Include="Modelos\Vehiculo.cs" />
+    <Compile Include="Temp.cs" />
     <Compile Include="Vistas\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
