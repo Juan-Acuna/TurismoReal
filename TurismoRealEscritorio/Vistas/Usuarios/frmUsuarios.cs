@@ -91,9 +91,6 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             {
                 cbRol.DataSource = Main.Repos.Roles;
             } while (cbRol.DataSource == null);
-            /*cbRegion.DataSource = Main.Repos.Regiones;
-            cbGenero.DataSource = Main.Repos.Generos;
-            cbRol.DataSource = Main.Repos.Roles;*/
         }
 
 
@@ -193,7 +190,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             txtEmail.Text = p.Email;
             txtTelefono.Text = p.Telefono.ToString();
             txtDireccion.Text = p.Direccion;
-            do
+            /*do
             {
                 if (cbRol.DataSource != null)
                 {
@@ -222,6 +219,13 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
                     cbGenero.SelectedItem = Main.Repos.Buscar((List<Genero>)cbGenero.DataSource, "Id_genero", p.Id_genero);
                 }
             } while (cbGenero.DataSource == null);
+            /**/
+            cbRol.SelectedItem = Main.Repos.Buscar((List<Rol>)cbRol.DataSource, "Id_rol", u.Id_rol);
+            cbRegion.SelectedItem = Main.Repos.Buscar((List<ProxyRegion>) cbRegion.DataSource, "Region", p.Region);
+            cbRegion_SelectionChangeCommitted(cbRegion);
+            cbComuna.SelectedItem = Main.Repos.Buscar((List<Comuna>) cbComuna.DataSource, "Nombre", p.Comuna);
+            cbGenero.SelectedItem = Main.Repos.Buscar((List<Genero>) cbGenero.DataSource, "Id_genero", p.Id_genero);
+            /**/
             cbRegion.Refresh();
             cbComuna.Refresh();
             cbGenero.Refresh();
