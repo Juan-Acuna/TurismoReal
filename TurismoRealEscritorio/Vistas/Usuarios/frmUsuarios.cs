@@ -169,7 +169,10 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
         }
         private void PrepararAgregar()
         {
-
+            lbEstado.Visible = false;
+            chkActivo.Visible = false;
+            lbFrecuente.Visible = false;
+            txtFrecuente.Visible = false;
             pClave.Visible = false;
             chkClave.Visible = false;
             PrepararComboboxes();
@@ -190,10 +193,11 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
         }
         private async void PrepararModificar()
         {
+            lbEstado.Visible = true;
+            chkActivo.Visible = true;
             usuarioActual = null;
             usuarioActual = await ClienteHttp.Peticion.Get<PersonaUsuario>(tablaUsuarios.SelectedRows[0].Cells[0].Value.ToString(), SesionManager.Token);
             btnAplicar.Text = "Aplicar";
-            txtClave.Text = null;
             chkClave.Checked = false;
             claveVisible = false;
             btnOjo.Image = imgCerrado;
@@ -204,6 +208,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             //Se preparan los campos
             var u = usuarioActual.Usuario;
             var p = usuarioActual.Persona;
+            txtClave.Text = "";
             txtUsername.Text = u.Username;
             txtUsername.Enabled = false;
             chkActivo.Checked = u.Activo == '1';
@@ -325,17 +330,13 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
                     p.Direccion = txtDireccion.Text;
                     p.Region = cbRegion.SelectedValue.ToString();
                     p.Comuna = cbComuna.SelectedValue.ToString();
-                    ClienteHttp.Peticion.Send(HttpMethod.Post,usuarioActual);
+                    ClienteHttp.Peticion.Send(HttpMethod.Post,Actual);
                     break;
                 case EstadoTrabajo.Modificando:
                     u.Username = txtUsername.Text;
                     u.Id_rol = (int)cbRol.SelectedValue;
                     u.Activo = chkActivo.Checked ? '1' : '0';
-                    if (chkClave.Checked)
-                    {
-                        u.Clave = txtClave.Text;
-                    }
-                    p.Rut = txtRut.Text;
+                    p.Rut = u.Rut = txtRut.Text;
                     p.Nombres = txtNombres.Text;
                     p.Apellidos = txtApellidos.Text;
                     p.Nacimiento = dtNacimiento.Value;
@@ -345,9 +346,11 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
                     p.Direccion = txtDireccion.Text;
                     p.Region = cbRegion.SelectedValue.ToString();
                     p.Comuna = cbComuna.SelectedValue.ToString();
-                    ClienteHttp.Peticion.Send(new HttpMethod("PATCH"), usuarioActual,"/"+u.Username,SesionManager.Token);
+                    u.Clave = txtClave.Text;
+                    ClienteHttp.Peticion.Send(new HttpMethod("PATCH"), Actual,"/"+u.Username,SesionManager.Token);
                     break;
             }
+            Main.EstadoTrabajo = EstadoTrabajo.Espera;
             expand = true;
             CargarUsuarios();
         }
@@ -355,6 +358,10 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
         private void chkClave_CheckedChanged(object sender, EventArgs e)
         {
             pClave.Enabled = chkClave.Checked;
+            if (!chkClave.Checked)
+            {
+                txtClave.Text = "";
+            }
         }
 
         private void btnOjo_Click(object sender = null, EventArgs e = null)
@@ -362,13 +369,11 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             claveVisible = !claveVisible;
             if (claveVisible)
             {
-                //imgOjo cambia de imagen(SE ABRE)
                 btnOjo.Image = imgAbriendo;
                 txtClave.PasswordChar = '\0';
             }
             else
             {
-                //imgOjo cambia de imagen(SE CIERRA)
                 btnOjo.Image = imgCerrando;
                 txtClave.PasswordChar = '*';
             }

@@ -128,6 +128,7 @@
             this.btnDeptos.TabIndex = 7;
             this.btnDeptos.Text = "Departamentos";
             this.btnDeptos.UseVisualStyleBackColor = true;
+            this.btnDeptos.Click += new System.EventHandler(this.btnDeptos_Click);
             // 
             // btnUsuarios
             // 
@@ -190,6 +191,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmMain";
             this.Text = "Main";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.pReconectando.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -213,6 +215,6 @@
         private System.Windows.Forms.Panel pContainer;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timerConexion;
-        private System.Windows.Forms.Label lbNombre;
+        public System.Windows.Forms.Label lbNombre;
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TurismoRealEscritorio.Controlador;
 using TurismoRealEscritorio.Modelos;
+using TurismoRealEscritorio.Vistas.Deptos;
 using TurismoRealEscritorio.Vistas.Usuarios;
 
 namespace TurismoRealEscritorio.Vista
@@ -163,7 +164,16 @@ namespace TurismoRealEscritorio.Vista
         {
             AbrirForm(new frmUsuarios(this));
         }
+        private void btnDeptos_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new frmDeptos(this));
+        }
         #endregion
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            timerConexion.Stop();
+        }
     }
     public enum EstadoTrabajo
     {

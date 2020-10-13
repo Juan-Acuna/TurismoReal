@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Net.Http.Headers;
 using System.Net.Mail;
 using System.Net;
+using TurismoRealEscritorio.Modelos.Util;
 
 namespace TurismoRealEscritorio.Controlador
 {
@@ -20,18 +21,6 @@ namespace TurismoRealEscritorio.Controlador
         public static ClienteHttp Peticion { get { return instancia; } }
         //static String UrlBase = "http://localhost:51936/api";  //OFFLINE
         static String UrlBase = "http://turismoreal.xyz/api";  //ONLINE
-        static String Correo = "notificaciones@turismoreal.xyz";
-        static String Clave = Temp.CLAVE_CORREO;
-        //static MailAddress DireccionEmail = new MailAddress(Correo, "Turismo Real");
-        static SmtpClient smtp = new SmtpClient
-        {
-            Host = "smtp.WebSiteLive.net",
-            Port = 587,
-            EnableSsl = true,
-            DeliveryMethod = SmtpDeliveryMethod.Network,
-            UseDefaultCredentials = false,
-            Credentials = new NetworkCredential(Correo,Clave)
-        };
         private ClienteHttp()
         {
             http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("Application/json"));
@@ -116,7 +105,7 @@ namespace TurismoRealEscritorio.Controlador
             return new List<T>();
         }
 
-        public async Task<bool> Send<T>(HttpMethod metodo, T body, String url="", String token = "none", Label txt = null)
+        public async Task<bool> Send<T>(HttpMethod metodo, T body, String url = "", String token = "none", Label txt = null)
         {
             HttpRequestMessage m = new HttpRequestMessage(metodo, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "").ToLower()+url);
             if (!token.Equals("none"))
@@ -138,16 +127,17 @@ namespace TurismoRealEscritorio.Controlador
                         txt.Text = "Acceso Denegado.";
                     }
                     break;
-                case 500:
+                /*case 500:
                     if (txt != null)
                     {
                         txt.Text = "Error de servidor.";
                     }
-                    break;
+                    break;*/
                 default:
                     if (txt != null)
                     {
-                        txt.Text = JsonConvert.DeserializeObject<MensajeError>(await r.Content.ReadAsStringAsync()).Error;
+                        var a = await r.Content.ReadAsStringAsync();
+                        txt.Text = JsonConvert.DeserializeObject<MensajeError>(a).Error;
                     }
                     break;
             }
@@ -315,13 +305,13 @@ namespace TurismoRealEscritorio.Controlador
             }
             catch (Exception e)
             {
-                txt.Text = "Problemas de conexion.";
+                txt.Text = "Error de servidor.";
                 return false;
             }
-            txt.Text = "Problemas de conexion.";
+            txt.Text = "Error de servidor.";
             return false;
         }
-        public async Task<bool> EnviarCorreo()
+        public async Task<bool> RecuperarContraseña(String username, String token)
         {
             return true;
         }

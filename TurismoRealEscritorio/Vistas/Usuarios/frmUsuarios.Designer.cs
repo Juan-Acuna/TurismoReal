@@ -73,7 +73,7 @@
             this.cbRol = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbEstado = new System.Windows.Forms.Label();
             this.lbFrecuente = new System.Windows.Forms.Label();
             this.timerEdicion = new System.Windows.Forms.Timer(this.components);
             this.btnRefrescar = new System.Windows.Forms.Button();
@@ -102,7 +102,6 @@
             this.tablaUsuarios.AllowUserToResizeRows = false;
             this.tablaUsuarios.ColumnHeadersHeight = 25;
             this.tablaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.tablaUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tablaUsuarios.Location = new System.Drawing.Point(0, 0);
             this.tablaUsuarios.MultiSelect = false;
             this.tablaUsuarios.Name = "tablaUsuarios";
@@ -112,7 +111,7 @@
             this.tablaUsuarios.RowHeadersWidth = 100;
             this.tablaUsuarios.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaUsuarios.Size = new System.Drawing.Size(842, 343);
+            this.tablaUsuarios.Size = new System.Drawing.Size(842, 314);
             this.tablaUsuarios.StandardTab = true;
             this.tablaUsuarios.TabIndex = 0;
             // 
@@ -175,7 +174,7 @@
             this.pEdicion.Dock = System.Windows.Forms.DockStyle.Top;
             this.pEdicion.Location = new System.Drawing.Point(0, 0);
             this.pEdicion.Name = "pEdicion";
-            this.pEdicion.Size = new System.Drawing.Size(842, 343);
+            this.pEdicion.Size = new System.Drawing.Size(842, 274);
             this.pEdicion.TabIndex = 1;
             this.pEdicion.Visible = false;
             // 
@@ -442,7 +441,7 @@
             this.groupBox1.Controls.Add(this.cbRol);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lbEstado);
             this.groupBox1.Controls.Add(this.lbFrecuente);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
@@ -566,15 +565,15 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Rol:";
             // 
-            // label4
+            // lbEstado
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(0, 135);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 19);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Estado:";
+            this.lbEstado.AutoSize = true;
+            this.lbEstado.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEstado.Location = new System.Drawing.Point(0, 135);
+            this.lbEstado.Name = "lbEstado";
+            this.lbEstado.Size = new System.Drawing.Size(53, 19);
+            this.lbEstado.TabIndex = 2;
+            this.lbEstado.Text = "Estado:";
             // 
             // lbFrecuente
             // 
@@ -703,7 +702,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbEstado;
         private System.Windows.Forms.Label lbFrecuente;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label txtFrecuente;
