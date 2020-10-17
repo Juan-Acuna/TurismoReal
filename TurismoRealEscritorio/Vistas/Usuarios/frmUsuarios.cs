@@ -396,5 +396,34 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             }
             cuadroActual++;
         }
+
+        private void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            CargarUsuarios();
+        }
+
+        private async void btnEliminar_Click(object sender, EventArgs e)
+        {
+            usuarioActual = null;
+            usuarioActual = await ClienteHttp.Peticion.Get<PersonaUsuario>(tablaUsuarios.SelectedRows[0].Cells[0].Value.ToString(), SesionManager.Token);
+            await ClienteHttp.Peticion.Send(HttpMethod.Delete, usuarioActual.Usuario, token: SesionManager.Token);
+            CargarUsuarios();
+        }
+        private async void VerificarDisponibilidad(object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            switch (txt.Name)
+            {
+                case "txtUsername":
+                    await ClienteHttp.Peticion.Disponible(txt,lbErrorU);
+                    break;
+                case "txtRut":
+                    await ClienteHttp.Peticion.Disponible(txt, lbErrorR);
+                    break;
+                case "txtEmail":
+                    await ClienteHttp.Peticion.Disponible(txt, lbErrorE);
+                    break;
+            }
+        }
     }
 }

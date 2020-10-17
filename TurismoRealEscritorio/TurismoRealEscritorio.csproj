@@ -70,8 +70,6 @@
     <Compile Include="Modelos\Rol.cs" />
     <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Modelos\Util\Comuna.cs" />
-    <Compile Include="Modelos\Util\MensajeCorreo.cs" />
-    <Compile Include="Modelos\Util\MensajesEstandar.cs" />
     <Compile Include="Modelos\Util\ProxyPersonaUsuario.cs" />
     <Compile Include="Modelos\Util\ProxyRegion.cs" />
     <Compile Include="Modelos\Util\ProxyUsuario.cs" />
@@ -82,6 +80,12 @@
     </Compile>
     <Compile Include="Vistas\Deptos\frmDeptos.Designer.cs">
       <DependentUpon>frmDeptos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Deptos\frmImagenes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Deptos\frmImagenes.Designer.cs">
+      <DependentUpon>frmImagenes.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\frmLogin.cs">
       <SubType>Form</SubType>
@@ -105,6 +109,9 @@
     </Compile>
     <EmbeddedResource Include="Vistas\Deptos\frmDeptos.resx">
       <DependentUpon>frmDeptos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Deptos\frmImagenes.resx">
+      <DependentUpon>frmImagenes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

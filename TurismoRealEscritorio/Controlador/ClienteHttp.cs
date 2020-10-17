@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using System.Net.Mail;
 using System.Net;
 using TurismoRealEscritorio.Modelos.Util;
+using System.Drawing;
 
 namespace TurismoRealEscritorio.Controlador
 {
@@ -280,12 +281,18 @@ namespace TurismoRealEscritorio.Controlador
             r.Dispose();
             return new List<T>();
         }
-        public async Task<bool> Disponible(String username, Control txt = null)
+        public async Task<bool> Disponible(TextBox input, Control txt = null)
         {
+            if (input.Text.Trim().Length <= 0)
+            {
+                txt.Text = "";
+                input.ForeColor = Color.Black;
+                return false;
+            }
             HttpResponseMessage r;
             try
             {
-                HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/publico/util/disponible/" + username);
+                HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/publico/util/disponible/" + input.Name.Replace("txt","") + "/" + input.Text);
                 r = await httpTest.SendAsync(m);
                 if (r.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -295,10 +302,24 @@ namespace TurismoRealEscritorio.Controlador
                     if (a.Disponible)
                     {
                         txt.Text = "";
+                        input.ForeColor = Color.Black;
+                        if (input.Name.Equals("txtUsername"))
+                        {
+                            if (input.Text.Length > 4)
+                            {
+                                input.ForeColor = Color.Green;
+                            }
+                            else
+                            {
+                                input.ForeColor = Color.Red;
+                                txt.Text = "El nombre de usuario debe tener al menos 5 caracteres.";
+                            }
+                        }
                     }
                     else
                     {
-                        txt.Text = "Usuario no disponible.";
+                        txt.Text = "El " + input.Name.Replace("txt","").Replace("username","usuario").Replace("email", "correo electrónico") + " ya esta registrado.";
+                        input.ForeColor = Color.Red;
                     }
                     return a.Disponible;
                 }

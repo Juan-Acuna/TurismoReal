@@ -190,6 +190,7 @@
             this.Controls.Add(this.pContainer);
             this.Controls.Add(this.panel1);
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.pReconectando.ResumeLayout(false);

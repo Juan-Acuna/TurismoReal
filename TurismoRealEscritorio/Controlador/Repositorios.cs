@@ -14,10 +14,12 @@ namespace TurismoRealEscritorio.Controlador
         List<Rol> roles;
         List<EstadoDepto> estadoDeptos;
         List<Genero> generos;
+        List<Localidad> localidades;
         List<ProxyRegion> regiones;
         public List<Rol> Roles { get { return roles; } }
         public List<EstadoDepto> EstadoDeptos { get { return estadoDeptos; } }
         public List<Genero> Generos { get { return generos; } }
+        public List<Localidad> Localidades { get { return localidades; } }
         public List<ProxyRegion> Regiones { get { return regiones; } }
         public Repositorios()
         {
@@ -38,6 +40,10 @@ namespace TurismoRealEscritorio.Controlador
             {
                 generos = await ClienteHttp.Peticion.GetList<Genero>();
             } while (generos==null);
+            do
+            {
+                localidades = await ClienteHttp.Peticion.GetList<Localidad>();
+            } while (localidades == null);
             do
             {
                 regiones = await ClienteHttp.Peticion.Util_ProxyRegion<ProxyRegion>();
