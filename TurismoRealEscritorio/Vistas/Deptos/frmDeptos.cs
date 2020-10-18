@@ -83,13 +83,41 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             btnMantenciones.Enabled = false;
         }
 
+        private void PrepararComboboxes()
+        {
+            cbLocalidad.DataSource = null;
+            cbLocalidad.ValueMember = "Id_localidad";
+            cbLocalidad.DisplayMember = "Nombre";
+            do
+            {
+                cbLocalidad.DataSource = Main.Repos.Localidades;
+            } while (cbLocalidad.DataSource==null);
+        }
+
         private void btnCancelar_Click(object sender, EventArgs e = null)
         {
             expand = true;
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private async void btnModificar_Click(object sender, EventArgs e)
         {
+            PrepararComboboxes();
+            Departamento depto;
+            do
+            {
+                depto = await ClienteHttp.Peticion.Get<Departamento>(tablaDeptos.SelectedRows[0].Cells[0].Value.ToString());
+            } while (depto == null);
+            txtId.Text = depto.Id_depto.ToString();
+            txtNombre.Text = depto.Nombre;
+            txtDireccion.Text = depto.Direccion;
+            cbLocalidad.SelectedItem = Main.Repos.Buscar((List<Localidad>)cbLocalidad.DataSource, "Id_localidad", depto.Id_localidad).Nombre;
+            txtMCuadrados.Text = depto.Mts_cuadrados.ToString();
+            txtHabitaciones.Text = depto.Habitaciones.ToString();
+            txtBanos.Text = depto.Banos.ToString();
+            txtArriendo.Text = depto.Arriendo.ToString();
+            txtDividendo.Text = depto.Dividendo.ToString();
+            txtContribuciones.Text = depto.Contribuciones.ToString();
+            txtEstado.Text = Main.Repos.Buscar(Main.Repos.EstadoDeptos, "Id_estado", depto.Id_estado).Nombre;
             Desplegar();
         }
 
@@ -142,7 +170,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private void btnImagenes_Click(object sender, EventArgs e)
         {
-            frmImagenes frm = new frmImagenes();
+            frmImagenes frm = new frmImagenes(txtId.Text);
             frm.Show();
             frm.Focus();
         }

@@ -37,7 +37,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txtContribuciones = new System.Windows.Forms.TextBox();
             this.txtDividendo = new System.Windows.Forms.TextBox();
-            this.txtArriendos = new System.Windows.Forms.TextBox();
+            this.txtArriendo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,6 +49,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnImagenes = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -68,7 +69,6 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnMantenciones = new System.Windows.Forms.Button();
-            this.btnImagenes = new System.Windows.Forms.Button();
             this.timerEdicion = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.pEdicion.SuspendLayout();
@@ -124,7 +124,7 @@
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.txtContribuciones);
             this.groupBox4.Controls.Add(this.txtDividendo);
-            this.groupBox4.Controls.Add(this.txtArriendos);
+            this.groupBox4.Controls.Add(this.txtArriendo);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.label3);
@@ -172,13 +172,13 @@
             this.txtDividendo.Size = new System.Drawing.Size(102, 24);
             this.txtDividendo.TabIndex = 51;
             // 
-            // txtArriendos
+            // txtArriendo
             // 
-            this.txtArriendos.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.txtArriendos.Location = new System.Drawing.Point(147, 61);
-            this.txtArriendos.Name = "txtArriendos";
-            this.txtArriendos.Size = new System.Drawing.Size(102, 24);
-            this.txtArriendos.TabIndex = 50;
+            this.txtArriendo.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.txtArriendo.Location = new System.Drawing.Point(147, 61);
+            this.txtArriendo.Name = "txtArriendo";
+            this.txtArriendo.Size = new System.Drawing.Size(102, 24);
+            this.txtArriendo.TabIndex = 50;
             // 
             // label9
             // 
@@ -296,6 +296,17 @@
             this.groupBox1.TabIndex = 51;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Logísticos";
+            // 
+            // btnImagenes
+            // 
+            this.btnImagenes.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImagenes.Location = new System.Drawing.Point(186, 173);
+            this.btnImagenes.Name = "btnImagenes";
+            this.btnImagenes.Size = new System.Drawing.Size(89, 32);
+            this.btnImagenes.TabIndex = 55;
+            this.btnImagenes.Text = "Imagenes";
+            this.btnImagenes.UseVisualStyleBackColor = true;
+            this.btnImagenes.Click += new System.EventHandler(this.btnImagenes_Click);
             // 
             // label10
             // 
@@ -502,17 +513,6 @@
             this.btnMantenciones.UseVisualStyleBackColor = true;
             this.btnMantenciones.Click += new System.EventHandler(this.btnMantenciones_Click);
             // 
-            // btnImagenes
-            // 
-            this.btnImagenes.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImagenes.Location = new System.Drawing.Point(186, 173);
-            this.btnImagenes.Name = "btnImagenes";
-            this.btnImagenes.Size = new System.Drawing.Size(89, 32);
-            this.btnImagenes.TabIndex = 55;
-            this.btnImagenes.Text = "Imagenes";
-            this.btnImagenes.UseVisualStyleBackColor = true;
-            this.btnImagenes.Click += new System.EventHandler(this.btnImagenes_Click);
-            // 
             // timerEdicion
             // 
             this.timerEdicion.Interval = 7;
@@ -568,7 +568,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox txtContribuciones;
         private System.Windows.Forms.TextBox txtDividendo;
-        private System.Windows.Forms.TextBox txtArriendos;
+        private System.Windows.Forms.TextBox txtArriendo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;

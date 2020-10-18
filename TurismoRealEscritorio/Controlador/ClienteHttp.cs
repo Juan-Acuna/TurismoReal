@@ -69,9 +69,14 @@ namespace TurismoRealEscritorio.Controlador
             return default(T);
         }
 
-        public async Task<List<T>> GetList<T>(String token = "none", Label txt = null) where T : class, new()
+        public async Task<List<T>> GetList<T>(String token = "none", Label txt = null, String url = "") where T : class, new()
         {
-            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", ""));
+            var s = "";
+            if (!url.Equals(""))
+            {
+                s = "/" + url;
+            }
+            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "") + s);
             if (!token.Equals("none"))
             {
                 m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);

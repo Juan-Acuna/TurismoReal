@@ -39,7 +39,7 @@ namespace TurismoRealEscritorio.Vista
             {
                 if(c is Button)
                 {
-                    ((Button)c).BackColor = ColorTranslator.FromHtml("#212529");
+                    ((Button)c).BackColor = ColorTranslator.FromHtml("#1d809f");
                     ((Button)c).ForeColor = ColorTranslator.FromHtml("#ffffff");
                     ((Button)c).MouseEnter += new EventHandler(_MouseEnter);
                     ((Button)c).MouseLeave += new EventHandler(_MouseLeave);
@@ -67,13 +67,13 @@ namespace TurismoRealEscritorio.Vista
         }
         public void _MouseEnter(object sender, EventArgs e)
         {
-            ((Button)sender).BackColor = ColorTranslator.FromHtml("#fed136");
-            ((Button)sender).ForeColor = ColorTranslator.FromHtml("#212529");
+            ((Button)sender).BackColor = ColorTranslator.FromHtml("#155d74");
+            ((Button)sender).ForeColor = ColorTranslator.FromHtml("#ffffff");
         }
 
         public void _MouseLeave(object sender, EventArgs e)
         {
-            ((Button)sender).BackColor = ColorTranslator.FromHtml("#212529");
+            ((Button)sender).BackColor = ColorTranslator.FromHtml("#1d809f");
             ((Button)sender).ForeColor = ColorTranslator.FromHtml("#ffffff");
         }
         #region Conexion
@@ -153,7 +153,10 @@ namespace TurismoRealEscritorio.Vista
             }
             else
             {
-                BloquearBotones(pContainer.Controls[0]);
+                if (pContainer != null)
+                {
+                    BloquearBotones(pContainer.Controls[0]);
+                }
                 Reconectar();
             }
         }

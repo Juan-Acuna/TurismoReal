@@ -24,9 +24,17 @@ namespace TurismoRealEscritorio
             pReconectando.BackColor = ColorTranslator.FromHtml("#212529");
             pReconectando.Height = 0;
             timerConexion.Start();
-            btnIniciar.BackColor = ColorTranslator.FromHtml("#212529");
+            btnIniciar.BackColor = ColorTranslator.FromHtml("#1d809f");
             btnIniciar.ForeColor = ColorTranslator.FromHtml("#ffffff");
             lbError.Text = "";
+            lbError.Parent = pbRandom;
+            lbError.BackColor = Color.FromArgb(0,Color.White);
+            btnRecuperar.Parent = pbRandom;
+            btnRecuperar.BackColor = Color.Transparent;
+            lbLogin.Parent = pbRandom;
+            lbLogin.BackColor = Color.Transparent;
+            lbUsuario.BackColor = Color.White;
+            lbClave.BackColor = Color.White;
         }
 
         public async Task<bool> ComprobarConexion()
@@ -113,15 +121,15 @@ namespace TurismoRealEscritorio
 
         private void btnIniciar_MouseEnter(object sender, EventArgs e)
         {
-            btnIniciar.BackColor = ColorTranslator.FromHtml("#fed136");
+            btnIniciar.BackColor = ColorTranslator.FromHtml("#155d74");
 
-            btnIniciar.ForeColor = ColorTranslator.FromHtml("#212529");
+            btnIniciar.ForeColor = ColorTranslator.FromHtml("#ffffff");
         }
 
         private void btnIniciar_MouseLeave(object sender, EventArgs e)
         {
-            btnIniciar.BackColor = ColorTranslator.FromHtml("#212529");
-
+            btnIniciar.BackColor = ColorTranslator.FromHtml("#1d809f");
+            
             btnIniciar.ForeColor = ColorTranslator.FromHtml("#ffffff");
         }
 
@@ -133,11 +141,61 @@ namespace TurismoRealEscritorio
         private void txtUsername_Click(object sender, EventArgs e)
         {
             lbError.Text = "";
+            lbUsuario.Visible = false;
         }
 
         private void lbError_TextChanged(object sender, EventArgs e)
         {
             lbError.Text = lbError.Text.PadLeft(23);
+        }
+
+        private void lbUsuario_Click(object sender, EventArgs e)
+        {
+            lbUsuario.Visible = false;
+            txtUsername.Focus();
+        }
+
+        private void lbClave_Click(object sender, EventArgs e)
+        {
+            lbClave.Visible = false;
+            txtClave.Focus();
+        }
+
+        private void txtUsername_Leave(object sender, EventArgs e)
+        {
+            if (txtUsername.Text.Equals(""))
+            {
+                lbUsuario.Visible = true;
+            }
+        }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+            if (!txtUsername.Text.Equals(""))
+            {
+                lbUsuario.Visible = false;
+            }
+        }
+
+        private void txtClave_Leave(object sender, EventArgs e)
+        {
+            if (txtClave.Text.Equals(""))
+            {
+                lbClave.Visible = true;
+            }
+        }
+
+        private void txtClave_TextChanged(object sender, EventArgs e)
+        {
+            if (!txtClave.Text.Equals(""))
+            {
+                lbClave.Visible = false;
+            }
+        }
+
+        private void txtClave_Click(object sender, EventArgs e)
+        {
+            lbClave.Visible = false;
         }
     }
 }

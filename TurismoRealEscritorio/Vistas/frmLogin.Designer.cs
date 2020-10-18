@@ -30,52 +30,32 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.panel1 = new System.Windows.Forms.Panel();
             this.lbError = new System.Windows.Forms.Label();
             this.btnRecuperar = new System.Windows.Forms.LinkLabel();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.txtClave = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbClave = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lbUsuario = new System.Windows.Forms.Label();
             this.pbRandom = new System.Windows.Forms.PictureBox();
             this.pReconectando = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerConexion = new System.Windows.Forms.Timer(this.components);
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.lbLogin = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbRandom)).BeginInit();
             this.pReconectando.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.lbError);
-            this.panel1.Controls.Add(this.btnRecuperar);
-            this.panel1.Controls.Add(this.btnIniciar);
-            this.panel1.Controls.Add(this.txtClave);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.txtUsername);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Location = new System.Drawing.Point(339, 21);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(215, 390);
-            this.panel1.TabIndex = 8;
-            this.panel1.Click += new System.EventHandler(this.txtUsername_Click);
-            // 
             // lbError
             // 
             this.lbError.AutoSize = true;
+            this.lbError.BackColor = System.Drawing.Color.Transparent;
+            this.lbError.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbError.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbError.ForeColor = System.Drawing.Color.Red;
-            this.lbError.Location = new System.Drawing.Point(29, 286);
+            this.lbError.Location = new System.Drawing.Point(375, 218);
             this.lbError.Name = "lbError";
             this.lbError.Size = new System.Drawing.Size(142, 17);
             this.lbError.TabIndex = 7;
@@ -85,8 +65,10 @@
             // btnRecuperar
             // 
             this.btnRecuperar.AutoSize = true;
+            this.btnRecuperar.BackColor = System.Drawing.Color.Transparent;
             this.btnRecuperar.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecuperar.Location = new System.Drawing.Point(45, 360);
+            this.btnRecuperar.LinkColor = System.Drawing.Color.White;
+            this.btnRecuperar.Location = new System.Drawing.Point(385, 278);
             this.btnRecuperar.Name = "btnRecuperar";
             this.btnRecuperar.Size = new System.Drawing.Size(122, 16);
             this.btnRecuperar.TabIndex = 4;
@@ -96,13 +78,14 @@
             // 
             // btnIniciar
             // 
+            this.btnIniciar.FlatAppearance.BorderSize = 0;
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIniciar.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciar.Location = new System.Drawing.Point(26, 322);
+            this.btnIniciar.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIniciar.Location = new System.Drawing.Point(305, 240);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(160, 35);
+            this.btnIniciar.Size = new System.Drawing.Size(283, 35);
             this.btnIniciar.TabIndex = 3;
-            this.btnIniciar.Text = "Iniciar Sesion";
+            this.btnIniciar.Text = "Login";
             this.btnIniciar.UseVisualStyleBackColor = true;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             this.btnIniciar.MouseEnter += new System.EventHandler(this.btnIniciar_MouseEnter);
@@ -111,53 +94,51 @@
             // txtClave
             // 
             this.txtClave.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClave.Location = new System.Drawing.Point(26, 232);
+            this.txtClave.Location = new System.Drawing.Point(305, 187);
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '*';
-            this.txtClave.Size = new System.Drawing.Size(160, 28);
+            this.txtClave.Size = new System.Drawing.Size(283, 28);
             this.txtClave.TabIndex = 2;
-            this.txtClave.Click += new System.EventHandler(this.txtUsername_Click);
+            this.txtClave.Click += new System.EventHandler(this.txtClave_Click);
+            this.txtClave.TextChanged += new System.EventHandler(this.txtClave_TextChanged);
+            this.txtClave.Leave += new System.EventHandler(this.txtClave_Leave);
             // 
-            // label2
+            // lbClave
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(58, 208);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 21);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Contraseña";
+            this.lbClave.AutoSize = true;
+            this.lbClave.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbClave.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lbClave.Location = new System.Drawing.Point(309, 191);
+            this.lbClave.Margin = new System.Windows.Forms.Padding(0);
+            this.lbClave.Name = "lbClave";
+            this.lbClave.Size = new System.Drawing.Size(91, 20);
+            this.lbClave.TabIndex = 7;
+            this.lbClave.Text = "Contraseña";
+            this.lbClave.Click += new System.EventHandler(this.lbClave_Click);
             // 
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(26, 148);
+            this.txtUsername.Location = new System.Drawing.Point(305, 138);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(160, 28);
+            this.txtUsername.Size = new System.Drawing.Size(283, 28);
             this.txtUsername.TabIndex = 0;
             this.txtUsername.Click += new System.EventHandler(this.txtUsername_Click);
+            this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
+            this.txtUsername.Leave += new System.EventHandler(this.txtUsername_Leave);
             // 
-            // label1
+            // lbUsuario
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(72, 124);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 21);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Usuario";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(215, 89);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.txtUsername_Click);
+            this.lbUsuario.AutoSize = true;
+            this.lbUsuario.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUsuario.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lbUsuario.Location = new System.Drawing.Point(309, 142);
+            this.lbUsuario.Margin = new System.Windows.Forms.Padding(0);
+            this.lbUsuario.Name = "lbUsuario";
+            this.lbUsuario.Size = new System.Drawing.Size(64, 20);
+            this.lbUsuario.TabIndex = 6;
+            this.lbUsuario.Text = "Usuario";
+            this.lbUsuario.Click += new System.EventHandler(this.lbUsuario_Click);
             // 
             // pbRandom
             // 
@@ -165,8 +146,8 @@
             this.pbRandom.Image = ((System.Drawing.Image)(resources.GetObject("pbRandom.Image")));
             this.pbRandom.Location = new System.Drawing.Point(0, 0);
             this.pbRandom.Name = "pbRandom";
-            this.pbRandom.Size = new System.Drawing.Size(893, 477);
-            this.pbRandom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbRandom.Size = new System.Drawing.Size(893, 453);
+            this.pbRandom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbRandom.TabIndex = 1;
             this.pbRandom.TabStop = false;
             this.pbRandom.Click += new System.EventHandler(this.txtUsername_Click);
@@ -176,7 +157,7 @@
             this.pReconectando.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pReconectando.Controls.Add(this.pictureBox1);
             this.pReconectando.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pReconectando.Location = new System.Drawing.Point(0, 435);
+            this.pReconectando.Location = new System.Drawing.Point(0, 411);
             this.pReconectando.Name = "pReconectando";
             this.pReconectando.Size = new System.Drawing.Size(893, 42);
             this.pReconectando.TabIndex = 9;
@@ -201,37 +182,52 @@
             this.timerConexion.Interval = 1000;
             this.timerConexion.Tick += new System.EventHandler(this.timerConexion_Tick);
             // 
+            // lbLogin
+            // 
+            this.lbLogin.AutoSize = true;
+            this.lbLogin.BackColor = System.Drawing.Color.Transparent;
+            this.lbLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbLogin.Font = new System.Drawing.Font("Microsoft YaHei UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLogin.ForeColor = System.Drawing.Color.White;
+            this.lbLogin.Location = new System.Drawing.Point(400, 82);
+            this.lbLogin.Name = "lbLogin";
+            this.lbLogin.Size = new System.Drawing.Size(87, 35);
+            this.lbLogin.TabIndex = 10;
+            this.lbLogin.Text = "Login";
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 477);
+            this.ClientSize = new System.Drawing.Size(893, 453);
+            this.Controls.Add(this.lbLogin);
+            this.Controls.Add(this.lbClave);
+            this.Controls.Add(this.lbUsuario);
+            this.Controls.Add(this.lbError);
+            this.Controls.Add(this.btnRecuperar);
+            this.Controls.Add(this.btnIniciar);
+            this.Controls.Add(this.txtClave);
+            this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.pReconectando);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pbRandom);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Turismo Real - Iniciar Sesión";
             this.Load += new System.EventHandler(this.frmLogin_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRandom)).EndInit();
             this.pReconectando.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pbRandom;
         private System.Windows.Forms.TextBox txtClave;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbClave;
         private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbUsuario;
         private System.Windows.Forms.LinkLabel btnRecuperar;
         private System.Windows.Forms.Button btnIniciar;
         private System.Windows.Forms.Label lbError;
@@ -239,6 +235,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timerConexion;
+        private System.Windows.Forms.Label lbLogin;
     }
 }
 

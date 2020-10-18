@@ -415,13 +415,22 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             switch (txt.Name)
             {
                 case "txtUsername":
-                    await ClienteHttp.Peticion.Disponible(txt,lbErrorU);
+                    if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
+                    {
+                        await ClienteHttp.Peticion.Disponible(txt, lbErrorU);
+                    }
                     break;
                 case "txtRut":
-                    await ClienteHttp.Peticion.Disponible(txt, lbErrorR);
+                    if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
+                    {
+                        await ClienteHttp.Peticion.Disponible(txt, lbErrorR);
+                    }
                     break;
                 case "txtEmail":
-                    await ClienteHttp.Peticion.Disponible(txt, lbErrorE);
+                    if(Main.EstadoTrabajo == EstadoTrabajo.Agregando)
+                    {
+                        await ClienteHttp.Peticion.Disponible(txt, lbErrorE);
+                    }
                     break;
             }
         }
