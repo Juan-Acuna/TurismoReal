@@ -58,7 +58,7 @@
             this.lbError.Location = new System.Drawing.Point(375, 218);
             this.lbError.Name = "lbError";
             this.lbError.Size = new System.Drawing.Size(142, 17);
-            this.lbError.TabIndex = 7;
+            this.lbError.TabIndex = 99;
             this.lbError.Text = "     {Mensaje de error}";
             this.lbError.TextChanged += new System.EventHandler(this.lbError_TextChanged);
             // 
@@ -71,7 +71,7 @@
             this.btnRecuperar.Location = new System.Drawing.Point(385, 278);
             this.btnRecuperar.Name = "btnRecuperar";
             this.btnRecuperar.Size = new System.Drawing.Size(122, 16);
-            this.btnRecuperar.TabIndex = 4;
+            this.btnRecuperar.TabIndex = 3;
             this.btnRecuperar.TabStop = true;
             this.btnRecuperar.Text = "Recuperar contraseña";
             this.btnRecuperar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnRecuperar_LinkClicked);
@@ -84,7 +84,7 @@
             this.btnIniciar.Location = new System.Drawing.Point(305, 240);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(283, 35);
-            this.btnIniciar.TabIndex = 3;
+            this.btnIniciar.TabIndex = 2;
             this.btnIniciar.Text = "Login";
             this.btnIniciar.UseVisualStyleBackColor = true;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
@@ -98,7 +98,7 @@
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(283, 28);
-            this.txtClave.TabIndex = 2;
+            this.txtClave.TabIndex = 1;
             this.txtClave.Click += new System.EventHandler(this.txtClave_Click);
             this.txtClave.TextChanged += new System.EventHandler(this.txtClave_TextChanged);
             this.txtClave.Leave += new System.EventHandler(this.txtClave_Leave);
@@ -112,7 +112,7 @@
             this.lbClave.Margin = new System.Windows.Forms.Padding(0);
             this.lbClave.Name = "lbClave";
             this.lbClave.Size = new System.Drawing.Size(91, 20);
-            this.lbClave.TabIndex = 7;
+            this.lbClave.TabIndex = 99;
             this.lbClave.Text = "Contraseña";
             this.lbClave.Click += new System.EventHandler(this.lbClave_Click);
             // 
@@ -136,7 +136,7 @@
             this.lbUsuario.Margin = new System.Windows.Forms.Padding(0);
             this.lbUsuario.Name = "lbUsuario";
             this.lbUsuario.Size = new System.Drawing.Size(64, 20);
-            this.lbUsuario.TabIndex = 6;
+            this.lbUsuario.TabIndex = 99;
             this.lbUsuario.Text = "Usuario";
             this.lbUsuario.Click += new System.EventHandler(this.lbUsuario_Click);
             // 
@@ -192,7 +192,7 @@
             this.lbLogin.Location = new System.Drawing.Point(400, 82);
             this.lbLogin.Name = "lbLogin";
             this.lbLogin.Size = new System.Drawing.Size(87, 35);
-            this.lbLogin.TabIndex = 10;
+            this.lbLogin.TabIndex = 99;
             this.lbLogin.Text = "Login";
             // 
             // frmLogin

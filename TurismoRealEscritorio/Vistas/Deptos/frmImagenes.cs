@@ -18,9 +18,14 @@ namespace TurismoRealEscritorio.Vistas.Deptos
         String IdDepto;
         List<PictureBox> imgs = new List<PictureBox>();
         List<bool> Cargadas = new List<bool>();
-        public frmImagenes(String id = null)
+        int Actual = 0;
+        String Estado = "Agregar";
+        frmDeptos Deptosfrm;
+        
+        public frmImagenes(frmDeptos frm, String id = null)
         {
             InitializeComponent();
+            Deptosfrm = frm;
             IdDepto = id;
             imgs.Add(imgMain);
             imgs.Add(img1);
@@ -45,26 +50,48 @@ namespace TurismoRealEscritorio.Vistas.Deptos
                 imgs[i+1].LoadAsync(fotos[i].Ruta);
                 Cargadas[i] = true;
             }
+            ImagenesClick(sender:imgs[1]);
         }
 
         private void frmImagenes_Load(object sender, EventArgs e)
         {
+            btnCambiar.Parent = btnBorrar.Parent = imgMain;
+            btnCambiar.BackColor = btnBorrar.BackColor = Color.Transparent;
             CargarFotos();
+            btnCambiar.Location = new Point(183,284);
+            btnBorrar.Location = new Point(258, 284);
         }
 
-        private void img1_LoadCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-            if (fotos.Count > 0)
-            {
-                imgMain.Image = imgs[1].Image;
-            }
-        }
         private void ImagenesClick(object sender = null, EventArgs e = null)
         {
+            imgMain.Image = ((PictureBox)sender).Image;
+            Actual = imgs.IndexOf((PictureBox)sender) - 1;
             if (Cargadas[imgs.IndexOf((PictureBox)sender) - 1])
             {
-                imgMain.Image=((PictureBox)sender).Image;
+                Estado = "Cambiar";
             }
+            else
+            {
+                Estado = "Agregar";
+            }
+        }
+        private void ImagenesLoad(object sender, AsyncCompletedEventArgs e)
+        {
+            if((imgs.IndexOf((PictureBox)sender) - 1) == Actual)
+            {
+                imgMain.Image = ((PictureBox)sender).Image;
+            }
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Deptosfrm.Focus();
+            this.Dispose();
         }
     }
 }

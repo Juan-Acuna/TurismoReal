@@ -170,7 +170,8 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private void btnImagenes_Click(object sender, EventArgs e)
         {
-            frmImagenes frm = new frmImagenes(txtId.Text);
+            frmImagenes frm = new frmImagenes(this,txtId.Text);
+            Main.ConfigurarBotones(frm);
             frm.Show();
             frm.Focus();
         }

@@ -32,21 +32,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pReconectando = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pMenu = new System.Windows.Forms.Panel();
             this.lbNombre = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnLogistica = new System.Windows.Forms.Button();
             this.btnDeptos = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnFinanzas = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pContainer = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerConexion = new System.Windows.Forms.Timer(this.components);
+            this.lbTurismo = new System.Windows.Forms.Label();
             this.pReconectando.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.pMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // pReconectando
@@ -69,21 +68,21 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // panel1
+            // pMenu
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.lbNombre);
-            this.panel1.Controls.Add(this.btnSalir);
-            this.panel1.Controls.Add(this.btnLogistica);
-            this.panel1.Controls.Add(this.btnDeptos);
-            this.panel1.Controls.Add(this.btnUsuarios);
-            this.panel1.Controls.Add(this.btnFinanzas);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(161, 501);
-            this.panel1.TabIndex = 4;
+            this.pMenu.BackColor = System.Drawing.Color.White;
+            this.pMenu.Controls.Add(this.lbTurismo);
+            this.pMenu.Controls.Add(this.lbNombre);
+            this.pMenu.Controls.Add(this.btnSalir);
+            this.pMenu.Controls.Add(this.btnLogistica);
+            this.pMenu.Controls.Add(this.btnDeptos);
+            this.pMenu.Controls.Add(this.btnUsuarios);
+            this.pMenu.Controls.Add(this.btnFinanzas);
+            this.pMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pMenu.Location = new System.Drawing.Point(0, 0);
+            this.pMenu.Name = "pMenu";
+            this.pMenu.Size = new System.Drawing.Size(161, 501);
+            this.pMenu.TabIndex = 4;
             // 
             // lbNombre
             // 
@@ -110,7 +109,7 @@
             // btnLogistica
             // 
             this.btnLogistica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogistica.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogistica.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
             this.btnLogistica.Location = new System.Drawing.Point(0, 250);
             this.btnLogistica.Name = "btnLogistica";
             this.btnLogistica.Size = new System.Drawing.Size(160, 35);
@@ -153,17 +152,6 @@
             this.btnFinanzas.Text = "Finanzas";
             this.btnFinanzas.UseVisualStyleBackColor = true;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(161, 68);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
             // pContainer
             // 
             this.pContainer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -181,6 +169,19 @@
             // 
             this.timerConexion.Tick += new System.EventHandler(this.timerConexion_Tick);
             // 
+            // lbTurismo
+            // 
+            this.lbTurismo.AutoSize = true;
+            this.lbTurismo.BackColor = System.Drawing.Color.Black;
+            this.lbTurismo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbTurismo.Font = new System.Drawing.Font("Microsoft YaHei UI", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTurismo.ForeColor = System.Drawing.Color.White;
+            this.lbTurismo.Location = new System.Drawing.Point(3, 9);
+            this.lbTurismo.Name = "lbTurismo";
+            this.lbTurismo.Size = new System.Drawing.Size(157, 30);
+            this.lbTurismo.TabIndex = 12;
+            this.lbTurismo.Text = "Turismo Real";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -188,16 +189,15 @@
             this.ClientSize = new System.Drawing.Size(1028, 501);
             this.Controls.Add(this.pReconectando);
             this.Controls.Add(this.pContainer);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pMenu);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.pReconectando.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.pMenu.ResumeLayout(false);
+            this.pMenu.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -206,9 +206,8 @@
 
         private System.Windows.Forms.Panel pReconectando;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pMenu;
         private System.Windows.Forms.Button btnFinanzas;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnLogistica;
         private System.Windows.Forms.Button btnDeptos;
@@ -217,5 +216,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timerConexion;
         public System.Windows.Forms.Label lbNombre;
+        private System.Windows.Forms.Label lbTurismo;
     }
 }

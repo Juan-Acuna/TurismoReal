@@ -34,23 +34,24 @@
             this.img2 = new System.Windows.Forms.PictureBox();
             this.img3 = new System.Windows.Forms.PictureBox();
             this.img4 = new System.Windows.Forms.PictureBox();
-            this.btnExaminar = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtRuta = new System.Windows.Forms.TextBox();
-            this.btnAplicar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.img_cargando = new System.Windows.Forms.PictureBox();
+            this.btnCambiar = new System.Windows.Forms.PictureBox();
+            this.btnBorrar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.img1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.img2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.img3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.img4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.img_cargando)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCambiar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBorrar)).BeginInit();
             this.SuspendLayout();
             // 
             // imgMain
             // 
             this.imgMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imgMain.InitialImage = ((System.Drawing.Image)(resources.GetObject("imgMain.InitialImage")));
             this.imgMain.Location = new System.Drawing.Point(136, 12);
             this.imgMain.Name = "imgMain";
             this.imgMain.Size = new System.Drawing.Size(502, 334);
@@ -61,104 +62,78 @@
             // img1
             // 
             this.img1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.img1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("img1.ErrorImage")));
             this.img1.Image = ((System.Drawing.Image)(resources.GetObject("img1.Image")));
+            this.img1.InitialImage = ((System.Drawing.Image)(resources.GetObject("img1.InitialImage")));
             this.img1.Location = new System.Drawing.Point(12, 12);
             this.img1.Name = "img1";
             this.img1.Size = new System.Drawing.Size(118, 79);
             this.img1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.img1.TabIndex = 1;
             this.img1.TabStop = false;
-            this.img1.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.img1_LoadCompleted);
+            this.img1.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.ImagenesLoad);
             this.img1.Click += new System.EventHandler(this.ImagenesClick);
             // 
             // img2
             // 
             this.img2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.img2.ErrorImage = ((System.Drawing.Image)(resources.GetObject("img2.ErrorImage")));
             this.img2.Image = ((System.Drawing.Image)(resources.GetObject("img2.Image")));
+            this.img2.InitialImage = ((System.Drawing.Image)(resources.GetObject("img2.InitialImage")));
             this.img2.Location = new System.Drawing.Point(12, 97);
             this.img2.Name = "img2";
             this.img2.Size = new System.Drawing.Size(118, 79);
             this.img2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.img2.TabIndex = 2;
             this.img2.TabStop = false;
+            this.img2.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.ImagenesLoad);
             this.img2.Click += new System.EventHandler(this.ImagenesClick);
             // 
             // img3
             // 
             this.img3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.img3.ErrorImage = ((System.Drawing.Image)(resources.GetObject("img3.ErrorImage")));
             this.img3.Image = ((System.Drawing.Image)(resources.GetObject("img3.Image")));
+            this.img3.InitialImage = ((System.Drawing.Image)(resources.GetObject("img3.InitialImage")));
             this.img3.Location = new System.Drawing.Point(12, 182);
             this.img3.Name = "img3";
             this.img3.Size = new System.Drawing.Size(118, 79);
             this.img3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.img3.TabIndex = 3;
             this.img3.TabStop = false;
+            this.img3.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.ImagenesLoad);
             this.img3.Click += new System.EventHandler(this.ImagenesClick);
             // 
             // img4
             // 
             this.img4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.img4.ErrorImage = ((System.Drawing.Image)(resources.GetObject("img4.ErrorImage")));
             this.img4.Image = ((System.Drawing.Image)(resources.GetObject("img4.Image")));
+            this.img4.InitialImage = ((System.Drawing.Image)(resources.GetObject("img4.InitialImage")));
             this.img4.Location = new System.Drawing.Point(12, 267);
             this.img4.Name = "img4";
             this.img4.Size = new System.Drawing.Size(118, 79);
             this.img4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.img4.TabIndex = 4;
             this.img4.TabStop = false;
+            this.img4.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.ImagenesLoad);
             this.img4.Click += new System.EventHandler(this.ImagenesClick);
             // 
-            // btnExaminar
+            // btnVolver
             // 
-            this.btnExaminar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExaminar.Location = new System.Drawing.Point(279, 373);
-            this.btnExaminar.Name = "btnExaminar";
-            this.btnExaminar.Size = new System.Drawing.Size(89, 32);
-            this.btnExaminar.TabIndex = 58;
-            this.btnExaminar.Text = "Examinar";
-            this.btnExaminar.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 380);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 19);
-            this.label2.TabIndex = 57;
-            this.label2.Text = "Archivo:";
-            // 
-            // txtRuta
-            // 
-            this.txtRuta.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.txtRuta.Location = new System.Drawing.Point(77, 377);
-            this.txtRuta.Name = "txtRuta";
-            this.txtRuta.Size = new System.Drawing.Size(196, 24);
-            this.txtRuta.TabIndex = 56;
-            // 
-            // btnAplicar
-            // 
-            this.btnAplicar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAplicar.Location = new System.Drawing.Point(549, 373);
-            this.btnAplicar.Name = "btnAplicar";
-            this.btnAplicar.Size = new System.Drawing.Size(89, 32);
-            this.btnAplicar.TabIndex = 59;
-            this.btnAplicar.Text = "Aplicar";
-            this.btnAplicar.UseVisualStyleBackColor = true;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(454, 373);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(89, 32);
-            this.btnCancelar.TabIndex = 60;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.Location = new System.Drawing.Point(549, 352);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(89, 32);
+            this.btnVolver.TabIndex = 59;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // img_cargando
             // 
             this.img_cargando.Image = ((System.Drawing.Image)(resources.GetObject("img_cargando.Image")));
-            this.img_cargando.Location = new System.Drawing.Point(389, 385);
+            this.img_cargando.Location = new System.Drawing.Point(431, 361);
             this.img_cargando.Name = "img_cargando";
             this.img_cargando.Size = new System.Drawing.Size(22, 14);
             this.img_cargando.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -166,17 +141,40 @@
             this.img_cargando.TabStop = false;
             this.img_cargando.Visible = false;
             // 
+            // btnCambiar
+            // 
+            this.btnCambiar.ErrorImage = ((System.Drawing.Image)(resources.GetObject("btnCambiar.ErrorImage")));
+            this.btnCambiar.Image = ((System.Drawing.Image)(resources.GetObject("btnCambiar.Image")));
+            this.btnCambiar.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnCambiar.InitialImage")));
+            this.btnCambiar.Location = new System.Drawing.Point(311, 300);
+            this.btnCambiar.Name = "btnCambiar";
+            this.btnCambiar.Size = new System.Drawing.Size(58, 46);
+            this.btnCambiar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnCambiar.TabIndex = 64;
+            this.btnCambiar.TabStop = false;
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.ErrorImage = ((System.Drawing.Image)(resources.GetObject("btnBorrar.ErrorImage")));
+            this.btnBorrar.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrar.Image")));
+            this.btnBorrar.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnBorrar.InitialImage")));
+            this.btnBorrar.Location = new System.Drawing.Point(386, 300);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(58, 46);
+            this.btnBorrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnBorrar.TabIndex = 65;
+            this.btnBorrar.TabStop = false;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
             // frmImagenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(653, 432);
+            this.ClientSize = new System.Drawing.Size(653, 399);
+            this.Controls.Add(this.btnBorrar);
+            this.Controls.Add(this.btnCambiar);
             this.Controls.Add(this.img_cargando);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnAplicar);
-            this.Controls.Add(this.btnExaminar);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtRuta);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.img4);
             this.Controls.Add(this.img3);
             this.Controls.Add(this.img2);
@@ -194,8 +192,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.img3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.img4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.img_cargando)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCambiar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBorrar)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -206,11 +205,9 @@
         private System.Windows.Forms.PictureBox img2;
         private System.Windows.Forms.PictureBox img3;
         private System.Windows.Forms.PictureBox img4;
-        private System.Windows.Forms.Button btnExaminar;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtRuta;
-        private System.Windows.Forms.Button btnAplicar;
-        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.PictureBox img_cargando;
+        private System.Windows.Forms.PictureBox btnCambiar;
+        private System.Windows.Forms.PictureBox btnBorrar;
     }
 }

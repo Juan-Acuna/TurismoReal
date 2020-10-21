@@ -29,8 +29,11 @@ namespace TurismoRealEscritorio.Vista
             pReconectando.BackColor = ColorTranslator.FromHtml("#212529");
             pReconectando.Height = 0;
             timerConexion.Start();
-            ConfigurarBotones(panel1);
+            ConfigurarBotones(pMenu);
             lbNombre.Text = SesionManager.NombrePila;
+            pMenu.BackColor = ColorTranslator.FromHtml("#212529");
+            lbTurismo.Parent = pMenu;
+            lbTurismo.BackColor = Color.Transparent;
         }
 
         public void ConfigurarBotones(Control cont)
@@ -44,6 +47,7 @@ namespace TurismoRealEscritorio.Vista
                     ((Button)c).MouseEnter += new EventHandler(_MouseEnter);
                     ((Button)c).MouseLeave += new EventHandler(_MouseLeave);
                     ((Button)c).FlatStyle = FlatStyle.Flat;
+                    ((Button)c).FlatAppearance.BorderSize = 0;
                 }
             }
         }
