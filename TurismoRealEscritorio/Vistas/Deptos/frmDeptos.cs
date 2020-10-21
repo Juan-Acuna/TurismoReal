@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -101,6 +102,8 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private async void btnModificar_Click(object sender, EventArgs e)
         {
+
+            btnAplicar.Text = "Aplicar";
             PrepararComboboxes();
             Departamento depto;
             do
@@ -119,6 +122,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             txtContribuciones.Text = depto.Contribuciones.ToString();
             txtEstado.Text = Main.Repos.Buscar(Main.Repos.EstadoDeptos, "Id_estado", depto.Id_estado).Nombre;
             Desplegar();
+            Main.EstadoTrabajo = EstadoTrabajo.Modificando;
         }
 
         private void frmDeptos_Load(object sender, EventArgs e)
@@ -176,19 +180,41 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             frm.Focus();
         }
 
-        private void btnAplicar_Click(object sender, EventArgs e)
+        private async void btnAplicar_Click(object sender, EventArgs e)
         {
-
+            Departamento dep = new Departamento();
+            dep.Nombre = txtNombre.Text;
+            dep.Direccion = txtDireccion.Text;
+            dep.Arriendo = Convert.ToInt32(txtArriendo.Text);
+            dep.Habitaciones = Convert.ToInt32(txtHabitaciones.Text);
+            dep.Banos = Convert.ToInt32(txtBanos.Text);
+            dep.Mts_cuadrados = Convert.ToInt32(txtMCuadrados.Text);
+            dep.Contribuciones = Convert.ToInt32(txtContribuciones.Text);
+            dep.Dividendo = Convert.ToInt32(txtDividendo.Text);
+            dep.Id_localidad = (int)cbLocalidad.SelectedValue;
+            switch (Main.EstadoTrabajo)
+            {
+                case EstadoTrabajo.Modificando:
+                    dep.Id_estado = 1;
+                    await ClienteHttp.Peticion.Send(new HttpMethod("PATCH"),dep,txtId.Text,SesionManager.Token);
+                    break;
+                case EstadoTrabajo.Agregando:
+                    await ClienteHttp.Peticion.Send(HttpMethod.Post, dep, token: SesionManager.Token);
+                    break;
+            }
+            expand = true;
+            Main.EstadoTrabajo = EstadoTrabajo.Espera;
+            CargarDatos();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            ClienteHttp.Peticion.Delete<Departamento>(tablaDeptos.SelectedRows[0].Cells[0].Value.ToString(), SesionManager.Token);
         }
 
         private void btnRefrescar_Click(object sender, EventArgs e)
         {
-
+            CargarDatos();
         }
 
         private void btnMantenciones_Click(object sender, EventArgs e)
@@ -198,7 +224,9 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            btnAplicar.Text = "Crear";
             Desplegar();
+            Main.EstadoTrabajo = EstadoTrabajo.Agregando;
         }
     }
 }

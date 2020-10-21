@@ -113,7 +113,12 @@ namespace TurismoRealEscritorio.Controlador
 
         public async Task<bool> Send<T>(HttpMethod metodo, T body, String url = "", String token = "none", Label txt = null)
         {
-            HttpRequestMessage m = new HttpRequestMessage(metodo, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "").ToLower()+url);
+            var s = "";
+            if (!url.Equals(""))
+            {
+                s = "/" + url;
+            }
+            HttpRequestMessage m = new HttpRequestMessage(metodo, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "").ToLower()+s);
             if (!token.Equals("none"))
             {
                 m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -150,14 +155,11 @@ namespace TurismoRealEscritorio.Controlador
             r.Dispose();
             return false;
         }
-
-        public async Task<bool> Send(String url, HttpMethod metodo, String token = "none", Label txt = null)
+        
+        public async Task<bool> Delete<T>(String url, String token, Label txt = null)
         {
-            HttpRequestMessage m = new HttpRequestMessage(metodo, UrlBase + "/" + url);
-            if (!token.Equals("none"))
-            {
-                m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
+            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Delete, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "").ToLower() + "/" + url);
+            m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var r = await http.SendAsync(m);
             switch ((int)r.StatusCode)
             {

@@ -231,42 +231,11 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             txtEmail.Text = p.Email;
             txtTelefono.Text = p.Telefono.ToString();
             txtDireccion.Text = p.Direccion;
-            /*do
-            {
-                if (cbRol.DataSource != null)
-                {
-                    cbRol.SelectedItem = Main.Repos.Buscar((List<Rol>)cbRol.DataSource, "Id_rol", u.Id_rol);
-                }
-            } while (cbRol.DataSource == null);
-            do
-            {
-                if (cbRegion.DataSource != null)
-                {
-                    cbRegion.SelectedItem = Main.Repos.Buscar((List<ProxyRegion>)cbRegion.DataSource, "Region", p.Region);
-                }
-            } while (cbRegion.DataSource == null);
-            cbRegion_SelectionChangeCommitted(cbRegion);
-            do
-            {
-                if (cbComuna.DataSource != null)
-                {
-                    cbComuna.SelectedItem = Main.Repos.Buscar((List<Comuna>)cbComuna.DataSource, "Nombre", p.Comuna);
-                }
-            } while (cbComuna.DataSource == null);
-            do
-            {
-                if (cbGenero.DataSource != null)
-                {
-                    cbGenero.SelectedItem = Main.Repos.Buscar((List<Genero>)cbGenero.DataSource, "Id_genero", p.Id_genero);
-                }
-            } while (cbGenero.DataSource == null);
-            /**/
             cbRol.SelectedItem = Main.Repos.Buscar((List<Rol>)cbRol.DataSource, "Id_rol", u.Id_rol);
             cbRegion.SelectedItem = Main.Repos.Buscar((List<ProxyRegion>) cbRegion.DataSource, "Region", p.Region);
             cbRegion_SelectionChangeCommitted(cbRegion);
             cbComuna.SelectedItem = Main.Repos.Buscar((List<Comuna>) cbComuna.DataSource, "Nombre", p.Comuna);
             cbGenero.SelectedItem = Main.Repos.Buscar((List<Genero>) cbGenero.DataSource, "Id_genero", p.Id_genero);
-            /**/
             cbRegion.Refresh();
             cbComuna.Refresh();
             cbGenero.Refresh();
@@ -347,7 +316,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
                     p.Region = cbRegion.SelectedValue.ToString();
                     p.Comuna = cbComuna.SelectedValue.ToString();
                     u.Clave = txtClave.Text;
-                    ClienteHttp.Peticion.Send(new HttpMethod("PATCH"), Actual,"/"+u.Username,SesionManager.Token);
+                    ClienteHttp.Peticion.Send(new HttpMethod("PATCH"), Actual,u.Username,SesionManager.Token);
                     break;
             }
             Main.EstadoTrabajo = EstadoTrabajo.Espera;
@@ -404,9 +373,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
 
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
-            usuarioActual = null;
-            usuarioActual = await ClienteHttp.Peticion.Get<PersonaUsuario>(tablaUsuarios.SelectedRows[0].Cells[0].Value.ToString(), SesionManager.Token);
-            await ClienteHttp.Peticion.Send(HttpMethod.Delete, usuarioActual.Usuario, token: SesionManager.Token);
+            await ClienteHttp.Peticion.Delete<Usuario>(tablaUsuarios.SelectedRows[0].Cells[0].Value.ToString(), token: SesionManager.Token);
             CargarUsuarios();
         }
         private async void VerificarDisponibilidad(object sender, EventArgs e)
