@@ -87,6 +87,12 @@
     <Compile Include="Vistas\Deptos\frmImagenes.Designer.cs">
       <DependentUpon>frmImagenes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Deptos\frmMantenciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Deptos\frmMantenciones.Designer.cs">
+      <DependentUpon>frmMantenciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Deptos\frmImagenes.resx">
       <DependentUpon>frmImagenes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Deptos\frmMantenciones.resx">
+      <DependentUpon>frmMantenciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -146,7 +155,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\btn_agregar_img.png" />
     <Content Include="img\btn_agregar_trans.png" />
+    <Content Include="img\btn_borrar_img_rojo.png" />
+    <Content Include="img\btn_borrar_trans_rojo.png" />
+    <Content Include="img\btn_cambiar_img.png" />
+    <Content Include="img\btn_cambiar_trans.png" />
+    <Content Include="img\btn_error_img.png" />
+    <Content Include="img\imgbtn_agregar_img.png" />
+    <Content Include="img\imgbtn_cargando_img.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Net;
 using TurismoRealEscritorio.Modelos.Util;
 using System.Drawing;
+using System.IO;
 
 namespace TurismoRealEscritorio.Controlador
 {
@@ -111,7 +112,7 @@ namespace TurismoRealEscritorio.Controlador
             return new List<T>();
         }
 
-        public async Task<bool> Send<T>(HttpMethod metodo, T body, String url = "", String token = "none", Label txt = null)
+        public async Task<bool> Send<T>(HttpMethod metodo, T body, String url = "", String token = "none", Control txt = null)
         {
             var s = "";
             if (!url.Equals(""))
@@ -187,6 +188,128 @@ namespace TurismoRealEscritorio.Controlador
             }
             r.Dispose();
             return false;
+        }
+
+        public async Task<bool> SubirFoto(String url, String rutaArchivo, String token, Control txt = null)
+        {
+            FileStream archivo = new FileStream(rutaArchivo, FileMode.Open); 
+            HttpResponseMessage r;
+            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Post, UrlBase + "/" + "foto/" + url);
+            m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var archivoCarga = new StreamContent(archivo);
+            var form = new MultipartFormDataContent();
+            form.Add(archivoCarga,"imagenes",rutaArchivo);
+            m.Content = form;
+            try
+            {
+                r = await http.SendAsync(m);
+                switch ((int)r.StatusCode)
+                {
+                    case 200:
+                        archivo.Close();
+                        r.Dispose();
+                        return true;
+                    case 401:
+                        if (txt != null)
+                        {
+                            txt.Text = "Acceso Denegado.";
+                        }
+                        break;
+                    default:
+                        if (txt != null)
+                        {
+                            var a = await r.Content.ReadAsStringAsync();
+                            txt.Text = JsonConvert.DeserializeObject<MensajeError>(a).Error;
+                        }
+                        break;
+                }
+                archivo.Close();
+                r.Dispose();
+                return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> ActualizarFoto(String url, String rutaArchivo, String token, Control txt = null)
+        {
+            FileStream archivo = new FileStream(rutaArchivo, FileMode.Open);
+            HttpResponseMessage r;
+            HttpRequestMessage m = new HttpRequestMessage(new HttpMethod("PATCH"), UrlBase + "/" + "foto/" + url);
+            m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var archivoCarga = new StreamContent(archivo);
+            var form = new MultipartFormDataContent();
+            form.Add(archivoCarga, "imagen", rutaArchivo);
+            m.Content = form;
+            try
+            {
+                r = await http.SendAsync(m);
+                switch ((int)r.StatusCode)
+                {
+                    case 200:
+                        archivo.Close();
+                        r.Dispose();
+                        return true;
+                    case 401:
+                        if (txt != null)
+                        {
+                            txt.Text = "Acceso Denegado.";
+                        }
+                        break;
+                    default:
+                        if (txt != null)
+                        {
+                            var a = await r.Content.ReadAsStringAsync();
+                            txt.Text = JsonConvert.DeserializeObject<MensajeError>(a).Error;
+                        }
+                        break;
+                }
+                archivo.Close();
+                r.Dispose();
+                return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> BorrarFoto(String url, String token, Control txt = null)
+        {
+            HttpResponseMessage r;
+            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Delete, UrlBase + "/" + "foto/" + url);
+            m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            try
+            {
+                r = await http.SendAsync(m);
+                switch ((int)r.StatusCode)
+                {
+                    case 200:
+                        r.Dispose();
+                        return true;
+                    case 401:
+                        if (txt != null)
+                        {
+                            txt.Text = "Acceso Denegado.";
+                        }
+                        break;
+                    default:
+                        if (txt != null)
+                        {
+                            var a = await r.Content.ReadAsStringAsync();
+                            txt.Text = JsonConvert.DeserializeObject<MensajeError>(a).Error;
+                        }
+                        break;
+                }
+                r.Dispose();
+                return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public async void Autenticar(String username, String clave, Label txt = null, Button btn = null, Form form = null)

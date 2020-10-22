@@ -35,15 +35,14 @@
             this.img3 = new System.Windows.Forms.PictureBox();
             this.img4 = new System.Windows.Forms.PictureBox();
             this.btnVolver = new System.Windows.Forms.Button();
-            this.img_cargando = new System.Windows.Forms.PictureBox();
             this.btnCambiar = new System.Windows.Forms.PictureBox();
             this.btnBorrar = new System.Windows.Forms.PictureBox();
+            this.ofdEntrada = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.imgMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.img1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.img2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.img3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.img4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.img_cargando)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCambiar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBorrar)).BeginInit();
             this.SuspendLayout();
@@ -130,17 +129,6 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
-            // img_cargando
-            // 
-            this.img_cargando.Image = ((System.Drawing.Image)(resources.GetObject("img_cargando.Image")));
-            this.img_cargando.Location = new System.Drawing.Point(431, 361);
-            this.img_cargando.Name = "img_cargando";
-            this.img_cargando.Size = new System.Drawing.Size(22, 14);
-            this.img_cargando.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.img_cargando.TabIndex = 61;
-            this.img_cargando.TabStop = false;
-            this.img_cargando.Visible = false;
-            // 
             // btnCambiar
             // 
             this.btnCambiar.ErrorImage = ((System.Drawing.Image)(resources.GetObject("btnCambiar.ErrorImage")));
@@ -152,6 +140,9 @@
             this.btnCambiar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnCambiar.TabIndex = 64;
             this.btnCambiar.TabStop = false;
+            this.btnCambiar.Click += new System.EventHandler(this.btnCambiar_Click);
+            this.btnCambiar.MouseEnter += new System.EventHandler(this.btnCambiar_MouseEnter);
+            this.btnCambiar.MouseLeave += new System.EventHandler(this.btnCambiar_MouseLeave);
             // 
             // btnBorrar
             // 
@@ -165,6 +156,12 @@
             this.btnBorrar.TabIndex = 65;
             this.btnBorrar.TabStop = false;
             this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            this.btnBorrar.MouseEnter += new System.EventHandler(this.btnBorrar_MouseEnter);
+            this.btnBorrar.MouseLeave += new System.EventHandler(this.btnBorrar_MouseLeave);
+            // 
+            // ofdEntrada
+            // 
+            this.ofdEntrada.Filter = "Imagenes(png, jpg, jpeg, gif)|*.png;*.jpg;*.jpeg;*.gif|Todos los archivos|*.*";
             // 
             // frmImagenes
             // 
@@ -173,7 +170,6 @@
             this.ClientSize = new System.Drawing.Size(653, 399);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnCambiar);
-            this.Controls.Add(this.img_cargando);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.img4);
             this.Controls.Add(this.img3);
@@ -191,7 +187,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.img2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.img3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.img4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.img_cargando)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCambiar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBorrar)).EndInit();
             this.ResumeLayout(false);
@@ -206,8 +201,8 @@
         private System.Windows.Forms.PictureBox img3;
         private System.Windows.Forms.PictureBox img4;
         private System.Windows.Forms.Button btnVolver;
-        private System.Windows.Forms.PictureBox img_cargando;
         private System.Windows.Forms.PictureBox btnCambiar;
         private System.Windows.Forms.PictureBox btnBorrar;
+        private System.Windows.Forms.OpenFileDialog ofdEntrada;
     }
 }

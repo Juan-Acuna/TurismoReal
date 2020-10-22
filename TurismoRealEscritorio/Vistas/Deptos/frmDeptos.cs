@@ -188,7 +188,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             dep.Arriendo = Convert.ToInt32(txtArriendo.Text);
             dep.Habitaciones = Convert.ToInt32(txtHabitaciones.Text);
             dep.Banos = Convert.ToInt32(txtBanos.Text);
-            dep.Mts_cuadrados = Convert.ToInt32(txtMCuadrados.Text);
+            dep.Mts_cuadrados = (float)Convert.ToDouble(txtMCuadrados.Text);
             dep.Contribuciones = Convert.ToInt32(txtContribuciones.Text);
             dep.Dividendo = Convert.ToInt32(txtDividendo.Text);
             dep.Id_localidad = (int)cbLocalidad.SelectedValue;
@@ -199,7 +199,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
                     await ClienteHttp.Peticion.Send(new HttpMethod("PATCH"),dep,txtId.Text,SesionManager.Token);
                     break;
                 case EstadoTrabajo.Agregando:
-                    await ClienteHttp.Peticion.Send(HttpMethod.Post, dep, token: SesionManager.Token);
+                    await ClienteHttp.Peticion.Send(HttpMethod.Post, dep, token: SesionManager.Token,txt:lbId);
                     break;
             }
             expand = true;
@@ -210,6 +210,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             ClienteHttp.Peticion.Delete<Departamento>(tablaDeptos.SelectedRows[0].Cells[0].Value.ToString(), SesionManager.Token);
+            CargarDatos();
         }
 
         private void btnRefrescar_Click(object sender, EventArgs e)
@@ -219,12 +220,15 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private void btnMantenciones_Click(object sender, EventArgs e)
         {
-
+            frmMantenciones frm = new frmMantenciones(this);
+            frm.Show();
+            frm.Focus();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             btnAplicar.Text = "Crear";
+            PrepararComboboxes();
             Desplegar();
             Main.EstadoTrabajo = EstadoTrabajo.Agregando;
         }
