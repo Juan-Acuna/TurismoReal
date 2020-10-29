@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -249,10 +250,69 @@ namespace TurismoRealEscritorio.Vistas.Logistica
             Main.EstadoTrabajo = EstadoTrabajo.Agregando;
             Desplegar();
         }
-        private void BotonesAplicar(object sender, EventArgs e)
+        private async void BotonesAplicar(object sender, EventArgs e)
         {
             /* CAMBIA SEGUN PAGINA*/
-            expand = true;
+            switch (Main.EstadoTrabajo)
+            {
+                case EstadoTrabajo.Agregando:
+                    switch (actual)
+                    {
+                        case Logistica.Inventario:
+                            Articulo a = new Articulo();
+                            a.Nombre = txtNombreI.Text;
+                            a.Valor = Int32.Parse(txtValorI.Text);
+                            await ClienteHttp.Peticion.Send(HttpMethod.Post, a, token: SesionManager.Token);
+                            break;
+                        case Logistica.Localidades:
+                            Localidad l = new Localidad();
+                            l.Nombre = txtNombreL.Text;
+                            await ClienteHttp.Peticion.Send(HttpMethod.Post, l, token: SesionManager.Token);
+                            break;
+                        case Logistica.Vehiculos:
+                            Vehiculo v = new Vehiculo();
+                            v.Patente = txtPatente.Text;
+                            v.Marca = txtMarcaV.Text;
+                            v.Modelo = txtModeloV.Text;
+                            await ClienteHttp.Peticion.Send(HttpMethod.Post, v, token: SesionManager.Token);
+                            break;
+                        case Logistica.Choferes:
+                            PersonaChofer pc = new PersonaChofer();
+                            pc.Persona = new Persona();
+                            pc.Chofer = new Chofer();
+                            var p = pc.Persona;
+                            p.Rut = txtRut.Text;
+                            p.Nombres = txtNombres.Text;
+                            p.Apellidos = txtApellidos.Text;
+                            p.Nacimiento = dtNacimiento.Value;
+                            p.Id_genero = (int)cbGenero.SelectedValue;
+                            p.Email = txtEmail.Text;
+                            p.Telefono = Int64.Parse(txtTelefono.Text);
+                            p.Direccion = txtDireccion.Text;
+                            p.Region = (String)cbRegion.SelectedValue;
+                            p.Comuna = (String)cbComuna.SelectedValue;
+                            await ClienteHttp.Peticion.Send(HttpMethod.Post, pc, token: SesionManager.Token);
+                            break;
+                    }
+                    break;
+                case EstadoTrabajo.Modificando:
+                    switch (actual)
+                    {
+                        case Logistica.Inventario:
+
+                            break;
+                        case Logistica.Localidades:
+
+                            break;
+                        case Logistica.Vehiculos:
+                            
+                            break;
+                        case Logistica.Choferes:
+
+                            break;
+                    }
+                    break;
+            }
             switch (actual)
             {
                 case Logistica.Inventario:
@@ -268,7 +328,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                     CargarChoferes();
                     break;
             }
-
+            expand = true;
             Main.EstadoTrabajo = EstadoTrabajo.Espera;
         }
         private void BotonesEliminar(object sender, EventArgs e)
