@@ -299,16 +299,38 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                     switch (actual)
                     {
                         case Logistica.Inventario:
-
+                            Articulo a = new Articulo();
+                            a.Nombre = txtNombreI.Text;
+                            a.Valor = Int32.Parse(txtValorI.Text);
+                            await ClienteHttp.Peticion.Send(new HttpMethod("PATCH"), a,txtIdI.Text, SesionManager.Token);
                             break;
                         case Logistica.Localidades:
-
+                            Localidad l = new Localidad();
+                            l.Nombre = txtNombreL.Text;
+                            await ClienteHttp.Peticion.Send(new HttpMethod("PATCH"), l, txtIdL.Text, SesionManager.Token);
                             break;
                         case Logistica.Vehiculos:
-                            
+                            Vehiculo v = new Vehiculo();
+                            v.Marca = txtMarcaV.Text;
+                            v.Modelo = txtModeloV.Text;
+                            await ClienteHttp.Peticion.Send(new HttpMethod("PATCH"), v, txtPatente.Text, SesionManager.Token);
                             break;
                         case Logistica.Choferes:
-
+                            PersonaChofer pc = new PersonaChofer();
+                            pc.Persona = new Persona();
+                            pc.Chofer = new Chofer();
+                            var p = pc.Persona;
+                            p.Rut = txtRut.Text;
+                            p.Nombres = txtNombres.Text;
+                            p.Apellidos = txtApellidos.Text;
+                            p.Nacimiento = dtNacimiento.Value;
+                            p.Id_genero = (int)cbGenero.SelectedValue;
+                            p.Email = txtEmail.Text;
+                            p.Telefono = Int64.Parse(txtTelefono.Text);
+                            p.Direccion = txtDireccion.Text;
+                            p.Region = (String)cbRegion.SelectedValue;
+                            p.Comuna = (String)cbComuna.SelectedValue;
+                            await ClienteHttp.Peticion.Send(new HttpMethod("PATCH"), pc, txtIdC.Text, SesionManager.Token);
                             break;
                     }
                     break;
@@ -354,10 +376,10 @@ namespace TurismoRealEscritorio.Vistas.Logistica
             switch (actual)
             {
                 case Logistica.Inventario:
-                    CargarArticulos();
+                    
                     break;
                 case Logistica.Localidades:
-                    CargarLocalidades();
+                    
                     break;
             }
         }
@@ -510,7 +532,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                 }
                 foreach (var i in lista)
                 {
-                    tablaChofer.Rows.Add(i.Chofer.Id_chofer,i.Persona.Rut,i.Persona.Nombres+" "+i.Persona.Apellidos,i.Persona.Email,i.Persona.Telefono,i.Persona.Direccion,i.Persona.Region);
+                    tablaChofer.Rows.Add(i.Chofer.Id_chofer,i.Persona.Rut,i.Persona.Nombres+" "+i.Persona.Apellidos,i.Persona.Email,i.Persona.Telefono,i.Persona.Direccion,i.Persona.Region,i.Persona.Comuna);
                 }
                 if (primeraCargaC)
                 {
