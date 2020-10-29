@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using TurismoRealEscritorio.Controlador;
 using TurismoRealEscritorio.Modelos;
 using TurismoRealEscritorio.Vistas.Deptos;
+using TurismoRealEscritorio.Vistas.Logistica;
 using TurismoRealEscritorio.Vistas.Usuarios;
 
 namespace TurismoRealEscritorio.Vista
@@ -167,6 +168,14 @@ namespace TurismoRealEscritorio.Vista
         #endregion
 
         #region Botones
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            timerConexion.Stop();
+        }
+        private void btnFinanzas_Click(object sender, EventArgs e)
+        {
+
+        }
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             AbrirForm(new frmUsuarios(this));
@@ -175,17 +184,23 @@ namespace TurismoRealEscritorio.Vista
         {
             AbrirForm(new frmDeptos(this));
         }
+
+        private void btnLogistica_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new frmLogistica(this));
+        }
         #endregion
 
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnSalir_Click(object sender, EventArgs e)
         {
-            timerConexion.Stop();
+
         }
     }
     public enum EstadoTrabajo
     {
         Espera,
         Agregando,
-        Modificando
+        Modificando,
+        Asignando
     }
 }

@@ -71,7 +71,7 @@
             this.btnRecuperar.Location = new System.Drawing.Point(385, 278);
             this.btnRecuperar.Name = "btnRecuperar";
             this.btnRecuperar.Size = new System.Drawing.Size(122, 16);
-            this.btnRecuperar.TabIndex = 3;
+            this.btnRecuperar.TabIndex = 10;
             this.btnRecuperar.TabStop = true;
             this.btnRecuperar.Text = "Recuperar contraseña";
             this.btnRecuperar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnRecuperar_LinkClicked);
@@ -197,6 +197,7 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.btnIniciar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 453);
@@ -210,6 +211,7 @@
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.pReconectando);
             this.Controls.Add(this.pbRandom);
+            this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Turismo Real - Iniciar Sesión";

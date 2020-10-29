@@ -28,11 +28,10 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             InitializeComponent();
             Main = main;
             Main.ConfigurarBotones(pEdicion.Controls[0]);
-            foreach(Control item in pEdicion.Controls[0].Controls)
+            foreach (Control item in pEdicion.Controls[0].Controls)
             {
                 Main.ConfigurarBotones(item);
             }
-            pEdicion.Visible = true;//******************************************************************QUITAR DE AQUI
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -113,14 +112,14 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             txtId.Text = depto.Id_depto.ToString();
             txtNombre.Text = depto.Nombre;
             txtDireccion.Text = depto.Direccion;
-            cbLocalidad.SelectedItem = Main.Repos.Buscar((List<Localidad>)cbLocalidad.DataSource, "Id_localidad", depto.Id_localidad).Nombre;
+            cbLocalidad.SelectedItem = Repositorios.Buscar((List<Localidad>)cbLocalidad.DataSource, "Id_localidad", depto.Id_localidad).Nombre;
             txtMCuadrados.Text = depto.Mts_cuadrados.ToString();
             txtHabitaciones.Text = depto.Habitaciones.ToString();
             txtBanos.Text = depto.Banos.ToString();
             txtArriendo.Text = depto.Arriendo.ToString();
             txtDividendo.Text = depto.Dividendo.ToString();
             txtContribuciones.Text = depto.Contribuciones.ToString();
-            txtEstado.Text = Main.Repos.Buscar(Main.Repos.EstadoDeptos, "Id_estado", depto.Id_estado).Nombre;
+            txtEstado.Text = Repositorios.Buscar(Main.Repos.EstadoDeptos, "Id_estado", depto.Id_estado).Nombre;
             Desplegar();
             Main.EstadoTrabajo = EstadoTrabajo.Modificando;
         }
@@ -145,15 +144,15 @@ namespace TurismoRealEscritorio.Vistas.Deptos
                 tablaDeptos.Columns.Add("localidad", "Localidad");
                 tablaDeptos.Columns.Add("estado", "Estado");
 
-                tablaDeptos.Columns["id_depto"].Width = 80;
+                tablaDeptos.Columns["id_depto"].Width = 75;
                 tablaDeptos.Columns["nombre"].Width = 150;
                 tablaDeptos.Columns["direccion"].Width = 160;
-                tablaDeptos.Columns["arriendo"].Width = 60;
+                tablaDeptos.Columns["arriendo"].Width = 55;
                 tablaDeptos.Columns["mts"].Width = 100;
-                tablaDeptos.Columns["habitaciones"].Width = 80;
-                tablaDeptos.Columns["banos"].Width = 50;
+                tablaDeptos.Columns["habitaciones"].Width = 75;
+                tablaDeptos.Columns["banos"].Width = 45;
                 tablaDeptos.Columns["localidad"].Width = 100;
-                tablaDeptos.Columns["estado"].Width = 80;
+                tablaDeptos.Columns["estado"].Width = 110;
             }
             else
             {
@@ -161,7 +160,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             }
             foreach (var i in lista)
             {
-                tablaDeptos.Rows.Add(i.Id_depto,i.Nombre,i.Direccion,"$" + i.Arriendo,i.Mts_cuadrados,i.Habitaciones,i.Banos,Main.Repos.Buscar(Main.Repos.Localidades,"Id_localidad",i.Id_localidad).Nombre, Main.Repos.Buscar(Main.Repos.EstadoDeptos, "Id_estado", i.Id_estado).Nombre);
+                tablaDeptos.Rows.Add(i.Id_depto,i.Nombre,i.Direccion,"$" + i.Arriendo,i.Mts_cuadrados,i.Habitaciones,i.Banos,Repositorios.Buscar(Main.Repos.Localidades,"Id_localidad",i.Id_localidad).Nombre, Repositorios.Buscar(Main.Repos.EstadoDeptos, "Id_estado", i.Id_estado).Nombre);
             }
             if (primeraCarga)
             {
@@ -220,7 +219,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private void btnMantenciones_Click(object sender, EventArgs e)
         {
-            frmMantenciones frm = new frmMantenciones(this);
+            frmMantenciones frm = new frmMantenciones(this, tablaDeptos.SelectedRows[0].Cells[0].Value.ToString());
             frm.Show();
             frm.Focus();
         }

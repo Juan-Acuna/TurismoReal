@@ -33,6 +33,7 @@
             this.pReconectando = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pMenu = new System.Windows.Forms.Panel();
+            this.lbTurismo = new System.Windows.Forms.Label();
             this.lbNombre = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnLogistica = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.pContainer = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerConexion = new System.Windows.Forms.Timer(this.components);
-            this.lbTurismo = new System.Windows.Forms.Label();
             this.pReconectando.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pMenu.SuspendLayout();
@@ -84,6 +84,19 @@
             this.pMenu.Size = new System.Drawing.Size(161, 501);
             this.pMenu.TabIndex = 4;
             // 
+            // lbTurismo
+            // 
+            this.lbTurismo.AutoSize = true;
+            this.lbTurismo.BackColor = System.Drawing.Color.Black;
+            this.lbTurismo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbTurismo.Font = new System.Drawing.Font("Microsoft YaHei UI", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTurismo.ForeColor = System.Drawing.Color.White;
+            this.lbTurismo.Location = new System.Drawing.Point(3, 9);
+            this.lbTurismo.Name = "lbTurismo";
+            this.lbTurismo.Size = new System.Drawing.Size(157, 30);
+            this.lbTurismo.TabIndex = 12;
+            this.lbTurismo.Text = "Turismo Real";
+            // 
             // lbNombre
             // 
             this.lbNombre.AutoSize = true;
@@ -103,8 +116,9 @@
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(160, 35);
             this.btnSalir.TabIndex = 10;
-            this.btnSalir.Text = "Cerrar Sesión";
+            this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // btnLogistica
             // 
@@ -116,6 +130,7 @@
             this.btnLogistica.TabIndex = 8;
             this.btnLogistica.Text = "Logistica";
             this.btnLogistica.UseVisualStyleBackColor = true;
+            this.btnLogistica.Click += new System.EventHandler(this.btnLogistica_Click);
             // 
             // btnDeptos
             // 
@@ -151,6 +166,7 @@
             this.btnFinanzas.TabIndex = 5;
             this.btnFinanzas.Text = "Finanzas";
             this.btnFinanzas.UseVisualStyleBackColor = true;
+            this.btnFinanzas.Click += new System.EventHandler(this.btnFinanzas_Click);
             // 
             // pContainer
             // 
@@ -168,19 +184,6 @@
             // timerConexion
             // 
             this.timerConexion.Tick += new System.EventHandler(this.timerConexion_Tick);
-            // 
-            // lbTurismo
-            // 
-            this.lbTurismo.AutoSize = true;
-            this.lbTurismo.BackColor = System.Drawing.Color.Black;
-            this.lbTurismo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbTurismo.Font = new System.Drawing.Font("Microsoft YaHei UI", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTurismo.ForeColor = System.Drawing.Color.White;
-            this.lbTurismo.Location = new System.Drawing.Point(3, 9);
-            this.lbTurismo.Name = "lbTurismo";
-            this.lbTurismo.Size = new System.Drawing.Size(157, 30);
-            this.lbTurismo.TabIndex = 12;
-            this.lbTurismo.Text = "Turismo Real";
             // 
             // frmMain
             // 

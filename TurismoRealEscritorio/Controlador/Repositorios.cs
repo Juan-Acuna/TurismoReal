@@ -50,9 +50,13 @@ namespace TurismoRealEscritorio.Controlador
             } while (regiones==null);
         }
 
-        public T Buscar<T>(List<T> lista, String campo, object valor)
+        public static T Buscar<T>(List<T> lista, String campo, object valor)
         {
             var mem = typeof(T).GetProperties();
+            if(lista == null)
+            {
+                return default(T);
+            }
             foreach(var item in lista)
             {
                 foreach(var m in mem)

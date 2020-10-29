@@ -33,9 +33,9 @@ namespace TurismoRealEscritorio.Controlador
             httpTest.Timeout = TimeSpan.FromSeconds(16);
         }
 
-        public async Task<T> Get<T>(String url, String token = "none", Label txt = null) where T : class, new()
+        public async Task<T> Get<T>(String url, String token = "none", Label txt = null, bool urlEspecial = false) where T : class, new()
         {
-            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "") + "/" + url);
+            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + (urlEspecial?"":"/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "")) + "/" + url);
             if (!token.Equals("none"))
             {
                 m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -67,7 +67,7 @@ namespace TurismoRealEscritorio.Controlador
                     break;
             }
             r.Dispose();
-            return default(T);
+            return null;
         }
 
         public async Task<List<T>> GetList<T>(String token = "none", Label txt = null, String url = "") where T : class, new()
@@ -411,18 +411,18 @@ namespace TurismoRealEscritorio.Controlador
             r.Dispose();
             return new List<T>();
         }
-        public async Task<bool> Disponible(TextBox input, Control txt = null)
+        public async Task<bool> Disponible(TextBox input, String url, Control txt = null)
         {
             if (input.Text.Trim().Length <= 0)
             {
                 txt.Text = "";
                 input.ForeColor = Color.Black;
-                return false;
+                return true;
             }
             HttpResponseMessage r;
             try
             {
-                HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/publico/util/disponible/" + input.Name.Replace("txt","") + "/" + input.Text);
+                HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/publico/util/disponible/" + url + "/" + input.Text);
                 r = await httpTest.SendAsync(m);
                 if (r.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -433,7 +433,7 @@ namespace TurismoRealEscritorio.Controlador
                     {
                         txt.Text = "";
                         input.ForeColor = Color.Black;
-                        if (input.Name.Equals("txtUsername"))
+                        /*if (input.Name.Equals("txtUsername"))
                         {
                             if (input.Text.Length > 4)
                             {
@@ -444,7 +444,7 @@ namespace TurismoRealEscritorio.Controlador
                                 input.ForeColor = Color.Red;
                                 txt.Text = "El nombre de usuario debe tener al menos 5 caracteres.";
                             }
-                        }
+                        }*/
                     }
                     else
                     {

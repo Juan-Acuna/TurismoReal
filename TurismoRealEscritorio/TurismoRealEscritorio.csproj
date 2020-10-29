@@ -68,13 +68,13 @@
     <Compile Include="Modelos\PersonaChofer.cs" />
     <Compile Include="Modelos\PersonaUsuario.cs" />
     <Compile Include="Modelos\Rol.cs" />
+    <Compile Include="Modelos\TipoMantencion.cs" />
     <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Modelos\Util\Comuna.cs" />
     <Compile Include="Modelos\Util\ProxyPersonaUsuario.cs" />
     <Compile Include="Modelos\Util\ProxyRegion.cs" />
     <Compile Include="Modelos\Util\ProxyUsuario.cs" />
     <Compile Include="Modelos\Vehiculo.cs" />
-    <Compile Include="Temp.cs" />
     <Compile Include="Vistas\Deptos\frmDeptos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +107,12 @@
     <Compile Include="Vistas\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Logistica\frmLogistica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Logistica\frmLogistica.designer.cs">
+      <DependentUpon>frmLogistica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Usuarios\frmUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     </Compile>
     <EmbeddedResource Include="Vistas\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Logistica\frmLogistica.resx">
+      <DependentUpon>frmLogistica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Usuarios\frmUsuarios.resx">
       <DependentUpon>frmUsuarios.cs</DependentUpon>

@@ -10,6 +10,7 @@ namespace TurismoRealEscritorio
 {
     static class Program
     {
+        static bool Loop = false;
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -18,11 +19,14 @@ namespace TurismoRealEscritorio
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLogin());
-            if (SesionManager.Sesion.Autenticado)
+            do
             {
-                Application.Run(new frmMain());
-            }
+                Application.Run(new frmLogin());
+                if (SesionManager.Sesion.Autenticado)
+                {
+                    Application.Run(new frmMain());
+                }
+            } while (Loop);
         }
     }
 }

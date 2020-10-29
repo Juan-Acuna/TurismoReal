@@ -54,7 +54,8 @@ namespace TurismoRealEscritorio
         }
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            
+            btnIniciar.FlatAppearance.BorderSize = 0;
+            btnIniciar.FlatAppearance.BorderColor = ColorTranslator.FromHtml("#1d809f");
         }
 
 

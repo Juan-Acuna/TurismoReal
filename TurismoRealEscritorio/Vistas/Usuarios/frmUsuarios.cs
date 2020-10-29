@@ -7,6 +7,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TurismoRealEscritorio.Controlador;
@@ -193,10 +194,13 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
         }
         private async void PrepararModificar()
         {
+            usuarioActual = null;
+            do
+            {
+                usuarioActual = await ClienteHttp.Peticion.Get<PersonaUsuario>(tablaUsuarios.SelectedRows[0].Cells[0].Value.ToString(), SesionManager.Token);
+            } while (usuarioActual == null);
             lbEstado.Visible = true;
             chkActivo.Visible = true;
-            usuarioActual = null;
-            usuarioActual = await ClienteHttp.Peticion.Get<PersonaUsuario>(tablaUsuarios.SelectedRows[0].Cells[0].Value.ToString(), SesionManager.Token);
             btnAplicar.Text = "Aplicar";
             chkClave.Checked = false;
             claveVisible = false;
@@ -231,11 +235,11 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             txtEmail.Text = p.Email;
             txtTelefono.Text = p.Telefono.ToString();
             txtDireccion.Text = p.Direccion;
-            cbRol.SelectedItem = Main.Repos.Buscar((List<Rol>)cbRol.DataSource, "Id_rol", u.Id_rol);
-            cbRegion.SelectedItem = Main.Repos.Buscar((List<ProxyRegion>) cbRegion.DataSource, "Region", p.Region);
+            cbRol.SelectedItem = Repositorios.Buscar((List<Rol>)cbRol.DataSource, "Id_rol", u.Id_rol);
+            cbRegion.SelectedItem = Repositorios.Buscar((List<ProxyRegion>) cbRegion.DataSource, "Region", p.Region);
             cbRegion_SelectionChangeCommitted(cbRegion);
-            cbComuna.SelectedItem = Main.Repos.Buscar((List<Comuna>) cbComuna.DataSource, "Nombre", p.Comuna);
-            cbGenero.SelectedItem = Main.Repos.Buscar((List<Genero>) cbGenero.DataSource, "Id_genero", p.Id_genero);
+            cbComuna.SelectedItem = Repositorios.Buscar((List<Comuna>) cbComuna.DataSource, "Nombre", p.Comuna);
+            cbGenero.SelectedItem = Repositorios.Buscar((List<Genero>) cbGenero.DataSource, "Id_genero", p.Id_genero);
             cbRegion.Refresh();
             cbComuna.Refresh();
             cbGenero.Refresh();
@@ -384,19 +388,29 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
                 case "txtUsername":
                     if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                     {
-                        await ClienteHttp.Peticion.Disponible(txt, lbErrorU);
+                        await ClienteHttp.Peticion.Disponible(txt,"username", lbErrorU);
+                        if (txt.Text.Length > 4)
+                        {
+                            txt.ForeColor = Color.Green;
+                            lbErrorU.Text = "";
+                        }
+                        else
+                        {
+                            txt.ForeColor = Color.Red;
+                            lbErrorU.Text = "El nombre de usuario debe tener al menos 5 caracteres.";
+                        }
                     }
                     break;
                 case "txtRut":
                     if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                     {
-                        await ClienteHttp.Peticion.Disponible(txt, lbErrorR);
+                        await ClienteHttp.Peticion.Disponible(txt, "rut", lbErrorR);
                     }
                     break;
                 case "txtEmail":
                     if(Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                     {
-                        await ClienteHttp.Peticion.Disponible(txt, lbErrorE);
+                        await ClienteHttp.Peticion.Disponible(txt, "email", lbErrorE);
                     }
                     break;
             }
