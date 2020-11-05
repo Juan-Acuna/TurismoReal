@@ -33,16 +33,16 @@
             this.btnVolver = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pEdicion = new System.Windows.Forms.Panel();
-            this.btnAgendar = new System.Windows.Forms.Button();
-            this.timerEdicion = new System.Windows.Forms.Timer(this.components);
-            this.cbFuncionario = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dtFecha = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnAplicar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.cbTipo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAplicar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbFuncionario = new System.Windows.Forms.ComboBox();
+            this.dtFecha = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnAgendar = new System.Windows.Forms.Button();
+            this.timerEdicion = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tablaManten)).BeginInit();
             this.panel1.SuspendLayout();
             this.pEdicion.SuspendLayout();
@@ -98,6 +98,87 @@
             this.pEdicion.TabIndex = 1;
             this.pEdicion.Visible = false;
             // 
+            // cbTipo
+            // 
+            this.cbTipo.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.cbTipo.FormattingEnabled = true;
+            this.cbTipo.Location = new System.Drawing.Point(217, 148);
+            this.cbTipo.Name = "cbTipo";
+            this.cbTipo.Size = new System.Drawing.Size(220, 27);
+            this.cbTipo.TabIndex = 67;
+            this.cbTipo.Text = "Seleccione Tipo";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(86, 151);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(116, 19);
+            this.label2.TabIndex = 66;
+            this.label2.Text = "Tipo Mantención:";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(318, 229);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(89, 32);
+            this.btnCancelar.TabIndex = 65;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnAplicar
+            // 
+            this.btnAplicar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAplicar.Location = new System.Drawing.Point(425, 229);
+            this.btnAplicar.Name = "btnAplicar";
+            this.btnAplicar.Size = new System.Drawing.Size(89, 32);
+            this.btnAplicar.TabIndex = 63;
+            this.btnAplicar.Text = "Agendar";
+            this.btnAplicar.UseVisualStyleBackColor = true;
+            this.btnAplicar.Click += new System.EventHandler(this.btnAplicar_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(86, 109);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(125, 19);
+            this.label1.TabIndex = 64;
+            this.label1.Text = "Fecha mantención:";
+            // 
+            // cbFuncionario
+            // 
+            this.cbFuncionario.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.cbFuncionario.FormattingEnabled = true;
+            this.cbFuncionario.Location = new System.Drawing.Point(217, 59);
+            this.cbFuncionario.Name = "cbFuncionario";
+            this.cbFuncionario.Size = new System.Drawing.Size(220, 27);
+            this.cbFuncionario.TabIndex = 63;
+            this.cbFuncionario.Text = "Seleccione Funcionario";
+            // 
+            // dtFecha
+            // 
+            this.dtFecha.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.dtFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFecha.Location = new System.Drawing.Point(217, 104);
+            this.dtFecha.Name = "dtFecha";
+            this.dtFecha.Size = new System.Drawing.Size(220, 24);
+            this.dtFecha.TabIndex = 48;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(86, 62);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(84, 19);
+            this.label8.TabIndex = 47;
+            this.label8.Text = "Funcionario:";
+            // 
             // btnAgendar
             // 
             this.btnAgendar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -112,85 +193,6 @@
             // timerEdicion
             // 
             this.timerEdicion.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // cbFuncionario
-            // 
-            this.cbFuncionario.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.cbFuncionario.FormattingEnabled = true;
-            this.cbFuncionario.Location = new System.Drawing.Point(154, 32);
-            this.cbFuncionario.Name = "cbFuncionario";
-            this.cbFuncionario.Size = new System.Drawing.Size(154, 27);
-            this.cbFuncionario.TabIndex = 63;
-            this.cbFuncionario.Text = "Seleccione Funcionario";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(23, 35);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(84, 19);
-            this.label8.TabIndex = 47;
-            this.label8.Text = "Funcionario:";
-            // 
-            // dtFecha
-            // 
-            this.dtFecha.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.dtFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFecha.Location = new System.Drawing.Point(154, 77);
-            this.dtFecha.Name = "dtFecha";
-            this.dtFecha.Size = new System.Drawing.Size(154, 24);
-            this.dtFecha.TabIndex = 48;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(23, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 19);
-            this.label1.TabIndex = 64;
-            this.label1.Text = "Fecha mantención:";
-            // 
-            // btnAplicar
-            // 
-            this.btnAplicar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAplicar.Location = new System.Drawing.Point(425, 229);
-            this.btnAplicar.Name = "btnAplicar";
-            this.btnAplicar.Size = new System.Drawing.Size(89, 32);
-            this.btnAplicar.TabIndex = 63;
-            this.btnAplicar.Text = "Agendar";
-            this.btnAplicar.UseVisualStyleBackColor = true;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(318, 229);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(89, 32);
-            this.btnCancelar.TabIndex = 65;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // cbTipo
-            // 
-            this.cbTipo.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.cbTipo.FormattingEnabled = true;
-            this.cbTipo.Location = new System.Drawing.Point(154, 121);
-            this.cbTipo.Name = "cbTipo";
-            this.cbTipo.Size = new System.Drawing.Size(154, 27);
-            this.cbTipo.TabIndex = 67;
-            this.cbTipo.Text = "Seleccione Tipo";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 124);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 19);
-            this.label2.TabIndex = 66;
-            this.label2.Text = "Tipo Mantención:";
             // 
             // frmMantenciones
             // 

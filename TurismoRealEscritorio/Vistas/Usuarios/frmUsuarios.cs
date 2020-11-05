@@ -48,40 +48,46 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
 
         private async void CargarUsuarios(object sender = null, EventArgs e = null)
         {
-            var lista = await ClienteHttp.Peticion.GetList<PersonaUsuario>(SesionManager.Token);
-            if (primeraCarga)
+            try
             {
-                tablaUsuarios.Columns.Add("username", "Usuario");
-                tablaUsuarios.Columns.Add("nombres", "Nombres");
-                tablaUsuarios.Columns.Add("apellidos", "Apellidos");
-                tablaUsuarios.Columns.Add("email", "Correo electronico");
-                tablaUsuarios.Columns.Add("activo", "Estado");
-                tablaUsuarios.Columns.Add("rol", "Rol");
-            }
-            else
-            {
-                tablaUsuarios.Rows.Clear();
-            }
-            foreach (var i in lista)
-            {
-                tablaUsuarios.Rows.Add(i.Usuario.Username, i.Persona.Nombres, i.Persona.Apellidos, i.Persona.Email, (i.Usuario.Activo == '1' ? "Activo" : "Inactivo"), Main.Repos.Roles[i.Usuario.Id_rol - 1].Nombre);
-            }
-            if (primeraCarga)
-            {
-                foreach (DataGridViewRow r in tablaUsuarios.Rows)
+                var lista = await ClienteHttp.Peticion.GetList<PersonaUsuario>(SesionManager.Token);
+                if (primeraCarga)
                 {
-                    foreach (DataGridViewCell c in r.Cells)
+                    tablaUsuarios.Columns.Add("username", "Usuario");
+                    tablaUsuarios.Columns.Add("nombres", "Nombres");
+                    tablaUsuarios.Columns.Add("apellidos", "Apellidos");
+                    tablaUsuarios.Columns.Add("email", "Correo electronico");
+                    tablaUsuarios.Columns.Add("activo", "Estado");
+                    tablaUsuarios.Columns.Add("rol", "Rol");
+                }
+                else
+                {
+                    tablaUsuarios.Rows.Clear();
+                }
+                foreach (var i in lista)
+                {
+                    tablaUsuarios.Rows.Add(i.Usuario.Username, i.Persona.Nombres, i.Persona.Apellidos, i.Persona.Email, (i.Usuario.Activo == '1' ? "Activo" : "Inactivo"), Main.Repos.Roles[i.Usuario.Id_rol - 1].Nombre);
+                }
+                if (primeraCarga)
+                {
+                    foreach (DataGridViewRow r in tablaUsuarios.Rows)
                     {
-                        if (c.OwningColumn.Width < (c.Value.ToString().Length + 124))
+                        foreach (DataGridViewCell c in r.Cells)
                         {
-                            c.OwningColumn.Width = c.Value.ToString().Length + 124;
+                            if (c.OwningColumn.Width < (c.Value.ToString().Length + 124))
+                            {
+                                c.OwningColumn.Width = c.Value.ToString().Length + 124;
+                            }
                         }
                     }
+                    tablaUsuarios.MultiSelect = false;
+                    tablaUsuarios.Rows[0].Selected = true;
+                    primeraCarga = false;
                 }
-                tablaUsuarios.MultiSelect = false;
-                tablaUsuarios.Rows[0].Selected = true;
-                primeraCarga = false;
-                pEdicion.Visible = true;
+            }
+            catch(Exception ex)
+            {
+
             }
         }
         private void frmUsuarios_Load(object sender, EventArgs e)
@@ -108,6 +114,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             {
                 cbRol.DataSource = Main.Repos.Roles;
             } while (cbRol.DataSource == null);
+            pEdicion.Visible = true;
         }
 
 
@@ -271,6 +278,10 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             if (sender != null)
             {
                 ComboBox temp = (ComboBox)sender;
+                if (temp.SelectedItem == null)
+                {
+                    return;
+                }
                 cbComuna.DataSource = ((ProxyRegion)temp.SelectedItem).Comunas;
                 cbComuna.DisplayMember = "Nombre";
                 cbComuna.ValueMember = "Nombre";

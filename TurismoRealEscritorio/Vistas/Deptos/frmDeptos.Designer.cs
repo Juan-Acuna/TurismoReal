@@ -163,6 +163,7 @@
             this.txtContribuciones.Name = "txtContribuciones";
             this.txtContribuciones.Size = new System.Drawing.Size(102, 24);
             this.txtContribuciones.TabIndex = 52;
+            this.txtContribuciones.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarSoloNumeros);
             // 
             // txtDividendo
             // 
@@ -171,6 +172,7 @@
             this.txtDividendo.Name = "txtDividendo";
             this.txtDividendo.Size = new System.Drawing.Size(102, 24);
             this.txtDividendo.TabIndex = 51;
+            this.txtDividendo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarSoloNumeros);
             // 
             // txtArriendo
             // 
@@ -179,6 +181,7 @@
             this.txtArriendo.Name = "txtArriendo";
             this.txtArriendo.Size = new System.Drawing.Size(102, 24);
             this.txtArriendo.TabIndex = 50;
+            this.txtArriendo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarSoloNumeros);
             // 
             // label9
             // 
@@ -233,6 +236,7 @@
             this.txtBanos.Name = "txtBanos";
             this.txtBanos.Size = new System.Drawing.Size(88, 24);
             this.txtBanos.TabIndex = 49;
+            this.txtBanos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarSoloNumeros);
             // 
             // txtHabitaciones
             // 
@@ -241,6 +245,7 @@
             this.txtHabitaciones.Name = "txtHabitaciones";
             this.txtHabitaciones.Size = new System.Drawing.Size(88, 24);
             this.txtHabitaciones.TabIndex = 48;
+            this.txtHabitaciones.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarSoloNumeros);
             // 
             // txtMCuadrados
             // 
@@ -249,6 +254,7 @@
             this.txtMCuadrados.Name = "txtMCuadrados";
             this.txtMCuadrados.Size = new System.Drawing.Size(88, 24);
             this.txtMCuadrados.TabIndex = 47;
+            this.txtMCuadrados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarSoloNumeros);
             // 
             // label8
             // 

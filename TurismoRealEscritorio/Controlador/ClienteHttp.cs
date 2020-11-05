@@ -156,7 +156,12 @@ namespace TurismoRealEscritorio.Controlador
             r.Dispose();
             return false;
         }
-        
+
+        internal void Send<T>(object httpMethod)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> Delete<T>(String url, String token, Label txt = null)
         {
             HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Delete, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "").ToLower() + "/" + url);
@@ -192,7 +197,7 @@ namespace TurismoRealEscritorio.Controlador
 
         public async Task<bool> SubirFoto(String url, String rutaArchivo, String token, Control txt = null)
         {
-            FileStream archivo = new FileStream(rutaArchivo, FileMode.Open); 
+            FileStream archivo = new FileStream(rutaArchivo, FileMode.Open);
             HttpResponseMessage r;
             HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Post, UrlBase + "/" + "foto/" + url);
             m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -206,7 +211,7 @@ namespace TurismoRealEscritorio.Controlador
                 switch ((int)r.StatusCode)
                 {
                     case 200:
-                        archivo.Close();
+                        archivo.Dispose();
                         r.Dispose();
                         return true;
                     case 401:
@@ -223,8 +228,8 @@ namespace TurismoRealEscritorio.Controlador
                         }
                         break;
                 }
-                archivo.Close();
                 r.Dispose();
+                archivo.Dispose();
                 return false;
             }
             catch (Exception e)
@@ -249,7 +254,7 @@ namespace TurismoRealEscritorio.Controlador
                 switch ((int)r.StatusCode)
                 {
                     case 200:
-                        archivo.Close();
+                        archivo.Dispose();
                         r.Dispose();
                         return true;
                     case 401:
@@ -266,8 +271,8 @@ namespace TurismoRealEscritorio.Controlador
                         }
                         break;
                 }
-                archivo.Close();
                 r.Dispose();
+                archivo.Dispose();
                 return false;
             }
             catch (Exception e)

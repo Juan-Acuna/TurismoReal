@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -23,6 +25,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
         int Actual = 0;
         String Estado = "Agregar";
         frmDeptos Deptosfrm;
+        Bitmap Recibida;
         
         public frmImagenes(frmDeptos frm, String id = null)
         {
@@ -38,8 +41,8 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             Cargadas.Add(false);
             Cargadas.Add(false);
             Cargadas.Add(false);
-            btnCambiar.Location = new Point(183, 284);
-            btnBorrar.Location = new Point(258, 284);
+            btnCambiar.Location = new Point(213, 284);
+            btnBorrar.Location = new Point(288, 284);
             btnCambiar.Load("../../img/btn_agregar_trans.png");
             btnBorrar.Load("../../img/btn_borrar_trans_rojo.png");
             img1.Load("../../img/imgbtn_agregar_img.png");
@@ -124,10 +127,48 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private void btnCambiar_Click(object sender, EventArgs e)
         {
+            Image bmp;
+            double p;
             String archivo = "";
             if (ofdEntrada.ShowDialog() == DialogResult.OK)
             {
                 archivo = ofdEntrada.FileName;
+                try
+                {
+                    using(FileStream f = new FileStream(archivo, FileMode.Open,FileAccess.Read))
+                    {
+                        bmp = Image.FromStream(f);
+                        p = f.Length / 1024.0;
+                    }
+                }
+                catch(Exception exe)
+                {
+                    Console.WriteLine(exe.Message);
+                    MessageBox.Show("Archivo pesa demasiado o esta dañado.", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    return;
+                }
+                //validar tamaño
+                if (p > 500)
+                {
+                    //demasiado pesada
+                    //emergente ofreciendo cambiarla
+                    if(MessageBox.Show("La imagen seleccionada supera el peso máximo soportado por la plataforma web.\n¿Desea modificar la imagen para poder utilizarla?", "Imagen demasiado pesada.", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        frmEditor f = new frmEditor(this, bmp);
+                        if (f.ShowDialog() != DialogResult.OK)
+                        {
+                            return;
+                        }
+                        bmp.Dispose();
+                        archivo = Path.GetTempPath() + archivo.Split('\\').Last();
+                        Recibida.Save(archivo);
+                        Recibida.Dispose();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
             }
             else
             {
@@ -190,6 +231,10 @@ namespace TurismoRealEscritorio.Vistas.Deptos
         {
             String s = f.Ruta.Split('/').Last().Split('_').Last().Split('.')[0];
             return s;
+        }
+        public void RecibirImagen(Image img)
+        {
+            Recibida = (Bitmap)img;
         }
     }
 }

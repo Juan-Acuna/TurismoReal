@@ -16,11 +16,13 @@ namespace TurismoRealEscritorio.Controlador
         List<Genero> generos;
         List<Localidad> localidades;
         List<ProxyRegion> regiones;
+        List<TipoMantencion> mantenciones;
         public List<Rol> Roles { get { return roles; } }
         public List<EstadoDepto> EstadoDeptos { get { return estadoDeptos; } }
         public List<Genero> Generos { get { return generos; } }
         public List<Localidad> Localidades { get { return localidades; } }
         public List<ProxyRegion> Regiones { get { return regiones; } }
+        public List<TipoMantencion> TipoMantenciones { get { return mantenciones; } }
         public Repositorios()
         {
             CargarRepos();
@@ -48,10 +50,18 @@ namespace TurismoRealEscritorio.Controlador
             {
                 regiones = await ClienteHttp.Peticion.Util_ProxyRegion<ProxyRegion>();
             } while (regiones==null);
+            do
+            {
+                mantenciones = await ClienteHttp.Peticion.GetList<TipoMantencion>(SesionManager.Token);
+            } while (mantenciones == null);
         }
 
-        public static T Buscar<T>(List<T> lista, String campo, object valor)
+        public static T Buscar<T>(List<T> lista, String campo, object valor) where T : class
         {
+            if (valor == null)
+            {
+                return null;
+            }
             var mem = typeof(T).GetProperties();
             if(lista == null)
             {
@@ -70,7 +80,7 @@ namespace TurismoRealEscritorio.Controlador
                     }
                 }
             }
-            return default(T);
+            return null;
         }
     }
 }

@@ -16,7 +16,8 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 {
     public partial class frmDeptos : Form
     {
-        frmMain Main;
+        int intent = 0;
+        public frmMain Main;
         public bool expand = false;
         public bool suma = true;
         public bool anim = false;
@@ -92,6 +93,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             {
                 cbLocalidad.DataSource = Main.Repos.Localidades;
             } while (cbLocalidad.DataSource==null);
+            cbLocalidad.Text = "Seleccione Localidad";
         }
 
         private void btnCancelar_Click(object sender, EventArgs e = null)
@@ -101,7 +103,10 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private async void btnModificar_Click(object sender, EventArgs e)
         {
-
+            lbId.Visible = true;
+            txtId.Visible = true;
+            lbEstado.Visible = true;
+            txtEstado.Visible = true;
             btnAplicar.Text = "Aplicar";
             PrepararComboboxes();
             Departamento depto;
@@ -128,46 +133,58 @@ namespace TurismoRealEscritorio.Vistas.Deptos
         {
             pEdicion.Height = 0;
             CargarDatos();
+            pEdicion.Visible = true;
         }
         private async void CargarDatos(object sender = null, EventArgs e = null)
         {
-            var lista = await ClienteHttp.Peticion.GetList<Departamento>();
-            if (primeraCarga)
-            {
-                tablaDeptos.Columns.Add("id_depto", "Identificador");
-                tablaDeptos.Columns.Add("nombre", "Nombre");
-                tablaDeptos.Columns.Add("direccion", "Dirección");
-                tablaDeptos.Columns.Add("arriendo", "Arriendo");
-                tablaDeptos.Columns.Add("mts", "Metros cuadrados");
-                tablaDeptos.Columns.Add("habitaciones", "Habitaciones");
-                tablaDeptos.Columns.Add("banos", "Baños");
-                tablaDeptos.Columns.Add("localidad", "Localidad");
-                tablaDeptos.Columns.Add("estado", "Estado");
+            try{
+                var lista = await ClienteHttp.Peticion.GetList<Departamento>();
+                if (primeraCarga)
+                {
+                    tablaDeptos.Columns.Add("id_depto", "Identificador");
+                    tablaDeptos.Columns.Add("nombre", "Nombre");
+                    tablaDeptos.Columns.Add("direccion", "Dirección");
+                    tablaDeptos.Columns.Add("arriendo", "Arriendo");
+                    tablaDeptos.Columns.Add("mts", "Metros cuadrados");
+                    tablaDeptos.Columns.Add("habitaciones", "Habitaciones");
+                    tablaDeptos.Columns.Add("banos", "Baños");
+                    tablaDeptos.Columns.Add("localidad", "Localidad");
+                    tablaDeptos.Columns.Add("estado", "Estado");
 
-                tablaDeptos.Columns["id_depto"].Width = 75;
-                tablaDeptos.Columns["nombre"].Width = 150;
-                tablaDeptos.Columns["direccion"].Width = 160;
-                tablaDeptos.Columns["arriendo"].Width = 55;
-                tablaDeptos.Columns["mts"].Width = 100;
-                tablaDeptos.Columns["habitaciones"].Width = 75;
-                tablaDeptos.Columns["banos"].Width = 45;
-                tablaDeptos.Columns["localidad"].Width = 100;
-                tablaDeptos.Columns["estado"].Width = 110;
+                    tablaDeptos.Columns["id_depto"].Width = 75;
+                    tablaDeptos.Columns["nombre"].Width = 150;
+                    tablaDeptos.Columns["direccion"].Width = 160;
+                    tablaDeptos.Columns["arriendo"].Width = 55;
+                    tablaDeptos.Columns["mts"].Width = 100;
+                    tablaDeptos.Columns["habitaciones"].Width = 75;
+                    tablaDeptos.Columns["banos"].Width = 45;
+                    tablaDeptos.Columns["localidad"].Width = 100;
+                    tablaDeptos.Columns["estado"].Width = 110;
+                }
+                else
+                {
+                    tablaDeptos.Rows.Clear();
+                }
+                foreach (var i in lista)
+                {
+                    tablaDeptos.Rows.Add(i.Id_depto, i.Nombre, i.Direccion, "$" + i.Arriendo, i.Mts_cuadrados, i.Habitaciones, i.Banos, Repositorios.Buscar(Main.Repos.Localidades, "Id_localidad", i.Id_localidad).Nombre, Repositorios.Buscar(Main.Repos.EstadoDeptos, "Id_estado", i.Id_estado).Nombre);
+                }
+                if (primeraCarga)
+                {
+                    tablaDeptos.MultiSelect = false;
+                    tablaDeptos.Rows[0].Selected = true;
+                    primeraCarga = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                tablaDeptos.Rows.Clear();
-            }
-            foreach (var i in lista)
-            {
-                tablaDeptos.Rows.Add(i.Id_depto,i.Nombre,i.Direccion,"$" + i.Arriendo,i.Mts_cuadrados,i.Habitaciones,i.Banos,Repositorios.Buscar(Main.Repos.Localidades,"Id_localidad",i.Id_localidad).Nombre, Repositorios.Buscar(Main.Repos.EstadoDeptos, "Id_estado", i.Id_estado).Nombre);
-            }
-            if (primeraCarga)
-            {
-                tablaDeptos.MultiSelect = false;
-                tablaDeptos.Rows[0].Selected = true;
-                primeraCarga = false;
-                pEdicion.Visible = true;
+                if (intent > 1)
+                {
+                    intent = 0;
+                    return;
+                }
+                intent++;
+                CargarDatos();
             }
         }
 
@@ -198,7 +215,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
                     await ClienteHttp.Peticion.Send(new HttpMethod("PATCH"),dep,txtId.Text,SesionManager.Token);
                     break;
                 case EstadoTrabajo.Agregando:
-                    await ClienteHttp.Peticion.Send(HttpMethod.Post, dep, token: SesionManager.Token,txt:lbId);
+                    await ClienteHttp.Peticion.Send(HttpMethod.Post, dep, token: SesionManager.Token,txt:new Control());
                     break;
             }
             expand = true;
@@ -226,10 +243,30 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            lbId.Visible = false;
+            txtId.Visible = false;
+            lbEstado.Visible = false;
+            txtEstado.Visible = false;
             btnAplicar.Text = "Crear";
             PrepararComboboxes();
+            txtNombre.Text = "";
+            txtDireccion.Text = "";
+            txtMCuadrados.Text = "";
+            txtHabitaciones.Text = "";
+            txtBanos.Text = "";
+            txtArriendo.Text = "";
+            txtDividendo.Text = "";
+            txtContribuciones.Text = "";
             Desplegar();
             Main.EstadoTrabajo = EstadoTrabajo.Agregando;
+        }
+
+        private void ValidarSoloNumeros(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
