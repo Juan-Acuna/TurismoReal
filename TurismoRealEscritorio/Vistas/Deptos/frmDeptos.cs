@@ -225,8 +225,11 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            ClienteHttp.Peticion.Delete<Departamento>(tablaDeptos.SelectedRows[0].Cells[0].Value.ToString(), SesionManager.Token);
-            CargarDatos();
+            if (MessageBox.Show("¿Esta seguro que desea borrar el departamento del sistema?", "Borrar Departamento", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                ClienteHttp.Peticion.Delete<Departamento>(tablaDeptos.SelectedRows[0].Cells[0].Value.ToString(), SesionManager.Token);
+                CargarDatos();
+            }
         }
 
         private void btnRefrescar_Click(object sender, EventArgs e)

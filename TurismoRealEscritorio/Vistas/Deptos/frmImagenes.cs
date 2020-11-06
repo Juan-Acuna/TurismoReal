@@ -120,9 +120,12 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            ClienteHttp.Peticion.BorrarFoto(GetId(fotos[Actual - 1]), SesionManager.Token);
-            Thread.Sleep(50);
-            CargarFotos();
+            if (MessageBox.Show("¿Esta seguro que desea borrar la imagen del sistema?", "Borrar imagen", MessageBoxButtons.OKCancel)==DialogResult.OK)
+            {
+                ClienteHttp.Peticion.BorrarFoto(GetId(fotos[Actual - 1]), SesionManager.Token);
+                Thread.Sleep(50);
+                CargarFotos();
+            }
         }
 
         private void btnCambiar_Click(object sender, EventArgs e)
@@ -183,6 +186,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
                 ClienteHttp.Peticion.SubirFoto(IdDepto, archivo, SesionManager.Token);
             }
             Thread.Sleep(50);
+            MessageBox.Show("La imagen ha sido cargada correctamente.","Imagen cargada",MessageBoxButtons.OK);
             CargarFotos();
         }
 

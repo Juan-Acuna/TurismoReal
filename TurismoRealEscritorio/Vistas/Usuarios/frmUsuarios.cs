@@ -388,8 +388,11 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
 
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
-            await ClienteHttp.Peticion.Delete<Usuario>(tablaUsuarios.SelectedRows[0].Cells[0].Value.ToString(), token: SesionManager.Token);
-            CargarUsuarios();
+            if (MessageBox.Show("¿Esta seguro que desea borrar al usuario del sistema?", "Borrar Usuario", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                await ClienteHttp.Peticion.Delete<Usuario>(tablaUsuarios.SelectedRows[0].Cells[0].Value.ToString(), token: SesionManager.Token);
+                CargarUsuarios();
+            }
         }
         private async void VerificarDisponibilidad(object sender, EventArgs e)
         {
