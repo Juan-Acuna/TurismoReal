@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditor));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtAltoA = new System.Windows.Forms.Label();
             this.txtAnchoA = new System.Windows.Forms.Label();
@@ -321,6 +322,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.pFinal);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmEditor";

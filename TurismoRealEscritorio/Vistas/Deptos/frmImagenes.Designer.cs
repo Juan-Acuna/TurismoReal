@@ -176,6 +176,7 @@
             this.Controls.Add(this.img2);
             this.Controls.Add(this.img1);
             this.Controls.Add(this.imgMain);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmImagenes";

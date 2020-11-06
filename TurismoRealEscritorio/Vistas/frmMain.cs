@@ -193,7 +193,9 @@ namespace TurismoRealEscritorio.Vista
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-
+            if(MessageBox.Show("Esta a punto de cerrar el programa.\n\n¿Desea cerrar sesión y salir del programa?","Salir del programa", MessageBoxButtons.OKCancel) == DialogResult.OK){
+                this.Dispose();
+            }
         }
     }
     public enum EstadoTrabajo

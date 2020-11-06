@@ -211,6 +211,7 @@
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.pReconectando);
             this.Controls.Add(this.pbRandom);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -123,12 +123,12 @@
             // btnLogistica
             // 
             this.btnLogistica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogistica.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.btnLogistica.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogistica.Location = new System.Drawing.Point(0, 250);
             this.btnLogistica.Name = "btnLogistica";
             this.btnLogistica.Size = new System.Drawing.Size(160, 35);
             this.btnLogistica.TabIndex = 8;
-            this.btnLogistica.Text = "Logistica";
+            this.btnLogistica.Text = "Gestión de Recursos";
             this.btnLogistica.UseVisualStyleBackColor = true;
             this.btnLogistica.Click += new System.EventHandler(this.btnLogistica_Click);
             // 
@@ -193,6 +193,7 @@
             this.Controls.Add(this.pReconectando);
             this.Controls.Add(this.pContainer);
             this.Controls.Add(this.pMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
