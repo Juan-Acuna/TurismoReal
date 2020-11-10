@@ -138,6 +138,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
         private async void CargarDatos(object sender = null, EventArgs e = null)
         {
             try{
+                Main.Do();
                 var lista = await ClienteHttp.Peticion.GetList<Departamento>();
                 if (primeraCarga)
                 {
@@ -175,11 +176,13 @@ namespace TurismoRealEscritorio.Vistas.Deptos
                     tablaDeptos.Rows[0].Selected = true;
                     primeraCarga = false;
                 }
+                Main.Undo();
             }
             catch (Exception ex)
             {
                 if (intent > 1)
                 {
+                    Main.Undo();
                     intent = 0;
                     return;
                 }

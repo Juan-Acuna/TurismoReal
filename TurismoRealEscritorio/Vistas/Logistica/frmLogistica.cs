@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TurismoRealEscritorio.Controlador;
@@ -26,6 +27,10 @@ namespace TurismoRealEscritorio.Vistas.Logistica
         bool primeraCargaL = true;
         bool primeraCargaV = true;
         bool primeraCargaC = true;
+        bool VemailDisp = false;
+        bool Vemail = false;
+        bool VrutDisp = false;
+        Regex formatoCorreo = new Regex(@"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$");
         Panel pEdicion;
         Logistica actual = Logistica.Inventario;
 
@@ -383,6 +388,25 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                     break;
             }
         }
+        private void btnRefrescarI_Click(object sender, EventArgs e)
+        {
+            CargarArticulos();
+        }
+
+        private void btnRefrescarL_Click(object sender, EventArgs e)
+        {
+            CargarLocalidades();
+        }
+
+        private void btnRefrescarV_Click(object sender, EventArgs e)
+        {
+            CargarVehiculos();
+        }
+
+        private void btnRefrescarC_Click(object sender, EventArgs e)
+        {
+            CargarChoferes();
+        }
 
         /* ZONA DE LOS DATA GRID VIEW */
 
@@ -390,6 +414,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
         {
             try
             {
+                Main.Do();
                 var lista = await ClienteHttp.Peticion.GetList<Articulo>(SesionManager.Token);
 
                 if (primeraCargaI)
@@ -419,9 +444,11 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                     primeraCargaI = false;
                     pEdicion.Visible = true;
                 }
+                Main.Undo();
             }
             catch(Exception e)
             {
+                Main.Undo();
                 return;
             }
         }
@@ -429,6 +456,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
         {
             try
             {
+                Main.Do();
                 var lista = await ClienteHttp.Peticion.GetList<Localidad>();
 
                 if (primeraCargaL)
@@ -456,9 +484,11 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                     primeraCargaL = false;
                     pEdicion.Visible = true;
                 }
+                Main.Undo();
             }
             catch (Exception e)
             {
+                Main.Undo();
                 return;
             }
         }
@@ -466,6 +496,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
         {
             try
             {
+                Main.Do();
                 var lista = await ClienteHttp.Peticion.GetList<Vehiculo>(SesionManager.Token);
 
                 if (primeraCargaV)
@@ -492,9 +523,11 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                     primeraCargaV = false;
                     pEdicion.Visible = true;
                 }
+                Main.Undo();
             }
             catch (Exception e)
             {
+                Main.Undo();
                 return;
             }
         }
@@ -502,6 +535,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
         {
             try
             {
+                Main.Do();
                 var lista = await ClienteHttp.Peticion.GetList<PersonaChofer>(SesionManager.Token);
 
                 if (primeraCargaC)
@@ -540,9 +574,11 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                     primeraCargaC = false;
                     pEdicion.Visible = true;
                 }
+                Main.Undo();
             }
             catch (Exception e)
             {
+                Main.Undo();
                 return;
             }
         }
@@ -636,19 +672,19 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                 case Logistica.Inventario:
                     if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                     {
-                        await ClienteHttp.Peticion.Disponible(txt, "articulo", lbErrorI);
+                        await ClienteHttp.Peticion.Disponible(txt.Text, "articulo");
                     }
                     break;
                 case Logistica.Localidades:
                     if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                     {
-                        await ClienteHttp.Peticion.Disponible(txt, "localidad", lbErrorL);
+                        await ClienteHttp.Peticion.Disponible(txt.Text, "localidad");
                     }
                     break;
                 case Logistica.Vehiculos:
                     if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                     {
-                        await ClienteHttp.Peticion.Disponible(txt, "patente", lbErrorV);
+                        await ClienteHttp.Peticion.Disponible(txt.Text, "patente");
                     }
                     break;
                 case Logistica.Choferes:
@@ -657,13 +693,54 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                         case "txtRut":
                             if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                             {
-                                await ClienteHttp.Peticion.Disponible(txt, "rut",lbErrorR);
+                                VrutDisp = await ClienteHttp.Peticion.Disponible(txt.Text, "rut");
+                                if (VrutDisp)
+                                {
+                                    txt.ForeColor = Color.Green;
+                                    lbErrorR.Text = "";
+                                }
+                                else
+                                {
+                                    txt.ForeColor = Color.Red;
+                                    lbErrorR.Text = "El rut ingresado ya pertenece a un usuario.";
+                                }
                             }
                             break;
                         case "txtEmail":
                             if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                             {
-                                await ClienteHttp.Peticion.Disponible(txt, "email",lbErrorE);
+                                if (txtEmail.Text.Trim().Length >= 5)
+                                {
+                                    Vemail = formatoCorreo.IsMatch(txtEmail.Text.ToUpper());
+                                    Console.WriteLine(Vemail);
+                                    if (Vemail)
+                                    {
+                                        txt.ForeColor = Color.Green;
+                                        lbErrorE.Text = "";
+                                        lbErrorE.Visible = false;
+                                        VemailDisp = await ClienteHttp.Peticion.Disponible(txt.Text, "email");
+                                        if (!VemailDisp)
+                                        {
+                                            txt.ForeColor = Color.Red;
+                                            lbErrorE.Text = "El correo electrónico ingresado ya pertenece a un usuario/chofer.";
+                                            lbErrorE.Visible = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        txt.ForeColor = Color.Red;
+                                        lbErrorE.Text = "Formato de correo electrónico inválido.";
+                                        lbErrorE.Visible = true;
+                                    }
+                                }
+                                else
+                                {
+                                    txt.ForeColor = Color.Black;
+                                    lbErrorE.Text = "";
+                                    lbErrorE.Visible = false;
+                                    Vemail = false;
+                                    VemailDisp = false;
+                                }
                             }
                             break;
                     }
@@ -678,6 +755,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
         {
             Main.DesbloquearBotones(contMaestro.SelectedTab);
         }
+        
     }
     enum Logistica
     {

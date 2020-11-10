@@ -35,18 +35,10 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
         public PersonaUsuario usuarioActual;
         frmCargando ve;
         bool Vusername = false;
-        bool Vrol = false;
-        bool Vrut = false;
-        bool VrutDisp = false;
-        bool Vnombres = false;
-        bool Vapellidos = false;
-        bool Vemail = false;
         bool VemailDisp = false;
-        bool Vgenero = false;
-        bool Vtelefono = false;
-        bool Vdireccion = false;
-        bool Vregion = false;
-        Regex formatoCorreo = new Regex("w+@w+.w{2,3}");
+        bool Vemail = false;
+        bool VrutDisp = false;
+        Regex formatoCorreo = new Regex(@"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$");
 
         public frmUsuarios(frmMain main = null)
         {
@@ -440,18 +432,26 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
                 case "txtUsername":
                     if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                     {
-                        Vusername = await ClienteHttp.Peticion.Disponible(txt,"username", lbErrorU);
                         bool b = false;
                         if (txt.Text.Length > 4)
                         {
                             b = true;
                             txt.ForeColor = Color.Green;
                             lbErrorU.Text = "";
+                            lbErrorU.Visible = false;
+                            Vusername = await ClienteHttp.Peticion.Disponible(txt.Text, "username");
+                            if (!Vusername)
+                            {
+                                txt.ForeColor = Color.Red;
+                                lbErrorU.Text = "El nombre de usuario no esta disponible.";
+                                lbErrorU.Visible = true;
+                            }
                         }
-                        else
+                        else if(txt.Text.Length <= 4)
                         {
                             txt.ForeColor = Color.Red;
                             lbErrorU.Text = "El nombre de usuario debe tener al menos 5 caracteres.";
+                            lbErrorU.Visible = true;
                         }
                         Vusername = Vusername && b;
                     }
@@ -459,18 +459,57 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
                 case "txtRut":
                     if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                     {
-                        Vrut = await ClienteHttp.Peticion.Disponible(txt, "rut", lbErrorR);
-                        if (txt.Text.Length > 5)
+                        VrutDisp = await ClienteHttp.Peticion.Disponible(txt.Text, "rut");
+                        if (VrutDisp)
                         {
-                            VrutDisp = Tools.ValidarRut(txt.Text);
+                            txt.ForeColor = Color.Green;
+                            lbErrorR.Text = "";
+                            lbErrorR.Visible = false;
                         }
-                        Vrut = Vrut && VrutDisp;
+                        else
+                        {
+                            txt.ForeColor = Color.Red;
+                            lbErrorR.Text = "El rut ingresado ya pertenece a un usuario.";
+                            lbErrorR.Visible = true;
+                        }
                     }
                     break;
                 case "txtEmail":
                     if(Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                     {
-                        VemailDisp = await ClienteHttp.Peticion.Disponible(txt, "email", lbErrorE);
+                        if (txtEmail.Text.Trim().Length >= 5)
+                        {
+                            Vemail = formatoCorreo.IsMatch(txtEmail.Text.ToUpper());
+                            Console.WriteLine(Vemail);
+                            if (Vemail)
+                            {
+                                txt.ForeColor = Color.Green;
+                                lbErrorE.Text = "";
+                                lbErrorE.Visible = false;
+                                VemailDisp = await ClienteHttp.Peticion.Disponible(txt.Text, "email");
+                                if (!VemailDisp)
+                                {
+                                    txt.ForeColor = Color.Red;
+                                    lbErrorE.Text = "El correo electrónico ingresado ya pertenece a un usuario/chofer.";
+                                    lbErrorE.Visible = true;
+                                }
+                            }
+                            else
+                            {
+                                txt.ForeColor = Color.Red;
+                                lbErrorE.Text = "Formato de correo electrónico inválido.";
+                                lbErrorE.Visible = true;
+                            }
+                        }
+                        else
+                        {
+                            txt.ForeColor = Color.Black;
+                            lbErrorE.Text = "";
+                            lbErrorE.Visible = false;
+                            Vemail = false;
+                            VemailDisp = false;
+                        }
+                        
                     }
                     break;
             }
@@ -509,12 +548,22 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
         }
         private void ValidarCampos()
         {
+            bool Vrol = false;
+            bool Vrut = false;
+            bool Vnombres = false;
+            bool Vapellidos = false;
+            bool Vgenero = false;
+            bool Vtelefono = false;
+            bool Vdireccion = false;
+            bool Vregion = false;
+
             Vrol = cbRol.SelectedItem != null;
+            Vrut = Tools.ValidarRut(txtRut.Text);
             Vnombres = txtNombres.Text.Trim().Length > 1;
             Vapellidos = txtApellidos.Text.Trim().Length > 3;
             Vemail = formatoCorreo.IsMatch(txtEmail.Text);
-            Vemail = Vemail && VemailDisp;
-            btnAplicar.Enabled = Vusername && Vrol && Vrut&& Vnombres && Vapellidos && Vemail && Vgenero && Vtelefono && Vdireccion && Vregion;
+
+            btnAplicar.Enabled = VrutDisp && VemailDisp && Vusername && Vrol && Vrut && Vnombres && Vapellidos && Vemail && Vgenero && Vtelefono && Vdireccion && Vregion;
         }
     }
 }

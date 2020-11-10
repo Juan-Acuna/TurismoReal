@@ -65,6 +65,10 @@ namespace TurismoRealEscritorio.Controlador
         public static bool ValidarRut(String rut)
         {
             rut = rut.Replace(".", "").Replace("-", "");
+            if (rut.Length <= 1)
+            {
+                return false;
+            }
             char dvf = rut[rut.Length - 1];
             int dv = 0;
             switch (dvf)

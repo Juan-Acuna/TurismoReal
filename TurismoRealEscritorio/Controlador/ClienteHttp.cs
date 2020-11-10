@@ -365,25 +365,6 @@ namespace TurismoRealEscritorio.Controlador
             }
             r.Dispose();
         }
-        public async Task<bool> Test()
-        {
-            HttpResponseMessage r;
-            try
-            {
-                HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/publico/util/test");
-                r = await httpTest.SendAsync(m);
-                if (r.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    r.Dispose();
-                    return true;
-                }
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-            return false;
-        }
         public async Task<List<T>> Util_ProxyRegion<T>(Control txt = null) where T : class, new()
         {
             HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/publico/util/regiones.json");
@@ -416,60 +397,57 @@ namespace TurismoRealEscritorio.Controlador
             r.Dispose();
             return new List<T>();
         }
-        public async Task<bool> Disponible(TextBox input, String url, Control txt = null)
+        public async Task<bool> Disponible(String input, String url)
         {
-            if (input.Text.Trim().Length <= 0)
+            if (input.Trim().Length <= 0)
             {
-                txt.Text = "";
-                input.ForeColor = Color.Black;
                 return true;
             }
             HttpResponseMessage r;
             try
             {
-                HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/publico/util/disponible/" + url + "/" + input.Text);
+                HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/publico/util/disponible/" + url + "/" + input);
                 r = await httpTest.SendAsync(m);
                 if (r.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     var def = new { Disponible = true };
                     var a = JsonConvert.DeserializeAnonymousType(await r.Content.ReadAsStringAsync(),def);
                     r.Dispose();
-                    if (a.Disponible)
-                    {
-                        txt.Text = "";
-                        input.ForeColor = Color.Black;
-                        /*if (input.Name.Equals("txtUsername"))
-                        {
-                            if (input.Text.Length > 4)
-                            {
-                                input.ForeColor = Color.Green;
-                            }
-                            else
-                            {
-                                input.ForeColor = Color.Red;
-                                txt.Text = "El nombre de usuario debe tener al menos 5 caracteres.";
-                            }
-                        }*/
-                    }
-                    else
-                    {
-                        txt.Text = "El " + input.Name.Replace("txt","").Replace("username","usuario").Replace("email", "correo electrónico") + " ya esta registrado.";
-                        input.ForeColor = Color.Red;
-                    }
+                    Console.WriteLine(a.Disponible);
                     return a.Disponible;
                 }
             }
             catch (Exception e)
             {
-                txt.Text = "Error de servidor.";
+                Console.WriteLine("error, false");
                 return false;
             }
-            txt.Text = "Error de servidor.";
+            Console.WriteLine("No 200, false");
             return false;
         }
         public async Task<bool> RecuperarContraseña(String username, String token)
         {
             return true;
+        }
+        public async Task<bool> Test()
+        {
+            HttpResponseMessage r;
+            try
+            {
+                HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/publico/util/test");
+                r = await httpTest.SendAsync(m);
+                if (r.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    r.Dispose();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message+"|"+e.Source);
+                return false;
+            }
+            return false;
         }
     }
 }
