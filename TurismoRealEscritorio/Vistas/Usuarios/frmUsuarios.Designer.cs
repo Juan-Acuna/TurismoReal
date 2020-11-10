@@ -121,6 +121,7 @@
             // 
             // btnModificar
             // 
+            this.btnModificar.Enabled = false;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.Location = new System.Drawing.Point(13, 437);
             this.btnModificar.Name = "btnModificar";
@@ -132,6 +133,7 @@
             // 
             // btnEliminar
             // 
+            this.btnEliminar.Enabled = false;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Location = new System.Drawing.Point(113, 437);
             this.btnEliminar.Name = "btnEliminar";
@@ -143,6 +145,7 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Enabled = false;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.Location = new System.Drawing.Point(738, 437);
             this.btnAgregar.Name = "btnAgregar";
@@ -249,7 +252,7 @@
             this.label7.Location = new System.Drawing.Point(415, 90);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(43, 19);
-            this.label7.TabIndex = 29;
+            this.label7.TabIndex = 99;
             this.label7.Text = "(+56)";
             // 
             // cbComuna
@@ -259,7 +262,7 @@
             this.cbComuna.Location = new System.Drawing.Point(419, 217);
             this.cbComuna.Name = "cbComuna";
             this.cbComuna.Size = new System.Drawing.Size(184, 27);
-            this.cbComuna.TabIndex = 28;
+            this.cbComuna.TabIndex = 14;
             this.cbComuna.Text = "Seleccione Comuna";
             // 
             // cbRegion
@@ -269,7 +272,7 @@
             this.cbRegion.Location = new System.Drawing.Point(419, 174);
             this.cbRegion.Name = "cbRegion";
             this.cbRegion.Size = new System.Drawing.Size(184, 27);
-            this.cbRegion.TabIndex = 26;
+            this.cbRegion.TabIndex = 13;
             this.cbRegion.Text = "Seleccione Region";
             this.cbRegion.SelectionChangeCommitted += new System.EventHandler(this.cbRegion_SelectionChangeCommitted);
             // 
@@ -277,18 +280,21 @@
             // 
             this.txtDireccion.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
             this.txtDireccion.Location = new System.Drawing.Point(419, 135);
+            this.txtDireccion.MaxLength = 25;
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(184, 24);
-            this.txtDireccion.TabIndex = 27;
+            this.txtDireccion.TabIndex = 12;
             // 
             // txtRut
             // 
             this.txtRut.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
             this.txtRut.Location = new System.Drawing.Point(156, 44);
+            this.txtRut.MaxLength = 13;
             this.txtRut.Name = "txtRut";
             this.txtRut.Size = new System.Drawing.Size(182, 24);
-            this.txtRut.TabIndex = 26;
+            this.txtRut.TabIndex = 5;
             this.txtRut.TextChanged += new System.EventHandler(this.VerificarDisponibilidad);
+            this.txtRut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormatearRut);
             // 
             // btnCancelar
             // 
@@ -296,7 +302,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(442, 298);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 32);
-            this.btnCancelar.TabIndex = 24;
+            this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -307,7 +313,7 @@
             this.btnAplicar.Location = new System.Drawing.Point(523, 298);
             this.btnAplicar.Name = "btnAplicar";
             this.btnAplicar.Size = new System.Drawing.Size(88, 32);
-            this.btnAplicar.TabIndex = 23;
+            this.btnAplicar.TabIndex = 16;
             this.btnAplicar.Text = "Aplicar";
             this.btnAplicar.UseVisualStyleBackColor = true;
             this.btnAplicar.Click += new System.EventHandler(this.btnAplicar_Click);
@@ -319,16 +325,17 @@
             this.cbGenero.Location = new System.Drawing.Point(156, 262);
             this.cbGenero.Name = "cbGenero";
             this.cbGenero.Size = new System.Drawing.Size(182, 27);
-            this.cbGenero.TabIndex = 9;
+            this.cbGenero.TabIndex = 10;
             this.cbGenero.Text = "Seleccione Genero";
             // 
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
             this.txtEmail.Location = new System.Drawing.Point(156, 217);
+            this.txtEmail.MaxLength = 49;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(182, 24);
-            this.txtEmail.TabIndex = 22;
+            this.txtEmail.TabIndex = 9;
             this.txtEmail.TextChanged += new System.EventHandler(this.VerificarDisponibilidad);
             // 
             // dtNacimiento
@@ -338,31 +345,37 @@
             this.dtNacimiento.Location = new System.Drawing.Point(156, 174);
             this.dtNacimiento.Name = "dtNacimiento";
             this.dtNacimiento.Size = new System.Drawing.Size(182, 24);
-            this.dtNacimiento.TabIndex = 21;
+            this.dtNacimiento.TabIndex = 8;
             // 
             // txtApellidos
             // 
             this.txtApellidos.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
             this.txtApellidos.Location = new System.Drawing.Point(156, 133);
+            this.txtApellidos.MaxLength = 49;
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(182, 24);
-            this.txtApellidos.TabIndex = 20;
+            this.txtApellidos.TabIndex = 7;
+            this.txtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarSoloLetras);
             // 
             // txtNombres
             // 
             this.txtNombres.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
             this.txtNombres.Location = new System.Drawing.Point(156, 87);
+            this.txtNombres.MaxLength = 49;
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(182, 24);
-            this.txtNombres.TabIndex = 19;
+            this.txtNombres.TabIndex = 6;
+            this.txtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarSoloLetras);
             // 
             // txtTelefono
             // 
             this.txtTelefono.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
             this.txtTelefono.Location = new System.Drawing.Point(458, 87);
+            this.txtTelefono.MaxLength = 9;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(145, 24);
-            this.txtTelefono.TabIndex = 18;
+            this.txtTelefono.TabIndex = 11;
+            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarSoloNumeros);
             // 
             // label18
             // 
@@ -371,7 +384,7 @@
             this.label18.Location = new System.Drawing.Point(12, 264);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(57, 19);
-            this.label18.TabIndex = 14;
+            this.label18.TabIndex = 99;
             this.label18.Text = "Genero:";
             // 
             // label17
@@ -381,7 +394,7 @@
             this.label17.Location = new System.Drawing.Point(344, 177);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(54, 19);
-            this.label17.TabIndex = 13;
+            this.label17.TabIndex = 99;
             this.label17.Text = "Region:";
             // 
             // label16
@@ -391,7 +404,7 @@
             this.label16.Location = new System.Drawing.Point(344, 136);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(70, 19);
-            this.label16.TabIndex = 12;
+            this.label16.TabIndex = 99;
             this.label16.Text = "Direccion:";
             // 
             // label15
@@ -401,7 +414,7 @@
             this.label15.Location = new System.Drawing.Point(344, 220);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(64, 19);
-            this.label15.TabIndex = 11;
+            this.label15.TabIndex = 99;
             this.label15.Text = "Comuna:";
             // 
             // label14
@@ -411,7 +424,7 @@
             this.label14.Location = new System.Drawing.Point(344, 90);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(65, 19);
-            this.label14.TabIndex = 10;
+            this.label14.TabIndex = 99;
             this.label14.Text = "Telefono:";
             // 
             // label13
@@ -421,7 +434,7 @@
             this.label13.Location = new System.Drawing.Point(12, 220);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(126, 19);
-            this.label13.TabIndex = 9;
+            this.label13.TabIndex = 99;
             this.label13.Text = "Correo Electronico:";
             // 
             // label11
@@ -431,7 +444,7 @@
             this.label11.Location = new System.Drawing.Point(12, 180);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(123, 19);
-            this.label11.TabIndex = 7;
+            this.label11.TabIndex = 99;
             this.label11.Text = "Fecha Nacimiento:";
             // 
             // label10
@@ -441,7 +454,7 @@
             this.label10.Location = new System.Drawing.Point(12, 138);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(67, 19);
-            this.label10.TabIndex = 6;
+            this.label10.TabIndex = 99;
             this.label10.Text = "Apellidos:";
             // 
             // label9
@@ -451,7 +464,7 @@
             this.label9.Location = new System.Drawing.Point(12, 93);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(69, 19);
-            this.label9.TabIndex = 5;
+            this.label9.TabIndex = 99;
             this.label9.Text = "Nombres:";
             // 
             // label6
@@ -461,7 +474,7 @@
             this.label6.Location = new System.Drawing.Point(12, 49);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(33, 19);
-            this.label6.TabIndex = 4;
+            this.label6.TabIndex = 99;
             this.label6.Text = "Rut:";
             // 
             // groupBox1
@@ -526,7 +539,7 @@
             this.label5.Location = new System.Drawing.Point(10, 19);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(126, 19);
-            this.label5.TabIndex = 29;
+            this.label5.TabIndex = 99;
             this.label5.Text = "Nueva Contraseña:";
             // 
             // txtClave
@@ -534,10 +547,11 @@
             this.txtClave.BackColor = System.Drawing.SystemColors.Window;
             this.txtClave.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
             this.txtClave.Location = new System.Drawing.Point(14, 46);
+            this.txtClave.MaxLength = 15;
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(142, 24);
-            this.txtClave.TabIndex = 28;
+            this.txtClave.TabIndex = 4;
             // 
             // chkClave
             // 
@@ -546,7 +560,7 @@
             this.chkClave.Location = new System.Drawing.Point(4, 213);
             this.chkClave.Name = "chkClave";
             this.chkClave.Size = new System.Drawing.Size(153, 23);
-            this.chkClave.TabIndex = 28;
+            this.chkClave.TabIndex = 3;
             this.chkClave.Text = "Cambiar Contraseña";
             this.chkClave.UseVisualStyleBackColor = true;
             this.chkClave.CheckedChanged += new System.EventHandler(this.chkClave_CheckedChanged);
@@ -556,9 +570,10 @@
             this.txtUsername.BackColor = System.Drawing.SystemColors.Window;
             this.txtUsername.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
             this.txtUsername.Location = new System.Drawing.Point(76, 46);
+            this.txtUsername.MaxLength = 15;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(115, 24);
-            this.txtUsername.TabIndex = 25;
+            this.txtUsername.TabIndex = 0;
             this.txtUsername.TextChanged += new System.EventHandler(this.VerificarDisponibilidad);
             // 
             // txtFrecuente
@@ -568,7 +583,7 @@
             this.txtFrecuente.Location = new System.Drawing.Point(72, 176);
             this.txtFrecuente.Name = "txtFrecuente";
             this.txtFrecuente.Size = new System.Drawing.Size(90, 19);
-            this.txtFrecuente.TabIndex = 8;
+            this.txtFrecuente.TabIndex = 99;
             this.txtFrecuente.Text = "<Frecuente>";
             // 
             // chkActivo
@@ -578,7 +593,7 @@
             this.chkActivo.Location = new System.Drawing.Point(76, 135);
             this.chkActivo.Name = "chkActivo";
             this.chkActivo.Size = new System.Drawing.Size(67, 23);
-            this.chkActivo.TabIndex = 7;
+            this.chkActivo.TabIndex = 2;
             this.chkActivo.Text = "Activo";
             this.chkActivo.UseVisualStyleBackColor = true;
             // 
@@ -589,7 +604,7 @@
             this.cbRol.Location = new System.Drawing.Point(76, 89);
             this.cbRol.Name = "cbRol";
             this.cbRol.Size = new System.Drawing.Size(115, 27);
-            this.cbRol.TabIndex = 6;
+            this.cbRol.TabIndex = 1;
             this.cbRol.Text = "Seleccione Rol";
             // 
             // label2
@@ -599,7 +614,7 @@
             this.label2.Location = new System.Drawing.Point(0, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 19);
-            this.label2.TabIndex = 0;
+            this.label2.TabIndex = 99;
             this.label2.Text = "Usuario:";
             // 
             // label3
@@ -609,7 +624,7 @@
             this.label3.Location = new System.Drawing.Point(0, 89);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 19);
-            this.label3.TabIndex = 1;
+            this.label3.TabIndex = 99;
             this.label3.Text = "Rol:";
             // 
             // lbEstado
@@ -619,7 +634,7 @@
             this.lbEstado.Location = new System.Drawing.Point(0, 135);
             this.lbEstado.Name = "lbEstado";
             this.lbEstado.Size = new System.Drawing.Size(53, 19);
-            this.lbEstado.TabIndex = 2;
+            this.lbEstado.TabIndex = 99;
             this.lbEstado.Text = "Estado:";
             // 
             // lbFrecuente
@@ -629,7 +644,7 @@
             this.lbFrecuente.Location = new System.Drawing.Point(0, 176);
             this.lbFrecuente.Name = "lbFrecuente";
             this.lbFrecuente.Size = new System.Drawing.Size(73, 19);
-            this.lbFrecuente.TabIndex = 3;
+            this.lbFrecuente.TabIndex = 99;
             this.lbFrecuente.Text = "Frecuente:";
             // 
             // timerEdicion
@@ -639,6 +654,7 @@
             // 
             // btnRefrescar
             // 
+            this.btnRefrescar.Enabled = false;
             this.btnRefrescar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefrescar.Location = new System.Drawing.Point(204, 437);
             this.btnRefrescar.Name = "btnRefrescar";

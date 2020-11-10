@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TurismoRealEscritorio.Controlador;
 using TurismoRealEscritorio.Modelos;
+using TurismoRealEscritorio.Vistas;
 using TurismoRealEscritorio.Vistas.Deptos;
 using TurismoRealEscritorio.Vistas.Logistica;
 using TurismoRealEscritorio.Vistas.Usuarios;
@@ -23,6 +24,7 @@ namespace TurismoRealEscritorio.Vista
         public bool Conectado = true;
         public Repositorios Repos = new Repositorios();
         public EstadoTrabajo EstadoTrabajo = EstadoTrabajo.Espera;
+        frmCargando ve;
 
         public frmMain()
         {
@@ -196,6 +198,24 @@ namespace TurismoRealEscritorio.Vista
             if(MessageBox.Show("Esta a punto de cerrar el programa.\n\n¿Desea cerrar sesión y salir del programa?","Salir del programa", MessageBoxButtons.OKCancel) == DialogResult.OK){
                 this.Dispose();
             }
+        }
+        public void Do()
+        {
+            if (ve != null)
+            {
+                return;
+            }
+            ve = new frmCargando(this);
+            ve.SetDesktopLocation(DesktopLocation.X + (int)Math.Floor((double)Width/2) -20 ,DesktopLocation.Y + ((int)Math.Floor((double)Height / 2) - (int)Math.Floor((double)ve.Height / 2)));
+            ve.Show();
+            ve.Padre.Enabled = false;
+        }
+        public void Undo()
+        {
+            ve.Padre.Enabled = true;
+            ve.Padre.Focus();
+            ve.Dispose();
+            ve = null;
         }
     }
     public enum EstadoTrabajo

@@ -167,11 +167,11 @@
     <Compile Include="Vistas\Usuarios\frmUsuarios.Designer.cs">
       <DependentUpon>frmUsuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\VentanaEmergente.cs">
+    <Compile Include="Vistas\frmCargando.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\VentanaEmergente.Designer.cs">
-      <DependentUpon>VentanaEmergente.cs</DependentUpon>
+    <Compile Include="Vistas\frmCargando.Designer.cs">
+      <DependentUpon>frmCargando.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Vistas\Deptos\frmDeptos.resx">
       <DependentUpon>frmDeptos.cs</DependentUpon>
@@ -212,8 +212,8 @@
     <EmbeddedResource Include="Vistas\Usuarios\frmUsuarios.resx">
       <DependentUpon>frmUsuarios.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\VentanaEmergente.resx">
-      <DependentUpon>VentanaEmergente.cs</DependentUpon>
+    <EmbeddedResource Include="Vistas\frmCargando.resx">
+      <DependentUpon>frmCargando.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -7,6 +7,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,7 @@ using TurismoRealEscritorio.Modelos.Util;
 using TurismoRealEscritorio.Vista;
 
 namespace TurismoRealEscritorio.Vistas.Usuarios
-{//                                                  TERMINAR
+{
     public partial class frmUsuarios : Form
     {
         frmMain Main;
@@ -32,11 +33,26 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
         int cuadros = 0;
         int cuadroActual = 0;
         public PersonaUsuario usuarioActual;
+        frmCargando ve;
+        bool Vusername = false;
+        bool Vrol = false;
+        bool Vrut = false;
+        bool VrutDisp = false;
+        bool Vnombres = false;
+        bool Vapellidos = false;
+        bool Vemail = false;
+        bool VemailDisp = false;
+        bool Vgenero = false;
+        bool Vtelefono = false;
+        bool Vdireccion = false;
+        bool Vregion = false;
+        Regex formatoCorreo = new Regex("w+@w+.w{2,3}");
 
         public frmUsuarios(frmMain main = null)
         {
             InitializeComponent();
             Main = main;
+            Main.Do();
             imgAbierto = imgAbiertoCont.Image;
             imgCerrado = imgCerradoCont.Image;
             imgAbriendo = imgAbriendoCont.Image;
@@ -44,10 +60,38 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             btnOjo.Image = imgCerrado;
             FrameDimension dim = new FrameDimension(imgAbriendo.FrameDimensionsList[0]);
             cuadros = imgAbriendo.GetFrameCount(dim);
+            dtNacimiento.MaxDate = DateTime.Now.Subtract(DateTime.Now.AddYears(18) - DateTime.Now);
+        }
+        private void frmUsuarios_Load(object sender, EventArgs e)
+        {
+            pEdicion.Height = 0;
+            Main.ConfigurarBotones(pEdicion);
+            CargarUsuarios();
+            Main.EstadoTrabajo = EstadoTrabajo.Espera;
+            cbRegion.DisplayMember = "Region";
+            cbRegion.ValueMember = "Region";
+            cbGenero.DisplayMember = "Nombre";
+            cbGenero.ValueMember = "Id_genero";
+            cbRol.DisplayMember = "Nombre";
+            cbRol.ValueMember = "Id_rol";
+            do
+            {
+                cbRegion.DataSource = Main.Repos.Regiones;
+            } while (cbRegion.DataSource == null);
+            do
+            {
+                cbGenero.DataSource = Main.Repos.Generos;
+            } while (cbGenero.DataSource == null);
+            do
+            {
+                cbRol.DataSource = Main.Repos.Roles;
+            } while (cbRol.DataSource == null);
+            pEdicion.Visible = true;
         }
 
         private async void CargarUsuarios(object sender = null, EventArgs e = null)
         {
+            Main.Do();
             try
             {
                 var lista = await ClienteHttp.Peticion.GetList<PersonaUsuario>(SesionManager.Token);
@@ -83,41 +127,20 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
                     tablaUsuarios.MultiSelect = false;
                     tablaUsuarios.Rows[0].Selected = true;
                     primeraCarga = false;
+                    btnModificar.Enabled = true;
+                    btnEliminar.Enabled = true;
+                    btnRefrescar.Enabled = true;
+                    btnAgregar.Enabled = true;
                 }
+                Main.Undo();
             }
             catch(Exception ex)
             {
-
+                Main.Undo();
+                btnRefrescar.Enabled = true;
+                btnAgregar.Enabled = true;
             }
         }
-        private void frmUsuarios_Load(object sender, EventArgs e)
-        {
-            pEdicion.Height = 0;
-            Main.ConfigurarBotones(pEdicion);
-            CargarUsuarios();
-            Main.EstadoTrabajo = EstadoTrabajo.Espera;
-            cbRegion.DisplayMember = "Region";
-            cbRegion.ValueMember = "Region";
-            cbGenero.DisplayMember = "Nombre";
-            cbGenero.ValueMember = "Id_genero";
-            cbRol.DisplayMember = "Nombre";
-            cbRol.ValueMember = "Id_rol";
-            do
-            {
-                cbRegion.DataSource = Main.Repos.Regiones;
-            } while (cbRegion.DataSource==null);
-            do
-            {
-                cbGenero.DataSource = Main.Repos.Generos;
-            } while (cbGenero.DataSource == null);
-            do
-            {
-                cbRol.DataSource = Main.Repos.Roles;
-            } while (cbRol.DataSource == null);
-            pEdicion.Visible = true;
-        }
-
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (expand)
@@ -193,7 +216,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             txtRut.Enabled = true;
             txtNombres.Text = "";
             txtApellidos.Text = "";
-            dtNacimiento.Value = DateTime.Now;
+            dtNacimiento.Value = dtNacimiento.MaxDate;
             txtEmail.Text = "";
             txtTelefono.Text = "";
             txtDireccion.Text = "";
@@ -201,6 +224,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
         }
         private async void PrepararModificar()
         {
+            Main.EstadoTrabajo = EstadoTrabajo.Modificando;
             usuarioActual = null;
             do
             {
@@ -251,7 +275,18 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             cbComuna.Refresh();
             cbGenero.Refresh();
             cbRol.Refresh();
-            Main.EstadoTrabajo = EstadoTrabajo.Modificando;
+        }
+        private void LimpiarCampos()
+        {
+            PrepararComboboxes();
+            txtUsername.Text = "";
+            txtRut.Text = "";
+            txtNombres.Text = "";
+            txtApellidos.Text = "";
+            dtNacimiento.Value = DateTime.Now;
+            txtEmail.Text = "";
+            txtTelefono.Text = "";
+            txtDireccion.Text = "";
         }
         private void PrepararComboboxes()
         {
@@ -268,10 +303,12 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             cbComuna.Refresh();
             cbGenero.Refresh();
             cbRol.Refresh();
+            btnAplicar.Enabled = false;
         }
         private void btnCancelar_Click(object sender, EventArgs e = null)
         {
             expand = true;
+            LimpiarCampos();
         }
         private void cbRegion_SelectionChangeCommitted(object sender, EventArgs e = null)
         {
@@ -337,6 +374,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             Main.EstadoTrabajo = EstadoTrabajo.Espera;
             expand = true;
             CargarUsuarios();
+            LimpiarCampos();
         }
 
         private void chkClave_CheckedChanged(object sender, EventArgs e)
@@ -402,9 +440,11 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
                 case "txtUsername":
                     if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                     {
-                        await ClienteHttp.Peticion.Disponible(txt,"username", lbErrorU);
+                        Vusername = await ClienteHttp.Peticion.Disponible(txt,"username", lbErrorU);
+                        bool b = false;
                         if (txt.Text.Length > 4)
                         {
+                            b = true;
                             txt.ForeColor = Color.Green;
                             lbErrorU.Text = "";
                         }
@@ -413,21 +453,68 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
                             txt.ForeColor = Color.Red;
                             lbErrorU.Text = "El nombre de usuario debe tener al menos 5 caracteres.";
                         }
+                        Vusername = Vusername && b;
                     }
                     break;
                 case "txtRut":
                     if (Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                     {
-                        await ClienteHttp.Peticion.Disponible(txt, "rut", lbErrorR);
+                        Vrut = await ClienteHttp.Peticion.Disponible(txt, "rut", lbErrorR);
+                        if (txt.Text.Length > 5)
+                        {
+                            VrutDisp = Tools.ValidarRut(txt.Text);
+                        }
+                        Vrut = Vrut && VrutDisp;
                     }
                     break;
                 case "txtEmail":
                     if(Main.EstadoTrabajo == EstadoTrabajo.Agregando)
                     {
-                        await ClienteHttp.Peticion.Disponible(txt, "email", lbErrorE);
+                        VemailDisp = await ClienteHttp.Peticion.Disponible(txt, "email", lbErrorE);
                     }
                     break;
             }
+            ValidarCampos();
+        }
+        private void ValidarSoloNumeros(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            ValidarCampos();
+        }
+        private void ValidarSoloLetras(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            ValidarCampos();
+        }
+
+        private void FormatearRut(object sender, KeyPressEventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && !(e.KeyChar == 'k' || e.KeyChar == 'K'))
+            {
+                e.Handled = true;
+            }
+            else if (!char.IsControl(e.KeyChar))
+            {
+                txt.Text = Tools.FormatearRut(txt.Text);
+            }
+            txt.SelectionStart = txt.Text.Length;
+            ValidarCampos();
+        }
+        private void ValidarCampos()
+        {
+            Vrol = cbRol.SelectedItem != null;
+            Vnombres = txtNombres.Text.Trim().Length > 1;
+            Vapellidos = txtApellidos.Text.Trim().Length > 3;
+            Vemail = formatoCorreo.IsMatch(txtEmail.Text);
+            Vemail = Vemail && VemailDisp;
+            btnAplicar.Enabled = Vusername && Vrol && Vrut&& Vnombres && Vapellidos && Vemail && Vgenero && Vtelefono && Vdireccion && Vregion;
         }
     }
 }
