@@ -131,7 +131,6 @@ namespace TurismoRealEscritorio.Vistas.Deptos
         private void btnCambiar_Click(object sender, EventArgs e)
         {
             Image bmp;
-            double p;
             String archivo = "";
             if (ofdEntrada.ShowDialog() == DialogResult.OK)
             {
@@ -141,17 +140,29 @@ namespace TurismoRealEscritorio.Vistas.Deptos
                     using(FileStream f = new FileStream(archivo, FileMode.Open,FileAccess.Read))
                     {
                         bmp = Image.FromStream(f);
-                        p = f.Length / 1024.0;
                     }
                 }
                 catch(Exception exe)
                 {
                     Console.WriteLine(exe.Message);
-                    MessageBox.Show("Archivo pesa demasiado o esta dañado.", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                    return;
+                    try
+                    {
+                        var im = new PictureBox();
+                        im.Size = new Size(640,360);
+                        im.SizeMode = PictureBoxSizeMode.AutoSize;
+                        im.Load(archivo);
+                        bmp = im.Image;
+                        im.Dispose();
+
+                    }catch(Exception exe2)
+                    {
+                        Console.WriteLine(exe2.Message);
+                        MessageBox.Show("Archivo pesa demasiado o esta dañado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
                 //validar tamaño
-                if (p > 500)
+                if (bmp.Width > 640)
                 {
                     //demasiado pesada
                     //emergente ofreciendo cambiarla

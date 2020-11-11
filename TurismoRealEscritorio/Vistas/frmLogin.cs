@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -137,6 +139,7 @@ namespace TurismoRealEscritorio
         private void btnRecuperar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             lbError.Text = "";
+            Process.Start("http://localhost/Agencia/vistas/cuenta/recuperar.php");
         }
 
         private void txtUsername_Click(object sender, EventArgs e)

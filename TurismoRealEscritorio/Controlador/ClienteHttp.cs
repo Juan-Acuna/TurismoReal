@@ -419,10 +419,8 @@ namespace TurismoRealEscritorio.Controlador
             }
             catch (Exception e)
             {
-                Console.WriteLine("error, false");
                 return false;
             }
-            Console.WriteLine("No 200, false");
             return false;
         }
         public async Task<bool> RecuperarContraseña(String username, String token)
@@ -444,7 +442,6 @@ namespace TurismoRealEscritorio.Controlador
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message+"|"+e.Source);
                 return false;
             }
             return false;

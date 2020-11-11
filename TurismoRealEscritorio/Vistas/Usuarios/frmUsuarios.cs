@@ -321,6 +321,11 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
+            if (!ValidarCampos() || !btnAplicar.Enabled)
+            {
+                MessageBox.Show("Por favor, revise el formulario y complete o corrija la informacion.", "Formulario incompleto", MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                return;
+            }
             ProxyPersonaUsuario Actual = new ProxyPersonaUsuario();
             Actual.Persona = new Persona();
             Actual.Usuario = new ProxyUsuario();
@@ -546,7 +551,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             txt.SelectionStart = txt.Text.Length;
             ValidarCampos();
         }
-        private void ValidarCampos()
+        private bool ValidarCampos()
         {
             bool Vrol = false;
             bool Vrut = false;
@@ -561,9 +566,20 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             Vrut = Tools.ValidarRut(txtRut.Text);
             Vnombres = txtNombres.Text.Trim().Length > 1;
             Vapellidos = txtApellidos.Text.Trim().Length > 3;
-            Vemail = formatoCorreo.IsMatch(txtEmail.Text);
+            Vregion = cbRegion.SelectedItem != null;
+            Vdireccion = txtDireccion.Text.Trim().Length > 5;
+            Vtelefono = txtTelefono.Text.Trim().Length == 9;
+            Vgenero = cbGenero.SelectedItem != null;
 
-            btnAplicar.Enabled = VrutDisp && VemailDisp && Vusername && Vrol && Vrut && Vnombres && Vapellidos && Vemail && Vgenero && Vtelefono && Vdireccion && Vregion;
+            bool b = VrutDisp && VemailDisp && Vusername && Vrol && Vrut && Vnombres && Vapellidos && Vemail && Vgenero 
+                && Vtelefono && Vdireccion && Vregion;
+            btnAplicar.Enabled = b;
+            return b;
+        }
+
+        private void Update(object sender, EventArgs e)
+        {
+            ValidarCampos();
         }
     }
 }
