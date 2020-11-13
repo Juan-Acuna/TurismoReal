@@ -148,7 +148,6 @@ namespace TurismoRealEscritorio.Vistas.Deptos
                     try
                     {
                         var im = new PictureBox();
-                        im.Size = new Size(640,360);
                         im.SizeMode = PictureBoxSizeMode.AutoSize;
                         im.Load(archivo);
                         bmp = im.Image;

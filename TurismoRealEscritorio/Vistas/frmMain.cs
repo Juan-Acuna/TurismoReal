@@ -11,6 +11,7 @@ using TurismoRealEscritorio.Controlador;
 using TurismoRealEscritorio.Modelos;
 using TurismoRealEscritorio.Vistas;
 using TurismoRealEscritorio.Vistas.Deptos;
+using TurismoRealEscritorio.Vistas.Finanzas;
 using TurismoRealEscritorio.Vistas.Logistica;
 using TurismoRealEscritorio.Vistas.Usuarios;
 
@@ -174,9 +175,9 @@ namespace TurismoRealEscritorio.Vista
         {
             timerConexion.Stop();
         }
-        private void btnFinanzas_Click(object sender, EventArgs e)
+        private void btnFinanzas_Click(object sender = null, EventArgs e = null)
         {
-
+            AbrirForm(new frmFinanzas(this));
         }
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
