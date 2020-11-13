@@ -22,7 +22,6 @@ namespace TurismoRealEscritorio.Vistas.Finanzas
                 Main = f;
             }
         }
-
         private void frmFinanzas_Load(object sender, EventArgs e)
         {
 

@@ -39,7 +39,10 @@ namespace TurismoRealEscritorio.Vista
             lbTurismo.Parent = pMenu;
             lbTurismo.BackColor = Color.Transparent;
         }
-
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            btnFinanzas_Click();
+        }
         public void ConfigurarBotones(Control cont)
         {
             foreach(var c in cont.Controls)
@@ -169,7 +172,6 @@ namespace TurismoRealEscritorio.Vista
             }
         }
         #endregion
-
         #region Botones
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -177,29 +179,33 @@ namespace TurismoRealEscritorio.Vista
         }
         private void btnFinanzas_Click(object sender = null, EventArgs e = null)
         {
+            SeleccionarBoton(0);
             AbrirForm(new frmFinanzas(this));
         }
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
+            SeleccionarBoton(1);
             AbrirForm(new frmUsuarios(this));
         }
         private void btnDeptos_Click(object sender, EventArgs e)
         {
+            SeleccionarBoton(2);
             AbrirForm(new frmDeptos(this));
         }
 
         private void btnLogistica_Click(object sender, EventArgs e)
         {
+            SeleccionarBoton(3);
             AbrirForm(new frmLogistica(this));
         }
-        #endregion
-
         private void btnSalir_Click(object sender, EventArgs e)
         {
             if(MessageBox.Show("Esta a punto de cerrar el programa.\n\n¿Desea cerrar sesión y salir del programa?","Salir del programa", MessageBoxButtons.OKCancel) == DialogResult.OK){
                 this.Dispose();
             }
         }
+        #endregion
+        #region Metodos Publicos
         public void Do()
         {
             if (ve != null)
@@ -218,6 +224,26 @@ namespace TurismoRealEscritorio.Vista
             ve.Dispose();
             ve = null;
         }
+        public void SeleccionarBoton(int index)
+        {
+            btnFinanzas.Enabled = btnUsuarios.Enabled = btnDeptos.Enabled = btnLogistica.Enabled = true;
+            switch (index)
+            {
+                case 0:
+                    btnFinanzas.Enabled = false;
+                    break;
+                case 1:
+                    btnUsuarios.Enabled = false;
+                    break;
+                case 2:
+                    btnDeptos.Enabled = false;
+                    break;
+                case 3:
+                    btnLogistica.Enabled = false;
+                    break;
+            }
+        }
+        #endregion
     }
     public enum EstadoTrabajo
     {

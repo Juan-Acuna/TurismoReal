@@ -53,17 +53,19 @@
             this.pReconectando.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pReconectando.Controls.Add(this.pictureBox1);
             this.pReconectando.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pReconectando.Location = new System.Drawing.Point(161, 459);
+            this.pReconectando.Location = new System.Drawing.Point(215, 565);
+            this.pReconectando.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pReconectando.Name = "pReconectando";
-            this.pReconectando.Size = new System.Drawing.Size(867, 42);
+            this.pReconectando.Size = new System.Drawing.Size(1156, 52);
             this.pReconectando.TabIndex = 3;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(267, 7);
+            this.pictureBox1.Location = new System.Drawing.Point(356, 9);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(333, 29);
+            this.pictureBox1.Size = new System.Drawing.Size(444, 36);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -80,8 +82,9 @@
             this.pMenu.Controls.Add(this.btnFinanzas);
             this.pMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pMenu.Location = new System.Drawing.Point(0, 0);
+            this.pMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pMenu.Name = "pMenu";
-            this.pMenu.Size = new System.Drawing.Size(161, 501);
+            this.pMenu.Size = new System.Drawing.Size(215, 617);
             this.pMenu.TabIndex = 4;
             // 
             // lbTurismo
@@ -91,9 +94,10 @@
             this.lbTurismo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbTurismo.Font = new System.Drawing.Font("Microsoft YaHei UI", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTurismo.ForeColor = System.Drawing.Color.White;
-            this.lbTurismo.Location = new System.Drawing.Point(3, 9);
+            this.lbTurismo.Location = new System.Drawing.Point(4, 11);
+            this.lbTurismo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTurismo.Name = "lbTurismo";
-            this.lbTurismo.Size = new System.Drawing.Size(157, 30);
+            this.lbTurismo.Size = new System.Drawing.Size(197, 38);
             this.lbTurismo.TabIndex = 12;
             this.lbTurismo.Text = "Turismo Real";
             // 
@@ -102,9 +106,10 @@
             this.lbNombre.AutoSize = true;
             this.lbNombre.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNombre.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lbNombre.Location = new System.Drawing.Point(2, 431);
+            this.lbNombre.Location = new System.Drawing.Point(3, 530);
+            this.lbNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNombre.Name = "lbNombre";
-            this.lbNombre.Size = new System.Drawing.Size(149, 20);
+            this.lbNombre.Size = new System.Drawing.Size(191, 25);
             this.lbNombre.TabIndex = 11;
             this.lbNombre.Text = "Cargando usuario...";
             // 
@@ -112,9 +117,10 @@
             // 
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(0, 454);
+            this.btnSalir.Location = new System.Drawing.Point(0, 559);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(160, 35);
+            this.btnSalir.Size = new System.Drawing.Size(213, 43);
             this.btnSalir.TabIndex = 10;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -124,9 +130,10 @@
             // 
             this.btnLogistica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogistica.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogistica.Location = new System.Drawing.Point(0, 250);
+            this.btnLogistica.Location = new System.Drawing.Point(0, 308);
+            this.btnLogistica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogistica.Name = "btnLogistica";
-            this.btnLogistica.Size = new System.Drawing.Size(160, 35);
+            this.btnLogistica.Size = new System.Drawing.Size(213, 43);
             this.btnLogistica.TabIndex = 8;
             this.btnLogistica.Text = "Gestión de Recursos";
             this.btnLogistica.UseVisualStyleBackColor = true;
@@ -136,9 +143,10 @@
             // 
             this.btnDeptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeptos.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeptos.Location = new System.Drawing.Point(0, 209);
+            this.btnDeptos.Location = new System.Drawing.Point(0, 257);
+            this.btnDeptos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDeptos.Name = "btnDeptos";
-            this.btnDeptos.Size = new System.Drawing.Size(160, 35);
+            this.btnDeptos.Size = new System.Drawing.Size(213, 43);
             this.btnDeptos.TabIndex = 7;
             this.btnDeptos.Text = "Departamentos";
             this.btnDeptos.UseVisualStyleBackColor = true;
@@ -148,9 +156,10 @@
             // 
             this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsuarios.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuarios.Location = new System.Drawing.Point(0, 168);
+            this.btnUsuarios.Location = new System.Drawing.Point(0, 207);
+            this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(160, 35);
+            this.btnUsuarios.Size = new System.Drawing.Size(213, 43);
             this.btnUsuarios.TabIndex = 6;
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.UseVisualStyleBackColor = true;
@@ -160,9 +169,10 @@
             // 
             this.btnFinanzas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinanzas.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinanzas.Location = new System.Drawing.Point(0, 127);
+            this.btnFinanzas.Location = new System.Drawing.Point(0, 156);
+            this.btnFinanzas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFinanzas.Name = "btnFinanzas";
-            this.btnFinanzas.Size = new System.Drawing.Size(160, 35);
+            this.btnFinanzas.Size = new System.Drawing.Size(213, 43);
             this.btnFinanzas.TabIndex = 5;
             this.btnFinanzas.Text = "Finanzas";
             this.btnFinanzas.UseVisualStyleBackColor = true;
@@ -171,9 +181,10 @@
             // pContainer
             // 
             this.pContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pContainer.Location = new System.Drawing.Point(161, 0);
+            this.pContainer.Location = new System.Drawing.Point(215, 0);
+            this.pContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pContainer.Name = "pContainer";
-            this.pContainer.Size = new System.Drawing.Size(867, 501);
+            this.pContainer.Size = new System.Drawing.Size(1156, 617);
             this.pContainer.TabIndex = 5;
             // 
             // timer1
@@ -187,17 +198,19 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1028, 501);
+            this.ClientSize = new System.Drawing.Size(1371, 617);
             this.Controls.Add(this.pReconectando);
             this.Controls.Add(this.pContainer);
             this.Controls.Add(this.pMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.pReconectando.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pMenu.ResumeLayout(false);
