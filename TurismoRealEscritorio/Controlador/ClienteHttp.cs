@@ -157,11 +157,6 @@ namespace TurismoRealEscritorio.Controlador
             return false;
         }
 
-        internal void Send<T>(object httpMethod)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<bool> Delete<T>(String url, String token, Label txt = null)
         {
             HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Delete, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "").ToLower() + "/" + url);

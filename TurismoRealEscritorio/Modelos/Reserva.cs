@@ -14,6 +14,8 @@ namespace TurismoRealEscritorio.Modelos
         public String Desc_checkout { get; set; }
         public int Multa_total { get; set; }
         public int Multa_pagado { get; set; }
+        public int Pagos { get; set; }
+        public int N_pago { get; set; }
         public String Username { get; set; }
         public int Id_depto { get; set; }
         public int Id_estado { get; set; }

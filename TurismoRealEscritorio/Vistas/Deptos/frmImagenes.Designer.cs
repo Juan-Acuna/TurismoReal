@@ -61,9 +61,8 @@
             // img1
             // 
             this.img1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.img1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("img1.ErrorImage")));
-            this.img1.Image = ((System.Drawing.Image)(resources.GetObject("img1.Image")));
-            this.img1.InitialImage = ((System.Drawing.Image)(resources.GetObject("img1.InitialImage")));
+            this.img1.ErrorImage = null;
+            this.img1.InitialImage = null;
             this.img1.Location = new System.Drawing.Point(12, 12);
             this.img1.Name = "img1";
             this.img1.Size = new System.Drawing.Size(128, 72);
@@ -76,9 +75,8 @@
             // img2
             // 
             this.img2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.img2.ErrorImage = ((System.Drawing.Image)(resources.GetObject("img2.ErrorImage")));
-            this.img2.Image = ((System.Drawing.Image)(resources.GetObject("img2.Image")));
-            this.img2.InitialImage = ((System.Drawing.Image)(resources.GetObject("img2.InitialImage")));
+            this.img2.ErrorImage = null;
+            this.img2.InitialImage = null;
             this.img2.Location = new System.Drawing.Point(12, 99);
             this.img2.Name = "img2";
             this.img2.Size = new System.Drawing.Size(128, 72);
@@ -91,9 +89,8 @@
             // img3
             // 
             this.img3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.img3.ErrorImage = ((System.Drawing.Image)(resources.GetObject("img3.ErrorImage")));
-            this.img3.Image = ((System.Drawing.Image)(resources.GetObject("img3.Image")));
-            this.img3.InitialImage = ((System.Drawing.Image)(resources.GetObject("img3.InitialImage")));
+            this.img3.ErrorImage = null;
+            this.img3.InitialImage = null;
             this.img3.Location = new System.Drawing.Point(12, 186);
             this.img3.Name = "img3";
             this.img3.Size = new System.Drawing.Size(128, 72);
@@ -106,9 +103,8 @@
             // img4
             // 
             this.img4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.img4.ErrorImage = ((System.Drawing.Image)(resources.GetObject("img4.ErrorImage")));
-            this.img4.Image = ((System.Drawing.Image)(resources.GetObject("img4.Image")));
-            this.img4.InitialImage = ((System.Drawing.Image)(resources.GetObject("img4.InitialImage")));
+            this.img4.ErrorImage = null;
+            this.img4.InitialImage = null;
             this.img4.Location = new System.Drawing.Point(12, 273);
             this.img4.Name = "img4";
             this.img4.Size = new System.Drawing.Size(128, 72);
@@ -131,9 +127,8 @@
             // 
             // btnCambiar
             // 
-            this.btnCambiar.ErrorImage = ((System.Drawing.Image)(resources.GetObject("btnCambiar.ErrorImage")));
-            this.btnCambiar.Image = ((System.Drawing.Image)(resources.GetObject("btnCambiar.Image")));
-            this.btnCambiar.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnCambiar.InitialImage")));
+            this.btnCambiar.ErrorImage = null;
+            this.btnCambiar.InitialImage = null;
             this.btnCambiar.Location = new System.Drawing.Point(374, 299);
             this.btnCambiar.Name = "btnCambiar";
             this.btnCambiar.Size = new System.Drawing.Size(58, 46);
@@ -146,9 +141,8 @@
             // 
             // btnBorrar
             // 
-            this.btnBorrar.ErrorImage = ((System.Drawing.Image)(resources.GetObject("btnBorrar.ErrorImage")));
-            this.btnBorrar.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrar.Image")));
-            this.btnBorrar.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnBorrar.InitialImage")));
+            this.btnBorrar.ErrorImage = null;
+            this.btnBorrar.InitialImage = null;
             this.btnBorrar.Location = new System.Drawing.Point(449, 299);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(58, 46);

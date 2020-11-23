@@ -61,6 +61,42 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.5\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.barcodes, Version=7.1.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.13\lib\net40\itext.barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.forms, Version=7.1.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.13\lib\net40\itext.forms.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.io, Version=7.1.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.13\lib\net40\itext.io.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.kernel, Version=7.1.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.13\lib\net40\itext.kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.layout, Version=7.1.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.13\lib\net40\itext.layout.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfa, Version=7.1.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.13\lib\net40\itext.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.sign, Version=7.1.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.13\lib\net40\itext.sign.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.styledxmlparser, Version=7.1.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.13\lib\net40\itext.styledxmlparser.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.svg, Version=7.1.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.13\lib\net40\itext.svg.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -78,33 +114,55 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controlador\ClienteHttp.cs" />
+    <Compile Include="Controlador\CreadorTip.cs" />
+    <Compile Include="Controlador\PDFTools.cs" />
+    <Compile Include="Controlador\ProxyInforme.cs" />
     <Compile Include="Controlador\Repositorios.cs" />
     <Compile Include="Controlador\SesionManager.cs" />
     <Compile Include="Controlador\Tools.cs" />
     <Compile Include="Modelos\Acompanante.cs" />
     <Compile Include="Modelos\Articulo.cs" />
+    <Compile Include="Modelos\Asignacion.cs" />
+    <Compile Include="Modelos\CentroTuristico.cs" />
     <Compile Include="Modelos\Chofer.cs" />
+    <Compile Include="Modelos\ClaveReset.cs" />
     <Compile Include="Modelos\Departamento.cs" />
     <Compile Include="Modelos\DeptoArticulo.cs" />
+    <Compile Include="Modelos\EstadoAsignacion.cs" />
     <Compile Include="Modelos\EstadoDepto.cs" />
+    <Compile Include="Modelos\EstadoReserva.cs" />
     <Compile Include="Modelos\Foto.cs" />
     <Compile Include="Modelos\Genero.cs" />
     <Compile Include="Modelos\Localidad.cs" />
     <Compile Include="Modelos\LocalidadUsuario.cs" />
     <Compile Include="Modelos\Mantencion.cs" />
+    <Compile Include="Modelos\MedioPago.cs" />
+    <Compile Include="Modelos\Multa.cs" />
     <Compile Include="Modelos\Persona.cs" />
     <Compile Include="Modelos\PersonaAcompanante.cs" />
     <Compile Include="Modelos\PersonaChofer.cs" />
     <Compile Include="Modelos\PersonaUsuario.cs" />
+    <Compile Include="Modelos\Reserva.cs" />
+    <Compile Include="Modelos\ReservaAcompanante.cs" />
+    <Compile Include="Modelos\ReservaServicio.cs" />
     <Compile Include="Modelos\Rol.cs" />
+    <Compile Include="Modelos\Servicio.cs" />
     <Compile Include="Modelos\TipoMantencion.cs" />
+    <Compile Include="Modelos\TipoMulta.cs" />
+    <Compile Include="Modelos\TipoTransaccion.cs" />
+    <Compile Include="Modelos\Transaccion.cs" />
     <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Modelos\Util\Comuna.cs" />
     <Compile Include="Modelos\Util\Funcionario.cs" />
+    <Compile Include="Modelos\Util\ProxyMetricas.cs" />
     <Compile Include="Modelos\Util\ProxyPersonaUsuario.cs" />
     <Compile Include="Modelos\Util\ProxyRegion.cs" />
     <Compile Include="Modelos\Util\ProxyUsuario.cs" />
+    <Compile Include="Modelos\Util\Strategy\Tip.cs" />
+    <Compile Include="Modelos\Util\Strategy\TipConexiones.cs" />
+    <Compile Include="Modelos\Util\Strategy\TipDepto.cs" />
     <Compile Include="Modelos\Vehiculo.cs" />
+    <Compile Include="Modelos\Viaje.cs" />
     <Compile Include="Vistas\Deptos\frmDeptos.cs">
       <SubType>Form</SubType>
     </Compile>
