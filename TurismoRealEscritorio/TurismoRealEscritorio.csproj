@@ -205,6 +205,12 @@
     <Compile Include="Vistas\Finanzas\frmFinanzas.Designer.cs">
       <DependentUpon>frmFinanzas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Finanzas\frmInformes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Finanzas\frmInformes.Designer.cs">
+      <DependentUpon>frmInformes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Finanzas\frmFinanzas.resx">
       <DependentUpon>frmFinanzas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Finanzas\frmInformes.resx">
+      <DependentUpon>frmInformes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

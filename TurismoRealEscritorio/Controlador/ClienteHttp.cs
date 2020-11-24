@@ -27,10 +27,10 @@ namespace TurismoRealEscritorio.Controlador
         {
             http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("Application/json"));
             http.DefaultRequestHeaders.UserAgent.ParseAdd("TurismoRealDesktop");
-            http.Timeout = TimeSpan.FromSeconds(25);
+            http.Timeout = TimeSpan.FromSeconds(50);
             httpTest.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("Application/json"));
             httpTest.DefaultRequestHeaders.UserAgent.ParseAdd("TurismoRealDesktop");
-            httpTest.Timeout = TimeSpan.FromSeconds(16);
+            httpTest.Timeout = TimeSpan.FromSeconds(20);
         }
 
         public async Task<T> Get<T>(String url, String token = "none", Label txt = null, bool urlEspecial = false) where T : class, new()
@@ -70,14 +70,14 @@ namespace TurismoRealEscritorio.Controlador
             return null;
         }
 
-        public async Task<List<T>> GetList<T>(String token = "none", Label txt = null, String url = "") where T : class, new()
+        public async Task<List<T>> GetList<T>(String token = "none", Label txt = null, String url = "", bool urlEspecial = false) where T : class, new()
         {
             var s = "";
             if (!url.Equals(""))
             {
                 s = "/" + url;
             }
-            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "") + s);
+            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Get, UrlBase + (urlEspecial?"":"/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "")) + s);
             if (!token.Equals("none"))
             {
                 m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
