@@ -72,7 +72,7 @@
             this.txtNConectados = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pInforme = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.tablaReservas = new System.Windows.Forms.DataGridView();
@@ -94,6 +94,7 @@
             this.btnPDF = new System.Windows.Forms.Button();
             this.txtInforme = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.contMaestro.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.pDeptos.SuspendLayout();
@@ -108,7 +109,7 @@
             this.panel2.SuspendLayout();
             this.pConexiones.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pInforme.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaReservas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TablaEgresos)).BeginInit();
             this.SuspendLayout();
@@ -616,7 +617,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.panel1);
+            this.tabPage2.Controls.Add(this.pInforme);
             this.tabPage2.Controls.Add(this.TablaEgresos);
             this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.tablaReservas);
@@ -631,20 +632,21 @@
             this.tabPage2.Text = "Ingresos y Egresos";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // pInforme
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.btnPDF);
-            this.panel1.Controls.Add(this.txtInforme);
-            this.panel1.Controls.Add(this.label18);
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Location = new System.Drawing.Point(592, 4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(263, 411);
-            this.panel1.TabIndex = 25;
+            this.pInforme.BackColor = System.Drawing.Color.White;
+            this.pInforme.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pInforme.Controls.Add(this.textBox1);
+            this.pInforme.Controls.Add(this.button1);
+            this.pInforme.Controls.Add(this.btnPDF);
+            this.pInforme.Controls.Add(this.txtInforme);
+            this.pInforme.Controls.Add(this.label18);
+            this.pInforme.Controls.Add(this.label15);
+            this.pInforme.Location = new System.Drawing.Point(592, 4);
+            this.pInforme.Margin = new System.Windows.Forms.Padding(2);
+            this.pInforme.Name = "pInforme";
+            this.pInforme.Size = new System.Drawing.Size(263, 411);
+            this.pInforme.TabIndex = 25;
             // 
             // label18
             // 
@@ -827,12 +829,13 @@
             // 
             this.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPDF.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.btnPDF.Location = new System.Drawing.Point(92, 378);
+            this.btnPDF.Location = new System.Drawing.Point(92, 261);
             this.btnPDF.Name = "btnPDF";
             this.btnPDF.Size = new System.Drawing.Size(166, 28);
             this.btnPDF.TabIndex = 30;
             this.btnPDF.Text = "Generar Informe (PDF)";
             this.btnPDF.UseVisualStyleBackColor = true;
+            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
             // 
             // txtInforme
             // 
@@ -840,11 +843,11 @@
             this.txtInforme.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtInforme.Enabled = false;
             this.txtInforme.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.txtInforme.Location = new System.Drawing.Point(11, 91);
+            this.txtInforme.Location = new System.Drawing.Point(11, 83);
             this.txtInforme.Multiline = true;
             this.txtInforme.Name = "txtInforme";
             this.txtInforme.ReadOnly = true;
-            this.txtInforme.Size = new System.Drawing.Size(240, 176);
+            this.txtInforme.Size = new System.Drawing.Size(240, 172);
             this.txtInforme.TabIndex = 31;
             this.txtInforme.Text = "El informe de ingresos y egresos esta disponible desde el primer día del mes sigu" +
     "iente, mostrando un balance total del mes.";
@@ -853,13 +856,28 @@
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.button1.Location = new System.Drawing.Point(47, 190);
+            this.button1.Location = new System.Drawing.Point(110, 378);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(166, 28);
+            this.button1.Size = new System.Drawing.Size(148, 28);
             this.button1.TabIndex = 32;
-            this.button1.Text = "Generar Informe (PDF)";
+            this.button1.Text = "Historial de informes";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.textBox1.Location = new System.Drawing.Point(11, 310);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(240, 62);
+            this.textBox1.TabIndex = 33;
+            this.textBox1.Text = "Para ver informes de periodos anteriores, presione el botón \'Historial de informe" +
+    "s\'.";
             // 
             // frmFinanzas
             // 
@@ -900,8 +918,8 @@
             this.pConexiones.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pInforme.ResumeLayout(false);
+            this.pInforme.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaReservas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TablaEgresos)).EndInit();
             this.ResumeLayout(false);
@@ -964,7 +982,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn reservas;
         private System.Windows.Forms.DataGridViewTextBoxColumn dias;
         private System.Windows.Forms.DataGridViewTextBoxColumn ganancias;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pInforme;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridView TablaEgresos;
@@ -977,5 +995,6 @@
         private System.Windows.Forms.Button btnPDF;
         private System.Windows.Forms.TextBox txtInforme;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

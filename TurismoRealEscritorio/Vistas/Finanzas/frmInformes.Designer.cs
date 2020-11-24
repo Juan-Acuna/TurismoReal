@@ -33,7 +33,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tablaInformes = new System.Windows.Forms.DataGridView();
             this.txtInforme = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pBotones = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.tablaServicios = new System.Windows.Forms.DataGridView();
             this.label13 = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbInformes = new System.Windows.Forms.Label();
             this.tablaEgresos = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,7 +68,7 @@
             this.cellinformes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaInformes)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.pBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaServicios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaReservas)).BeginInit();
             this.panel3.SuspendLayout();
@@ -79,12 +79,13 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1203, 17);
+            this.button1.Location = new System.Drawing.Point(1245, 17);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 32);
             this.button1.TabIndex = 0;
             this.button1.Text = "Volver";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel1
             // 
@@ -133,22 +134,22 @@
             this.txtInforme.TabIndex = 32;
             this.txtInforme.Text = "A continuación, seleccione un informe para visualizar";
             // 
-            // panel2
+            // pBotones
             // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 629);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1360, 73);
-            this.panel2.TabIndex = 2;
+            this.pBotones.BackColor = System.Drawing.Color.White;
+            this.pBotones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pBotones.Controls.Add(this.button2);
+            this.pBotones.Controls.Add(this.button1);
+            this.pBotones.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pBotones.Location = new System.Drawing.Point(0, 629);
+            this.pBotones.Name = "pBotones";
+            this.pBotones.Size = new System.Drawing.Size(1360, 73);
+            this.pBotones.TabIndex = 2;
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(925, 17);
+            this.button2.Location = new System.Drawing.Point(949, 17);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(263, 32);
             this.button2.TabIndex = 1;
@@ -269,22 +270,22 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.lbInformes);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(200, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1160, 68);
             this.panel3.TabIndex = 30;
             // 
-            // label1
+            // lbInformes
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(564, 41);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "Informe periodo <MES>, año <AÑO>";
+            this.lbInformes.AutoSize = true;
+            this.lbInformes.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbInformes.Location = new System.Drawing.Point(16, 12);
+            this.lbInformes.Name = "lbInformes";
+            this.lbInformes.Size = new System.Drawing.Size(564, 41);
+            this.lbInformes.TabIndex = 26;
+            this.lbInformes.Text = "Informe periodo <MES>, año <AÑO>";
             // 
             // tablaEgresos
             // 
@@ -470,15 +471,16 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pBotones);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmInformes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Informes";
             this.Load += new System.EventHandler(this.frmInformes_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaInformes)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.pBotones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tablaServicios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaReservas)).EndInit();
             this.panel3.ResumeLayout(false);
@@ -497,7 +499,7 @@
         private System.Windows.Forms.DataGridView tablaInformes;
         private System.Windows.Forms.DataGridViewTextBoxColumn informes;
         private System.Windows.Forms.TextBox txtInforme;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pBotones;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView tablaServicios;
         private System.Windows.Forms.Label label13;
@@ -510,7 +512,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbInformes;
         private System.Windows.Forms.DataGridView tablaEgresos;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;

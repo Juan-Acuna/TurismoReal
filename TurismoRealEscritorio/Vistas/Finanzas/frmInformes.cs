@@ -29,9 +29,9 @@ namespace TurismoRealEscritorio.Vistas.Finanzas
 
         private void frmInformes_Load(object sender, EventArgs e)
         {
-            Main.Do();
+            Main.Enabled = false;
+            Main.ConfigurarBotones(pBotones);
             CargarInformes();
-            Main.Undo();
         }
         private async void CargarInformes()
         {
@@ -74,6 +74,7 @@ namespace TurismoRealEscritorio.Vistas.Finanzas
             {
                 tablaUtilidades.Rows.Add(i.Depto,i.CostoMantencion,i.GananciasReservas,i.TotalUtilidades);
             }
+            lbInformes.Text = "Informe periodo "+actual.mes+", año "+actual.ano.ToString();
         }
 
         private void CambiarElegido(object sender, DataGridViewCellEventArgs e)
@@ -84,6 +85,13 @@ namespace TurismoRealEscritorio.Vistas.Finanzas
         private void button2_Click(object sender, EventArgs e)
         {
             PDFTools.GenerarInformePDF(@"C:\Users\Juancho\Desktop\TEST_PDF", actual);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Main.Enabled = true;
+            Main.Focus();
+            Dispose();
         }
     }
 }

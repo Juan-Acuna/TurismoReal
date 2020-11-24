@@ -46,6 +46,7 @@ namespace TurismoRealEscritorio.Vistas.Finanzas
         }/* CONTROL */
         private void frmFinanzas_Load(object sender, EventArgs e)
         {
+            Main.ConfigurarBotones(pInforme);
             CargarInforme();
             CargarMetricas();
         }
