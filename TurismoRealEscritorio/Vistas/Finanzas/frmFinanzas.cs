@@ -52,14 +52,10 @@ namespace TurismoRealEscritorio.Vistas.Finanzas
         }
         private void CambiarTab(object sender, EventArgs e)
         {
-            switch (contMaestro.SelectedIndex)
+            DesactivarTips();
+            if(contMaestro.SelectedIndex==0)
             {
-                case 0:
-
-                    break;
-                case 1:
-
-                    break;
+                CargarMetricas();
             }
         }
         /* DATA */
@@ -112,12 +108,21 @@ namespace TurismoRealEscritorio.Vistas.Finanzas
                 TablaEgresos.Rows.Add(i.Depto,i.Dividendo,i.Contribuciones,i.Mantenciones,i.GastoTotal);
             }
         }
-        private void DesactivarTipCon(object sender, EventArgs e)
-        {
-        }
         /* TIPS */
+        private void DesactivarTips(object sender = null, EventArgs e = null)
+        {
+            if (pTip != null)
+            {
+                pTip.Dispose();
+                pTip = null;
+            }
+        }
         private void lbHC_Click(object sender, EventArgs e)
         {
+            if (pTip != null)
+            {
+                DesactivarTips();
+            }
             CreadorTip c = CreadorTip.TipConexiones();
             int x = pConexiones.Location.X + lbHC.Location.X + (int)Math.Floor((double)lbHC.Width / 2);
             int y = pConexiones.Location.Y + lbHC.Location.Y + (int)Math.Floor((double)lbHC.Height / 2);
@@ -125,12 +130,12 @@ namespace TurismoRealEscritorio.Vistas.Finanzas
             pVistaGeneral.Controls.Add(pTip);
             pTip.BringToFront();
         }
-        private void DesactivarTips(object sender, EventArgs e)
-        {
-            pVistaGeneral.Controls.Remove(pTip);
-        }
         private void ActivarTipDepto(object sender, EventArgs e)
         {
+            if (pTip != null)
+            {
+                DesactivarTips();
+            }
             Label l = ((Label)sender);
             Control papa = l.Parent;
             CreadorTip c = CreadorTip.TipDeptos();
@@ -161,6 +166,48 @@ namespace TurismoRealEscritorio.Vistas.Finanzas
                     break;
             }
             pTip = c.CrearTip(x, y, ed, Metricas.Departamentos[idx]);
+            tabPage1.Controls.Add(pTip);
+            pTip.BringToFront();
+        }
+        private void ActivarTipTrans(object sender, EventArgs e)
+        {
+            if (pTip != null)
+            {
+                DesactivarTips();
+            }
+            Control papa = lbHT.Parent;
+            CreadorTip c = CreadorTip.TipComun();
+            int x = pVistaGeneral.Location.X + papa.Location.X + lbHT.Location.X + (int)Math.Floor((double)lbHT.Width / 2);
+            int y = pVistaGeneral.Location.Y + papa.Location.Y + lbHT.Location.Y + (int)Math.Floor((double)lbHT.Height / 2);
+            pTip = c.CrearTip(x, y, "Transacciones","Número de transacciones efectuadas durante todo este mes.");
+            tabPage1.Controls.Add(pTip);
+            pTip.BringToFront();
+        }
+        private void ActivarTipRes(object sender, EventArgs e)
+        {
+            if (pTip != null)
+            {
+                DesactivarTips();
+            }
+            Control papa = lbHR.Parent;
+            CreadorTip c = CreadorTip.TipComun();
+            int x = pVistaGeneral.Location.X + papa.Location.X + lbHR.Location.X + (int)Math.Floor((double)lbHR.Width / 2);
+            int y = pVistaGeneral.Location.Y + papa.Location.Y + lbHR.Location.Y + (int)Math.Floor((double)lbHR.Height / 2);
+            pTip = c.CrearTip(x, y, "Reservas", "Número de reservas cuya fecha de estadía corresponde al periodo " + DateTime.Now.ToString("MMMM", CultureInfo.CreateSpecificCulture("es")) + " - " + DateTime.Now.AddMonths(3).ToString("MMMM", CultureInfo.CreateSpecificCulture("es"))+".");
+            tabPage1.Controls.Add(pTip);
+            pTip.BringToFront();
+        }
+        private void ActivarTipMan(object sender, EventArgs e)
+        {
+            if (pTip != null)
+            {
+                DesactivarTips();
+            }
+            Control papa = lbHM.Parent;
+            CreadorTip c = CreadorTip.TipComun();
+            int x = pVistaGeneral.Location.X + papa.Location.X + lbHM.Location.X + (int)Math.Floor((double)lbHM.Width / 2);
+            int y = pVistaGeneral.Location.Y + papa.Location.Y + lbHM.Location.Y + (int)Math.Floor((double)lbHM.Height / 2);
+            pTip = c.CrearTip(x, y, "Mantenciones", "Número de reservas cuya fecha de estadía corresponde al periodo " + DateTime.Now.ToString("MMMM", CultureInfo.CreateSpecificCulture("es")) + " - " + DateTime.Now.AddMonths(3).ToString("MMMM", CultureInfo.CreateSpecificCulture("es")) + ".");
             tabPage1.Controls.Add(pTip);
             pTip.BringToFront();
         }

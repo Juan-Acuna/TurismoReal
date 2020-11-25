@@ -24,7 +24,7 @@ namespace TurismoRealEscritorio.Modelos.Util.Strategy
             p.Controls.Add(titulo);
 
             Label equis = new Label();
-            equis.Font = new Font("Microsoft YaHei UI Light", 13.8f);
+            equis.Font = new Font("Eras Light ITC", 13.8f);
             equis.Location = new Point(248, 0);
             equis.Text = "X";
             equis.ForeColor = Color.Gray;

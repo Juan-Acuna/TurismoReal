@@ -24,9 +24,14 @@ namespace TurismoRealEscritorio.Controlador
         {
             return new CreadorTip(new TipDepto());
         }
+        public static CreadorTip TipComun()
+        {
+            return new CreadorTip(new TipComun());
+        }
         public Panel CrearTip(int x, int y, params object[] input)
         {
             return Tip.CrearTip(x, y, input);
         }
+        
     }
 }

@@ -116,7 +116,7 @@
     <Compile Include="Controlador\ClienteHttp.cs" />
     <Compile Include="Controlador\CreadorTip.cs" />
     <Compile Include="Controlador\PDFTools.cs" />
-    <Compile Include="Controlador\ProxyInforme.cs" />
+    <Compile Include="Modelos\Util\ProxyInforme.cs" />
     <Compile Include="Controlador\Repositorios.cs" />
     <Compile Include="Controlador\SesionManager.cs" />
     <Compile Include="Controlador\Tools.cs" />
@@ -159,6 +159,7 @@
     <Compile Include="Modelos\Util\ProxyRegion.cs" />
     <Compile Include="Modelos\Util\ProxyUsuario.cs" />
     <Compile Include="Modelos\Util\Strategy\Tip.cs" />
+    <Compile Include="Modelos\Util\Strategy\TipComun.cs" />
     <Compile Include="Modelos\Util\Strategy\TipConexiones.cs" />
     <Compile Include="Modelos\Util\Strategy\TipDepto.cs" />
     <Compile Include="Modelos\Vehiculo.cs" />
@@ -225,6 +226,12 @@
     <Compile Include="Vistas\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Logistica\frmAsignarF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Logistica\frmAsignarF.Designer.cs">
+      <DependentUpon>frmAsignarF.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Logistica\frmLogistica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +288,9 @@
     </Compile>
     <EmbeddedResource Include="Vistas\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Logistica\frmAsignarF.resx">
+      <DependentUpon>frmAsignarF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Logistica\frmLogistica.resx">
       <DependentUpon>frmLogistica.cs</DependentUpon>

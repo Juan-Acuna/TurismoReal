@@ -33,6 +33,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
         Regex formatoCorreo = new Regex(@"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$");
         Panel pEdicion;
         Logistica actual = Logistica.Inventario;
+        List<Funcionario> funcionarios;
 
         public frmLogistica(frmMain m = null)
         {
@@ -43,9 +44,25 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                 Main.ConfigurarBotones(c);
             }
         }
-
+        async void CargarFuncionarios()
+        {
+            funcionarios = new List<Funcionario>();
+            List<PersonaUsuario> fun;
+            do
+            {
+                fun = await ClienteHttp.Peticion.GetList<PersonaUsuario>(SesionManager.Token);
+            } while (funcionarios == null);
+            foreach (var i in fun)
+            {
+                if (i.Usuario.Id_rol == 4)
+                {
+                    funcionarios.Add(new Funcionario { Username = i.Usuario.Username, Nombre = i.Persona.Nombres.Split(' ')[0] + i.Persona.Apellidos.Split(' ')[0] + " [" + i.Usuario.Username + "]" });
+                }
+            }
+        }
         private void frmLogistica_Load(object sender, EventArgs e)
         {
+            CargarFuncionarios();
             pEdicionI.Height = 0;
             pEdicionL.Height = 0;
             pEdicionV.Height = 0;
@@ -384,7 +401,8 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                     
                     break;
                 case Logistica.Localidades:
-                    
+                    frmAsignarF frm = new frmAsignarF(Main, ((int)tablaLocalidad.SelectedRows[0].Cells["id"].Value), tablaLocalidad.SelectedRows[0].Cells["nombre"].Value.ToString(), funcionarios);
+                    frm.Show();
                     break;
             }
         }

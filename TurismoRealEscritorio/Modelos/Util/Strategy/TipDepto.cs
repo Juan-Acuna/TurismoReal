@@ -37,36 +37,45 @@ namespace TurismoRealEscritorio.Modelos.Util.Strategy
             }
             Panel p = new Panel();
             p.BorderStyle = BorderStyle.FixedSingle;
-            p.Size = new Size(200, 155);
+            p.Size = new Size(350, 132);
             if (e== EDepto.Reservado || e== EDepto.En_Mantencion || e== EDepto.Inhabitable)
             {
-                y = y - p.Size.Height;
+                y = y - p.Height;
             }
             p.Location = new Point(x - p.Width, y);
 
             Label titulo = new Label();
             titulo.Font = new Font("Microsoft YaHei UI Light", 13.8f);
-            titulo.Location = new Point(0, 4);
+            titulo.Location = new Point(7, 4);
+            titulo.Size=new Size(271, 25);
             titulo.Text = "Departamento "+e.ToString().Replace('_',' ');
             p.Controls.Add(titulo);
 
-            Label lparr = new Label();
+            TextBox lparr = new TextBox();
             lparr.Font = new Font("Microsoft YaHei", 7.8f);
-            lparr.Location = new Point(0, 35);
-            lparr.ForeColor = Color.Gray;
+            lparr.Location = new Point(7, 42);
+            lparr.Size= new Size(330, 36);
+            lparr.BorderStyle = BorderStyle.None;
+            lparr.Multiline = true;
+            lparr.BackColor = Color.White;
+            lparr.ReadOnly = true;
             lparr.Text = parrafo;
             p.Controls.Add(lparr);
 
-            Label lp = new Label();
+            TextBox lp = new TextBox();
             lp.Font = new Font("Microsoft YaHei", 7.8f);
-            lp.Location = new Point(0, 60);
-            lp.ForeColor = Color.Gray;
+            lp.Location = new Point(7, 102);
+            lp.Size = new Size(330, 20);
+            lp.BorderStyle = BorderStyle.None;
+            lp.BackColor = Color.White;
+            lp.Multiline = true;
+            lp.ReadOnly = true;
             lp.Text = pie;
             p.Controls.Add(lp);
 
             Label equis = new Label();
-            equis.Font = new Font("Microsoft YaHei UI Light", 13.8f);
-            equis.Location = new Point(150, 0);
+            equis.Font = new Font("Eras Light ITC", 13.8f);
+            equis.Location = new Point(325, 0);
             equis.Text = "X";
             equis.ForeColor = Color.Gray;
             p.Controls.Add(SetEquis(equis));

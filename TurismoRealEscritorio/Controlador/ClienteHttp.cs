@@ -112,14 +112,14 @@ namespace TurismoRealEscritorio.Controlador
             return new List<T>();
         }
 
-        public async Task<bool> Send<T>(HttpMethod metodo, T body, String url = "", String token = "none", Control txt = null)
+        public async Task<bool> Send<T>(HttpMethod metodo, T body, String url = "", String token = "none", bool urlEspecial = false, Control txt = null)
         {
             var s = "";
             if (!url.Equals(""))
             {
                 s = "/" + url;
             }
-            HttpRequestMessage m = new HttpRequestMessage(metodo, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "").ToLower()+s);
+            HttpRequestMessage m = new HttpRequestMessage(metodo, UrlBase + (urlEspecial?"":"/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "").ToLower())+s);
             if (!token.Equals("none"))
             {
                 m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -157,9 +157,9 @@ namespace TurismoRealEscritorio.Controlador
             return false;
         }
 
-        public async Task<bool> Delete<T>(String url, String token, Label txt = null)
+        public async Task<bool> Delete<T>(String url, String token, bool urlEspecial = false, Label txt = null)
         {
-            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Delete, UrlBase + "/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "").ToLower() + "/" + url);
+            HttpRequestMessage m = new HttpRequestMessage(HttpMethod.Delete, UrlBase + (urlEspecial?"":"/" + typeof(T).Name.Replace("Persona", "").Replace("Proxy", "").ToLower()) + "/" + url);
             m.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var r = await http.SendAsync(m);
             switch ((int)r.StatusCode)

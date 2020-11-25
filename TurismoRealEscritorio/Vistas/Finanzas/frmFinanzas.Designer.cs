@@ -31,7 +31,6 @@
             this.contMaestro = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pDeptos = new System.Windows.Forms.Panel();
-            this.lbHD4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.lbHD5 = new System.Windows.Forms.Label();
@@ -47,6 +46,7 @@
             this.txtE2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.lbHD4 = new System.Windows.Forms.Label();
             this.txtE4 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -64,6 +64,7 @@
             this.txtNReservas = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lbHT = new System.Windows.Forms.Label();
             this.txtMNT = new System.Windows.Forms.Label();
             this.txtNTransacciones = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -73,8 +74,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pInforme = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnPDF = new System.Windows.Forms.Button();
+            this.txtInforme = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.TablaEgresos = new System.Windows.Forms.DataGridView();
+            this.deptoE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dividendo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contribuciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mantenciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label13 = new System.Windows.Forms.Label();
             this.tablaReservas = new System.Windows.Forms.DataGridView();
             this.depto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,17 +96,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.TablaEgresos = new System.Windows.Forms.DataGridView();
-            this.deptoE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dividendo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contribuciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mantenciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnPDF = new System.Windows.Forms.Button();
-            this.txtInforme = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lbHR = new System.Windows.Forms.Label();
+            this.lbHM = new System.Windows.Forms.Label();
             this.contMaestro.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.pDeptos.SuspendLayout();
@@ -110,8 +113,8 @@
             this.pConexiones.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.pInforme.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaReservas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TablaEgresos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaReservas)).BeginInit();
             this.SuspendLayout();
             // 
             // contMaestro
@@ -144,7 +147,6 @@
             // pDeptos
             // 
             this.pDeptos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pDeptos.Controls.Add(this.lbHD4);
             this.pDeptos.Controls.Add(this.label3);
             this.pDeptos.Controls.Add(this.panel9);
             this.pDeptos.Controls.Add(this.panel11);
@@ -158,19 +160,6 @@
             this.pDeptos.Size = new System.Drawing.Size(299, 411);
             this.pDeptos.TabIndex = 15;
             this.pDeptos.Click += new System.EventHandler(this.DesactivarTips);
-            // 
-            // lbHD4
-            // 
-            this.lbHD4.AutoSize = true;
-            this.lbHD4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbHD4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbHD4.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHD4.Location = new System.Drawing.Point(218, 277);
-            this.lbHD4.Name = "lbHD4";
-            this.lbHD4.Size = new System.Drawing.Size(15, 18);
-            this.lbHD4.TabIndex = 21;
-            this.lbHD4.Text = "?";
-            this.lbHD4.Click += new System.EventHandler(this.ActivarTipDepto);
             // 
             // label3
             // 
@@ -194,6 +183,7 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(173, 54);
             this.panel9.TabIndex = 19;
+            this.panel9.Click += new System.EventHandler(this.DesactivarTips);
             // 
             // lbHD5
             // 
@@ -240,6 +230,7 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(174, 54);
             this.panel11.TabIndex = 15;
+            this.panel11.Click += new System.EventHandler(this.DesactivarTips);
             // 
             // lbHD1
             // 
@@ -296,6 +287,7 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(174, 54);
             this.panel6.TabIndex = 16;
+            this.panel6.Click += new System.EventHandler(this.DesactivarTips);
             // 
             // lbHD2
             // 
@@ -334,6 +326,7 @@
             // panel8
             // 
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Controls.Add(this.lbHD4);
             this.panel8.Controls.Add(this.txtE4);
             this.panel8.Controls.Add(this.label14);
             this.panel8.Location = new System.Drawing.Point(60, 277);
@@ -341,6 +334,20 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(173, 54);
             this.panel8.TabIndex = 18;
+            this.panel8.Click += new System.EventHandler(this.DesactivarTips);
+            // 
+            // lbHD4
+            // 
+            this.lbHD4.AutoSize = true;
+            this.lbHD4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbHD4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbHD4.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHD4.Location = new System.Drawing.Point(157, -1);
+            this.lbHD4.Name = "lbHD4";
+            this.lbHD4.Size = new System.Drawing.Size(15, 18);
+            this.lbHD4.TabIndex = 12;
+            this.lbHD4.Text = "?";
+            this.lbHD4.Click += new System.EventHandler(this.ActivarTipDepto);
             // 
             // txtE4
             // 
@@ -374,6 +381,7 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(173, 54);
             this.panel7.TabIndex = 17;
+            this.panel7.Click += new System.EventHandler(this.DesactivarTips);
             // 
             // lbHD3
             // 
@@ -436,6 +444,7 @@
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.lbHM);
             this.panel4.Controls.Add(this.txtMNM);
             this.panel4.Controls.Add(this.txtNMantenciones);
             this.panel4.Controls.Add(this.label7);
@@ -444,6 +453,7 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(232, 87);
             this.panel4.TabIndex = 17;
+            this.panel4.Click += new System.EventHandler(this.DesactivarTips);
             // 
             // txtMNM
             // 
@@ -453,9 +463,9 @@
             this.txtMNM.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.txtMNM.Location = new System.Drawing.Point(26, 32);
             this.txtMNM.Name = "txtMNM";
-            this.txtMNM.Size = new System.Drawing.Size(149, 16);
+            this.txtMNM.Size = new System.Drawing.Size(120, 16);
             this.txtMNM.TabIndex = 10;
-            this.txtMNM.Text = "(Periodo <MES> - >MES>)";
+            this.txtMNM.Text = "(Cargando Periodo...)";
             // 
             // txtNMantenciones
             // 
@@ -481,6 +491,7 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.lbHR);
             this.panel3.Controls.Add(this.txtMNR);
             this.panel3.Controls.Add(this.txtNReservas);
             this.panel3.Controls.Add(this.label6);
@@ -489,6 +500,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(232, 87);
             this.panel3.TabIndex = 18;
+            this.panel3.Click += new System.EventHandler(this.DesactivarTips);
             // 
             // txtMNR
             // 
@@ -498,9 +510,9 @@
             this.txtMNR.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.txtMNR.Location = new System.Drawing.Point(26, 32);
             this.txtMNR.Name = "txtMNR";
-            this.txtMNR.Size = new System.Drawing.Size(149, 16);
+            this.txtMNR.Size = new System.Drawing.Size(120, 16);
             this.txtMNR.TabIndex = 9;
-            this.txtMNR.Text = "(Periodo <MES> - >MES>)";
+            this.txtMNR.Text = "(Cargando Periodo...)";
             // 
             // txtNReservas
             // 
@@ -526,6 +538,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.lbHT);
             this.panel2.Controls.Add(this.txtMNT);
             this.panel2.Controls.Add(this.txtNTransacciones);
             this.panel2.Controls.Add(this.label4);
@@ -534,6 +547,21 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(232, 87);
             this.panel2.TabIndex = 16;
+            this.panel2.Click += new System.EventHandler(this.DesactivarTips);
+            // 
+            // lbHT
+            // 
+            this.lbHT.AutoSize = true;
+            this.lbHT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbHT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbHT.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHT.Location = new System.Drawing.Point(216, -1);
+            this.lbHT.Name = "lbHT";
+            this.lbHT.Size = new System.Drawing.Size(15, 18);
+            this.lbHT.TabIndex = 10;
+            this.lbHT.Text = "?";
+            this.lbHT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbHT.Click += new System.EventHandler(this.ActivarTipTrans);
             // 
             // txtMNT
             // 
@@ -543,9 +571,9 @@
             this.txtMNT.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.txtMNT.Location = new System.Drawing.Point(26, 32);
             this.txtMNT.Name = "txtMNT";
-            this.txtMNT.Size = new System.Drawing.Size(106, 16);
+            this.txtMNT.Size = new System.Drawing.Size(101, 16);
             this.txtMNT.TabIndex = 9;
-            this.txtMNT.Text = "(Mes de NOMBRE)";
+            this.txtMNT.Text = "(Cargando Mes...)";
             // 
             // txtNTransacciones
             // 
@@ -579,6 +607,7 @@
             this.pConexiones.Name = "pConexiones";
             this.pConexiones.Size = new System.Drawing.Size(232, 87);
             this.pConexiones.TabIndex = 15;
+            this.pConexiones.Click += new System.EventHandler(this.DesactivarTips);
             // 
             // lbHC
             // 
@@ -648,6 +677,60 @@
             this.pInforme.Size = new System.Drawing.Size(263, 411);
             this.pInforme.TabIndex = 25;
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.textBox1.Location = new System.Drawing.Point(11, 310);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(240, 62);
+            this.textBox1.TabIndex = 33;
+            this.textBox1.Text = "Para ver informes de periodos anteriores, presione el botón \'Historial de informe" +
+    "s\'.";
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.button1.Location = new System.Drawing.Point(110, 378);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(148, 28);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "Historial de informes";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnPDF
+            // 
+            this.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPDF.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.btnPDF.Location = new System.Drawing.Point(92, 261);
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Size = new System.Drawing.Size(166, 28);
+            this.btnPDF.TabIndex = 30;
+            this.btnPDF.Text = "Generar Informe (PDF)";
+            this.btnPDF.UseVisualStyleBackColor = true;
+            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
+            // 
+            // txtInforme
+            // 
+            this.txtInforme.BackColor = System.Drawing.Color.White;
+            this.txtInforme.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtInforme.Enabled = false;
+            this.txtInforme.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.txtInforme.Location = new System.Drawing.Point(11, 83);
+            this.txtInforme.Multiline = true;
+            this.txtInforme.Name = "txtInforme";
+            this.txtInforme.ReadOnly = true;
+            this.txtInforme.Size = new System.Drawing.Size(240, 172);
+            this.txtInforme.TabIndex = 31;
+            this.txtInforme.Text = "El informe de ingresos y egresos esta disponible desde el primer día del mes sigu" +
+    "iente, mostrando un balance total del mes.";
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -668,6 +751,74 @@
             this.label15.Size = new System.Drawing.Size(196, 62);
             this.label15.TabIndex = 26;
             this.label15.Text = "Informe";
+            // 
+            // TablaEgresos
+            // 
+            this.TablaEgresos.AllowUserToAddRows = false;
+            this.TablaEgresos.AllowUserToDeleteRows = false;
+            this.TablaEgresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TablaEgresos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.deptoE,
+            this.dividendo,
+            this.contribuciones,
+            this.mantenciones,
+            this.gasto});
+            this.TablaEgresos.Location = new System.Drawing.Point(26, 285);
+            this.TablaEgresos.Name = "TablaEgresos";
+            this.TablaEgresos.ReadOnly = true;
+            this.TablaEgresos.RowHeadersVisible = false;
+            this.TablaEgresos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TablaEgresos.Size = new System.Drawing.Size(543, 126);
+            this.TablaEgresos.TabIndex = 24;
+            // 
+            // deptoE
+            // 
+            this.deptoE.HeaderText = "Departamento";
+            this.deptoE.Name = "deptoE";
+            this.deptoE.ReadOnly = true;
+            this.deptoE.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.deptoE.Width = 177;
+            // 
+            // dividendo
+            // 
+            this.dividendo.HeaderText = "Dividendo";
+            this.dividendo.Name = "dividendo";
+            this.dividendo.ReadOnly = true;
+            this.dividendo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dividendo.Width = 88;
+            // 
+            // contribuciones
+            // 
+            this.contribuciones.HeaderText = "Contribuciones";
+            this.contribuciones.Name = "contribuciones";
+            this.contribuciones.ReadOnly = true;
+            this.contribuciones.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.contribuciones.Width = 88;
+            // 
+            // mantenciones
+            // 
+            this.mantenciones.HeaderText = "Mantenciones";
+            this.mantenciones.Name = "mantenciones";
+            this.mantenciones.ReadOnly = true;
+            this.mantenciones.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.mantenciones.Width = 88;
+            // 
+            // gasto
+            // 
+            this.gasto.HeaderText = "Gasto total";
+            this.gasto.Name = "gasto";
+            this.gasto.ReadOnly = true;
+            this.gasto.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(19, 241);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(383, 41);
+            this.label13.TabIndex = 23;
+            this.label13.Text = "Costos de departamentos";
             // 
             // tablaReservas
             // 
@@ -757,127 +908,33 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Finanzas";
             // 
-            // label13
+            // lbHR
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(19, 241);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(383, 41);
-            this.label13.TabIndex = 23;
-            this.label13.Text = "Costos de departamentos";
+            this.lbHR.AutoSize = true;
+            this.lbHR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbHR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbHR.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHR.Location = new System.Drawing.Point(216, -1);
+            this.lbHR.Name = "lbHR";
+            this.lbHR.Size = new System.Drawing.Size(15, 18);
+            this.lbHR.TabIndex = 11;
+            this.lbHR.Text = "?";
+            this.lbHR.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbHR.Click += new System.EventHandler(this.ActivarTipRes);
             // 
-            // TablaEgresos
+            // lbHM
             // 
-            this.TablaEgresos.AllowUserToAddRows = false;
-            this.TablaEgresos.AllowUserToDeleteRows = false;
-            this.TablaEgresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TablaEgresos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.deptoE,
-            this.dividendo,
-            this.contribuciones,
-            this.mantenciones,
-            this.gasto});
-            this.TablaEgresos.Location = new System.Drawing.Point(26, 285);
-            this.TablaEgresos.Name = "TablaEgresos";
-            this.TablaEgresos.ReadOnly = true;
-            this.TablaEgresos.RowHeadersVisible = false;
-            this.TablaEgresos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TablaEgresos.Size = new System.Drawing.Size(543, 126);
-            this.TablaEgresos.TabIndex = 24;
-            // 
-            // deptoE
-            // 
-            this.deptoE.HeaderText = "Departamento";
-            this.deptoE.Name = "deptoE";
-            this.deptoE.ReadOnly = true;
-            this.deptoE.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.deptoE.Width = 177;
-            // 
-            // dividendo
-            // 
-            this.dividendo.HeaderText = "Dividendo";
-            this.dividendo.Name = "dividendo";
-            this.dividendo.ReadOnly = true;
-            this.dividendo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dividendo.Width = 88;
-            // 
-            // contribuciones
-            // 
-            this.contribuciones.HeaderText = "Contribuciones";
-            this.contribuciones.Name = "contribuciones";
-            this.contribuciones.ReadOnly = true;
-            this.contribuciones.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.contribuciones.Width = 88;
-            // 
-            // mantenciones
-            // 
-            this.mantenciones.HeaderText = "Mantenciones";
-            this.mantenciones.Name = "mantenciones";
-            this.mantenciones.ReadOnly = true;
-            this.mantenciones.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.mantenciones.Width = 88;
-            // 
-            // gasto
-            // 
-            this.gasto.HeaderText = "Gasto total";
-            this.gasto.Name = "gasto";
-            this.gasto.ReadOnly = true;
-            this.gasto.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // btnPDF
-            // 
-            this.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPDF.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.btnPDF.Location = new System.Drawing.Point(92, 261);
-            this.btnPDF.Name = "btnPDF";
-            this.btnPDF.Size = new System.Drawing.Size(166, 28);
-            this.btnPDF.TabIndex = 30;
-            this.btnPDF.Text = "Generar Informe (PDF)";
-            this.btnPDF.UseVisualStyleBackColor = true;
-            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
-            // 
-            // txtInforme
-            // 
-            this.txtInforme.BackColor = System.Drawing.Color.White;
-            this.txtInforme.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtInforme.Enabled = false;
-            this.txtInforme.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.txtInforme.Location = new System.Drawing.Point(11, 83);
-            this.txtInforme.Multiline = true;
-            this.txtInforme.Name = "txtInforme";
-            this.txtInforme.ReadOnly = true;
-            this.txtInforme.Size = new System.Drawing.Size(240, 172);
-            this.txtInforme.TabIndex = 31;
-            this.txtInforme.Text = "El informe de ingresos y egresos esta disponible desde el primer día del mes sigu" +
-    "iente, mostrando un balance total del mes.";
-            // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.button1.Location = new System.Drawing.Point(110, 378);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 28);
-            this.button1.TabIndex = 32;
-            this.button1.Text = "Historial de informes";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.textBox1.Location = new System.Drawing.Point(11, 310);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(240, 62);
-            this.textBox1.TabIndex = 33;
-            this.textBox1.Text = "Para ver informes de periodos anteriores, presione el botón \'Historial de informe" +
-    "s\'.";
+            this.lbHM.AutoSize = true;
+            this.lbHM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbHM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbHM.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHM.Location = new System.Drawing.Point(216, -1);
+            this.lbHM.Name = "lbHM";
+            this.lbHM.Size = new System.Drawing.Size(15, 18);
+            this.lbHM.TabIndex = 12;
+            this.lbHM.Text = "?";
+            this.lbHM.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbHM.Click += new System.EventHandler(this.ActivarTipMan);
             // 
             // frmFinanzas
             // 
@@ -892,6 +949,7 @@
             this.Name = "frmFinanzas";
             this.Text = "frmFinanzas";
             this.Load += new System.EventHandler(this.frmFinanzas_Load);
+            this.Click += new System.EventHandler(this.DesactivarTips);
             this.contMaestro.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.pDeptos.ResumeLayout(false);
@@ -920,8 +978,8 @@
             this.tabPage2.PerformLayout();
             this.pInforme.ResumeLayout(false);
             this.pInforme.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaReservas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TablaEgresos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaReservas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -969,7 +1027,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbHC;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lbHD4;
         private System.Windows.Forms.Label lbHD5;
         private System.Windows.Forms.Label lbHD1;
         private System.Windows.Forms.Label lbHD2;
@@ -996,5 +1053,9 @@
         private System.Windows.Forms.TextBox txtInforme;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lbHD4;
+        private System.Windows.Forms.Label lbHT;
+        private System.Windows.Forms.Label lbHM;
+        private System.Windows.Forms.Label lbHR;
     }
 }
