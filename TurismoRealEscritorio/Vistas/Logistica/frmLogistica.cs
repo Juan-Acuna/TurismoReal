@@ -34,6 +34,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
         Panel pEdicion;
         Logistica actual = Logistica.Inventario;
         List<Funcionario> funcionarios;
+        List<Departamento> deptos;
 
         public frmLogistica(frmMain m = null)
         {
@@ -122,6 +123,10 @@ namespace TurismoRealEscritorio.Vistas.Logistica
             if (sender != null)
             {
                 ComboBox temp = (ComboBox)sender;
+                if (temp.SelectedItem == null)
+                {
+                    return;
+                }
                 cbComuna.DataSource = ((ProxyRegion)temp.SelectedItem).Comunas;
                 cbComuna.DisplayMember = "Nombre";
                 cbComuna.ValueMember = "Nombre";
@@ -133,8 +138,8 @@ namespace TurismoRealEscritorio.Vistas.Logistica
 
         private async void BotonesModificar(object sender, EventArgs e)
         {
-            try
-            {
+            /*try
+            {*/
                 /* CAMBIA SEGUN PAGINA*/
                 switch (actual)
                 {
@@ -194,11 +199,11 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                         cbRegion_SelectionChangeCommitted(cbRegion);
                         cbComuna.SelectedItem = Repositorios.Buscar((List<Comuna>)cbComuna.DataSource, "Nombre", pc.Persona.Comuna);
                         break;
-                }
+                }/*
             }
             catch(Exception ex){
                 return;
-            }
+            }*/
             Main.EstadoTrabajo = EstadoTrabajo.Modificando;
             Desplegar();
         }
@@ -350,6 +355,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                             p.Email = txtEmail.Text;
                             p.Telefono = Int64.Parse(txtTelefono.Text);
                             p.Direccion = txtDireccion.Text;
+                            pc.Chofer.Rut = p.Rut;
                             p.Region = (String)cbRegion.SelectedValue;
                             p.Comuna = (String)cbComuna.SelectedValue;
                             await ClienteHttp.Peticion.Send(new HttpMethod("PATCH"), pc, txtIdC.Text, SesionManager.Token);
@@ -377,32 +383,85 @@ namespace TurismoRealEscritorio.Vistas.Logistica
         }
         private void BotonesEliminar(object sender, EventArgs e)
         {
+            String s = "";
+            String p = "el";
             switch (actual)
             {
                 case Logistica.Inventario:
-                    CargarArticulos();
+                    s = "articulo";
                     break;
                 case Logistica.Localidades:
-                    CargarLocalidades();
+                    s = "localidad";
+                    p = "la";
                     break;
                 case Logistica.Vehiculos:
-                    CargarVehiculos();
+                    s = "vehículo";
                     break;
                 case Logistica.Choferes:
-                    CargarChoferes();
+                    s = "chofer";
                     break;
             }
+            if(MessageBox.Show("¿Está seguro que desea eliminar " + p + " " + s + " de la plataforma?","Eliminar " + s, MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+            {
+                return;
+            }
+            switch (actual)
+            {
+                case Logistica.Inventario:
+
+                    Task.WaitAll(ClienteHttp.Peticion.Delete<Articulo>(tablaArticulo.SelectedRows[0].Cells["id"].Value.ToString(), SesionManager.Token));
+                    MessageBox.Show("Se ha eliminado " + p + " " + s + " de la plataforma satisfactoriamente.", "Eliminar exitoso", MessageBoxButtons.OK);
+                    CargarArticulos();
+                    return;
+                case Logistica.Localidades:
+                    Task.WaitAll(ClienteHttp.Peticion.Delete<Localidad>(tablaLocalidad.SelectedRows[0].Cells["id"].Value.ToString(), SesionManager.Token));
+                    MessageBox.Show("Se ha eliminado " + p + " " + s + " de la plataforma satisfactoriamente.", "Eliminar exitoso", MessageBoxButtons.OK);
+                    CargarLocalidades();
+                    return;
+                case Logistica.Vehiculos:
+                    Task.WaitAll(ClienteHttp.Peticion.Delete<Vehiculo>(tablaVehiculo.SelectedRows[0].Cells["patente"].Value.ToString(), SesionManager.Token));
+                    MessageBox.Show("Se ha eliminado " + p + " " + s + " de la plataforma satisfactoriamente.", "Eliminar exitoso", MessageBoxButtons.OK);
+                    CargarVehiculos();
+                    return;
+                case Logistica.Choferes:
+                    Task.WaitAll(ClienteHttp.Peticion.Delete<Chofer>(tablaChofer.SelectedRows[0].Cells["id"].Value.ToString(), SesionManager.Token));
+                    MessageBox.Show("Se ha eliminado " + p + " " + s + " de la plataforma satisfactoriamente.", "Eliminar exitoso", MessageBoxButtons.OK);
+                    CargarChoferes();
+                    return;
+            }
+            MessageBox.Show("No ha sido posible eliminar " + p + " " + s + ". Compruebe su conexión a internet.", "Problema al desasignar " + p + " " + s, MessageBoxButtons.OK);
         }
         private void BotonesAsignar(object sender, EventArgs e)
         {
             switch (actual)
             {
                 case Logistica.Inventario:
-                    
+                    var pa = new ProxyArticulo
+                    {
+                        Asignado = (bool)tablaArticulo.SelectedRows[0].Cells["asignado_d"].Value,
+                        Depto = (int)tablaArticulo.SelectedRows[0].Cells["id_depto"].Value,
+                        Articulo = new Articulo
+                        {
+                            Id_articulo = (int)tablaArticulo.SelectedRows[0].Cells["id"].Value,
+                            Nombre = tablaArticulo.SelectedRows[0].Cells["nombre"].Value.ToString()
+                        }
+                    };
+                    frmAsignarD frmd = new frmAsignarD(this, Main, pa, deptos);
+                    frmd.Show();
                     break;
                 case Logistica.Localidades:
-                    frmAsignarF frm = new frmAsignarF(Main, ((int)tablaLocalidad.SelectedRows[0].Cells["id"].Value), tablaLocalidad.SelectedRows[0].Cells["nombre"].Value.ToString(), funcionarios);
-                    frm.Show();
+                    var pl = new ProxyLocalidad
+                    {
+                        Asignado = (bool)tablaLocalidad.SelectedRows[0].Cells["asignado"].Value,
+                        Username = tablaLocalidad.SelectedRows[0].Cells["username"].Value.ToString(),
+                        Localidad = new Localidad
+                        {
+                            Id_localidad = (int)tablaLocalidad.SelectedRows[0].Cells["id"].Value,
+                            Nombre = tablaLocalidad.SelectedRows[0].Cells["nombre"].Value.ToString()
+                        }
+                    };
+                    frmAsignarF frmf = new frmAsignarF(this, Main, pl, funcionarios);
+                    frmf.Show();
                     break;
             }
         }
@@ -433,7 +492,8 @@ namespace TurismoRealEscritorio.Vistas.Logistica
             try
             {
                 Main.Do();
-                var lista = await ClienteHttp.Peticion.GetList<Articulo>(SesionManager.Token);
+                var lista = await ClienteHttp.Peticion.GetList<ProxyArticulo>(SesionManager.Token,url:"articulo/proxy",urlEspecial:true);
+                deptos = await ClienteHttp.Peticion.GetList<Departamento>();
 
                 if (primeraCargaI)
                 {
@@ -441,11 +501,16 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                     tablaArticulo.Columns.Add("nombre", "Nombre");
                     tablaArticulo.Columns.Add("valor", "Valor");
                     tablaArticulo.Columns.Add("depto", "Departamento asignado");
+                    tablaArticulo.Columns.Add("id_depto", "iddepto");
+                    tablaArticulo.Columns.Add("asignado_d", "asignado");
 
                     tablaArticulo.Columns["id"].Width = 75;
                     tablaArticulo.Columns["nombre"].Width = 400;
                     tablaArticulo.Columns["valor"].Width = 100;
                     tablaArticulo.Columns["depto"].Width = 242;
+                    tablaArticulo.Columns["id_depto"].Visible = false;
+                    tablaArticulo.Columns["asignado_d"].Visible = false;
+
                 }
                 else
                 {
@@ -453,14 +518,16 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                 }
                 foreach (var i in lista)
                 {
-                    var depto = await ClienteHttp.Peticion.Get<Departamento>(token: SesionManager.Token, url: "articulo/asignado/" + i.Id_articulo.ToString(),urlEspecial:true);
-                    tablaArticulo.Rows.Add(i.Id_articulo, i.Nombre, "$" + i.Valor.ToString(), (depto == null ? "No asignado" : depto.Nombre));
+                    tablaArticulo.Rows.Add(i.Articulo.Id_articulo, i.Articulo.Nombre, "$" + i.Articulo.Valor.ToString(), (i.Asignado? Tools.BuscarEnLista(deptos,"Id_depto",i.Depto).Nombre : "No asignado"),i.Depto,i.Asignado);
                 }
                 if (primeraCargaI)
                 {
-                    tablaArticulo.Rows[0].Selected = true;
                     primeraCargaI = false;
                     pEdicion.Visible = true;
+                }
+                if (tablaArticulo.Rows.Count > 0)
+                {
+                    tablaArticulo.Rows[0].Selected = true;
                 }
                 Main.Undo();
             }
@@ -475,32 +542,42 @@ namespace TurismoRealEscritorio.Vistas.Logistica
             try
             {
                 Main.Do();
-                var lista = await ClienteHttp.Peticion.GetList<Localidad>();
 
+                List<ProxyLocalidad> lista;
+                do
+                {
+                lista = await ClienteHttp.Peticion.GetList<ProxyLocalidad>(url: "localidad/proxy", urlEspecial:true);
+                } while (lista == null);
                 if (primeraCargaL)
                 {
                     tablaLocalidad.Columns.Add("id", "Identificador");
                     tablaLocalidad.Columns.Add("nombre", "Nombre");
-                    tablaLocalidad.Columns.Add("username", "Funcionario asignado");
+                    tablaLocalidad.Columns.Add("usuario", "Funcionario asignado");
+                    tablaLocalidad.Columns.Add("username", "na");
+                    tablaLocalidad.Columns.Add("asignado", "na");
 
                     tablaLocalidad.Columns["id"].Width = 75;
                     tablaLocalidad.Columns["nombre"].Width = 340;
-                    tablaLocalidad.Columns["username"].Width = 402;
+                    tablaLocalidad.Columns["usuario"].Width = 402;
+                    tablaLocalidad.Columns["username"].Visible=false;
+                    tablaLocalidad.Columns["asignado"].Visible=false;
                 }
                 else
                 {
                     tablaLocalidad.Rows.Clear();
                 }
-                foreach (var i in lista)
+                for(int i =0;i<lista.Count;i++)
                 {
-                    var pu = await ClienteHttp.Peticion.Get<PersonaUsuario>(token: SesionManager.Token, url: "localidad/asignado/" + i.Id_localidad.ToString());
-                    tablaLocalidad.Rows.Add(i.Id_localidad, i.Nombre, (pu == null ? "Sin funcionario asignado" : pu.Persona.Nombres+" "+pu.Persona.Apellidos+" ["+pu.Usuario.Username+"]"));
+                    tablaLocalidad.Rows.Add(lista[i].Localidad.Id_localidad, lista[i].Localidad.Nombre, (lista[i].Asignado?Tools.BuscarEnLista(funcionarios,"Username",lista[i].Username).Nombre:"Sin funcionario asignado"), (lista[i].Asignado?lista[i].Username:null), lista[i].Asignado);
                 }
                 if (primeraCargaL)
                 {
-                    tablaLocalidad.Rows[0].Selected = true;
                     primeraCargaL = false;
                     pEdicion.Visible = true;
+                }
+                if (tablaLocalidad.Rows.Count > 0)
+                {
+                    tablaLocalidad.Rows[0].Selected = true;
                 }
                 Main.Undo();
             }
@@ -537,9 +614,12 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                 }
                 if (primeraCargaV)
                 {
-                    tablaVehiculo.Rows[0].Selected = true;
                     primeraCargaV = false;
                     pEdicion.Visible = true;
+                }
+                if (tablaVehiculo.Rows.Count > 0)
+                {
+                    tablaVehiculo.Rows[0].Selected = true;
                 }
                 Main.Undo();
             }
@@ -588,9 +668,12 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                 }
                 if (primeraCargaC)
                 {
-                    tablaChofer.Rows[0].Selected = true;
                     primeraCargaC = false;
                     pEdicion.Visible = true;
+                }
+                if (tablaChofer.Rows.Count > 0)
+                {
+                    tablaChofer.Rows[0].Selected = true;
                 }
                 Main.Undo();
             }

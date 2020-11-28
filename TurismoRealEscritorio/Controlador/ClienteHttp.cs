@@ -146,9 +146,9 @@ namespace TurismoRealEscritorio.Controlador
                     }
                     break;*/
                 default:
+                    var a = await r.Content.ReadAsStringAsync();
                     if (txt != null)
                     {
-                        var a = await r.Content.ReadAsStringAsync();
                         txt.Text = JsonConvert.DeserializeObject<MensajeError>(a).Error;
                     }
                     break;

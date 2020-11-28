@@ -17,36 +17,43 @@ namespace TurismoRealEscritorio.Vistas.Logistica
 {
     public partial class frmAsignarF : Form
     {
-        int idLoc;
         List<Funcionario> funcionarios;
+        ProxyLocalidad Localidad;
         frmMain Main;
-        bool asignado = true;
-        public frmAsignarF(frmMain m= null, int id = 1,String nombre = "Localidad", object f = null, bool asignado = false)
+        frmLogistica Padre;
+        public frmAsignarF(frmLogistica l = null, frmMain m = null, ProxyLocalidad pl = null, object f = null)
         {
             InitializeComponent();
-            idLoc = id;
-            lbNombre.Text = nombre;
+            Padre = l;
+            Localidad = pl;
+            lbNombre.Text = Localidad.Localidad.Nombre;
             Main = m;
             Main.ConfigurarBotones(this);
             funcionarios = (List<Funcionario>)f;
-            this.asignado = asignado;
         }
 
         private void frmAsignarF_Load(object sender, EventArgs e)
         {
             CargarFuncionarios();
+            if (Localidad.Asignado)
+            {
+                cbFuncionario.SelectedItem = Tools.BuscarEnLista((List<Funcionario>)cbFuncionario.DataSource, "Username", Localidad.Username);
+                cbFuncionario.Enabled = false;
+                btnDesasignar.Enabled = true;
+            }
         }
         private void CargarFuncionarios()
         {
             cbFuncionario.DataSource = funcionarios;
             cbFuncionario.ValueMember = "Username";
             cbFuncionario.DisplayMember = "Nombre";
+            cbFuncionario.SelectedItem = null;
             cbFuncionario.Text = "Seleccione funcionario";
         }
         async void Asignar()
         {
             LocalidadUsuario l = new LocalidadUsuario();
-            l.Id_localidad = idLoc;
+            l.Id_localidad = Localidad.Localidad.Id_localidad;
             l.Username = ((Funcionario)cbFuncionario.SelectedItem).Username;
             if(await ClienteHttp.Peticion.Send<LocalidadUsuario>(HttpMethod.Post, l,"localidad/asignar",SesionManager.Token,true))
             {
@@ -68,6 +75,9 @@ namespace TurismoRealEscritorio.Vistas.Logistica
             if (await ClienteHttp.Peticion.Delete<LocalidadUsuario>("localidad/desasignar/"+ ((Funcionario)cbFuncionario.SelectedItem).Username, SesionManager.Token, true))
             {
                 MessageBox.Show("El funcionario fue desasignado exitosamente.", "Funcionario desasignado", MessageBoxButtons.OK);
+                cbFuncionario.Enabled = true;
+                cbFuncionario.SelectedItem = null;
+                cbFuncionario.Text = "Seleccione funcionario";
             }
             else
             {
@@ -90,6 +100,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
         {
             Main.Enabled = true;
             Main.Focus();
+            Padre.CargarLocalidades();
             Dispose();
         }
     }

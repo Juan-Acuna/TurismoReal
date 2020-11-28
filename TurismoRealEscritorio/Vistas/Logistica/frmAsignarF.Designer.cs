@@ -40,9 +40,10 @@
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(319, 277);
+            this.btnCancelar.Location = new System.Drawing.Point(425, 341);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(89, 32);
+            this.btnCancelar.Size = new System.Drawing.Size(119, 39);
             this.btnCancelar.TabIndex = 69;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -51,9 +52,10 @@
             // btnAplicar
             // 
             this.btnAplicar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAplicar.Location = new System.Drawing.Point(426, 277);
+            this.btnAplicar.Location = new System.Drawing.Point(568, 341);
+            this.btnAplicar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAplicar.Name = "btnAplicar";
-            this.btnAplicar.Size = new System.Drawing.Size(89, 32);
+            this.btnAplicar.Size = new System.Drawing.Size(119, 39);
             this.btnAplicar.TabIndex = 67;
             this.btnAplicar.Text = "Asignar";
             this.btnAplicar.UseVisualStyleBackColor = true;
@@ -63,9 +65,10 @@
             // 
             this.cbFuncionario.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
             this.cbFuncionario.FormattingEnabled = true;
-            this.cbFuncionario.Location = new System.Drawing.Point(147, 148);
+            this.cbFuncionario.Location = new System.Drawing.Point(196, 182);
+            this.cbFuncionario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbFuncionario.Name = "cbFuncionario";
-            this.cbFuncionario.Size = new System.Drawing.Size(220, 27);
+            this.cbFuncionario.Size = new System.Drawing.Size(292, 29);
             this.cbFuncionario.TabIndex = 68;
             this.cbFuncionario.Text = "Seleccione Funcionario";
             // 
@@ -73,9 +76,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(57, 151);
+            this.label8.Location = new System.Drawing.Point(76, 186);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(84, 19);
+            this.label8.Size = new System.Drawing.Size(109, 23);
             this.label8.TabIndex = 66;
             this.label8.Text = "Funcionario:";
             // 
@@ -83,9 +87,10 @@
             // 
             this.btnDesasignar.Enabled = false;
             this.btnDesasignar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDesasignar.Location = new System.Drawing.Point(388, 144);
+            this.btnDesasignar.Location = new System.Drawing.Point(517, 177);
+            this.btnDesasignar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDesasignar.Name = "btnDesasignar";
-            this.btnDesasignar.Size = new System.Drawing.Size(89, 32);
+            this.btnDesasignar.Size = new System.Drawing.Size(119, 39);
             this.btnDesasignar.TabIndex = 70;
             this.btnDesasignar.Text = "Desasignar";
             this.btnDesasignar.UseVisualStyleBackColor = true;
@@ -95,17 +100,18 @@
             // 
             this.lbNombre.AutoSize = true;
             this.lbNombre.Font = new System.Drawing.Font("Microsoft YaHei UI", 21.75F);
-            this.lbNombre.Location = new System.Drawing.Point(27, 36);
+            this.lbNombre.Location = new System.Drawing.Point(36, 44);
+            this.lbNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNombre.Name = "lbNombre";
-            this.lbNombre.Size = new System.Drawing.Size(151, 38);
+            this.lbNombre.Size = new System.Drawing.Size(190, 48);
             this.lbNombre.TabIndex = 71;
             this.lbNombre.Text = "Localidad";
             // 
             // frmAsignarF
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 321);
+            this.ClientSize = new System.Drawing.Size(703, 395);
             this.ControlBox = false;
             this.Controls.Add(this.lbNombre);
             this.Controls.Add(this.btnDesasignar);
@@ -114,6 +120,7 @@
             this.Controls.Add(this.cbFuncionario);
             this.Controls.Add(this.label8);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAsignarF";
