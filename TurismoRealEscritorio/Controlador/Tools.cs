@@ -64,49 +64,56 @@ namespace TurismoRealEscritorio.Controlador
         }
         public static bool ValidarRut(String rut)
         {
-            rut = rut.Replace(".", "").Replace("-", "");
-            if (rut.Length <= 1)
+            try
+            {
+                rut = rut.Replace(".", "").Replace("-", "");
+                if (rut.Length <= 1)
+                {
+                    return false;
+                }
+                char dvf = rut[rut.Length - 1];
+                int dv = 0;
+                switch (dvf)
+                {
+                    case 'k':
+                        dv = 10;
+                        break;
+                    case '0':
+                        dv = 11;
+                        break;
+                    default:
+                        dv = Int32.Parse(dvf.ToString());
+                        break;
+                }
+                int[] ns = new int[rut.Length - 1];
+                int[] val = new int[rut.Length - 1];
+                for (int i = 0; i < rut.Length - 1; i++)
+                {
+                    ns[(rut.Length - 2) - i] = Int32.Parse(rut[i].ToString());
+                }
+                for (int i = 0, s = 2; i < ns.Count(); i++, s++)
+                {
+                    val[i] = ns[i] * s;
+                    if (s >= 7)
+                    {
+                        s = 1;
+                    }
+                }
+                int suma = 0;
+                foreach (var v in val)
+                {
+                    suma += v;
+                }
+                int div = (int)Math.Floor((double)suma / 11);
+                div = div * 11;
+                int res = Math.Abs(suma - div);
+                res = 11 - res;
+                return res == dv;
+            }
+            catch(Exception e)
             {
                 return false;
             }
-            char dvf = rut[rut.Length - 1];
-            int dv = 0;
-            switch (dvf)
-            {
-                case 'k':
-                    dv = 10;
-                    break;
-                case '0':
-                    dv = 11;
-                    break;
-                default:
-                    dv = Int32.Parse(dvf.ToString());
-                    break;
-            }
-            int[] ns = new int[rut.Length-1];
-            int[] val = new int[rut.Length-1];
-            for (int i=0;i<rut.Length-1;i++)
-            {
-                ns[(rut.Length-2) - i] = Int32.Parse(rut[i].ToString());
-            }
-            for(int i = 0, s = 2; i<ns.Count(); i++,s++)
-            {
-                val[i] = ns[i] * s;
-                if (s >= 7)
-                {
-                    s = 1;
-                }
-            }
-            int suma = 0;
-            foreach(var v in val)
-            {
-                suma += v;
-            }
-            int div = (int)Math.Floor((double)suma / 11);
-            div = div * 11;
-            int res = Math.Abs(suma - div);
-            res = 11 - res;
-            return res == dv;
         }
         public static String FormatearRut(String rut)
         {

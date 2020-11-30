@@ -6,30 +6,33 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TurismoRealEscritorio.Controlador;
 using TurismoRealEscritorio.Modelos;
 using TurismoRealEscritorio.Modelos.Util;
+using TurismoRealEscritorio.Vista;
 
 namespace TurismoRealEscritorio.Vistas.Deptos
 {
     public partial class frmMantenciones : Form
     {
-        frmDeptos frm;
+        frmMain Main;
         public bool expand = false;
         public bool suma = true;
         public bool anim = false;
         bool primeraCarga = true;
-        String IdDepto;
-
+        Departamento Depto;
+        String idDepto;
+        PersonaUsuario Fun;
         List<Funcionario> funcionarios;
 
-        public frmMantenciones(frmDeptos f = null, String depto = null)
+        public frmMantenciones(frmMain f = null, String id = null)
         {
             InitializeComponent();
-            frm = f;
-            IdDepto = depto;
+            Main = f;
+            idDepto = id;
             //var dep = await ClienteHttp.Peticion.Get<Departamento>(IdDepto);
         }
 
@@ -79,29 +82,26 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private async void frmMantenciones_Load(object sender, EventArgs e)
         {
+            Main.Enabled = false;
+            do
+            {
+                Depto = await ClienteHttp.Peticion.Get<Departamento>(idDepto);
+            } while (Depto==null);
             pEdicion.Height = 0;
             funcionarios = new List<Funcionario>();
-            var fun = await ClienteHttp.Peticion.GetList<PersonaUsuario>(SesionManager.Token);
-            foreach (var i in fun)
-            {
-                if (i.Usuario.Id_rol == 4)
-                {
-                    funcionarios.Add(new Funcionario{ Username = i.Usuario.Username, Nombre = i.Persona.Nombres.Split(' ')[0] + i.Persona.Apellidos.Split(' ')[0] + " [" + i.Usuario.Username + "]" });
-                }
-            }
-            cbTipo.DataSource = frm.Main.Repos.TipoMantenciones;
+            Fun = await ClienteHttp.Peticion.Get<PersonaUsuario>("localidad/asignado/"+Depto.Id_localidad,SesionManager.Token,urlEspecial:true);
+            Thread.Sleep(300);
+            cbTipo.DataSource = Main.Repos.TipoMantenciones;
             cbTipo.DisplayMember = "Nombre";
             cbTipo.ValueMember = "Id_tipo";
-            cbFuncionario.DataSource = funcionarios;
-            cbFuncionario.ValueMember = "Username";
-            cbFuncionario.DisplayMember = "Nombre";
+            dtFecha.MinDate = DateTime.Now;
             CargarDatos();
         }
 
         private async void CargarDatos(object sender = null, EventArgs e = null)
         {
             
-            var lista = await ClienteHttp.Peticion.GetList<Mantencion>(token:SesionManager.Token,url:"depto/"+IdDepto);
+            var lista = await ClienteHttp.Peticion.GetList<Mantencion>(token:SesionManager.Token,url:"depto/"+Depto.Id_depto);
             if (primeraCarga)
             {
                 tablaManten.Columns.Add("id","Identificador");
@@ -118,9 +118,20 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             {
                 tablaManten.Rows.Clear();
             }
+            if (Fun == null)
+            {
+                MessageBox.Show("Esta localidad no cuenta con un funcionario asignado,"
+                    +" por favor asigne uno.\nPara asignar un funcionario, seleccione"
+                    +" el apartado:\n'GESTIÓN DE RECURSOS > GESTIÓN DE LOCALIDADES > ASIGNAR'.",
+                    "Funcionario no asignado", MessageBoxButtons.OK);
+                Main.Enabled = true;
+                Main.Focus();
+                this.Dispose();
+                return;
+            }
             foreach (var i in lista)
             {
-                tablaManten.Rows.Add(i.Id_mantencion, Repositorios.Buscar(funcionarios,"Username",i.Username).Nombre, i.Fecha,(i.Hecho=='1'?"Realizada": "En proceso"));
+                tablaManten.Rows.Add(i.Id_mantencion, Fun.Persona.Nombres+" "+Fun.Persona.Apellidos, i.Fecha,(i.Hecho=='1'?"Realizada": "En proceso"));
             }
             if (primeraCarga)
             {
@@ -133,6 +144,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             {
                 tablaManten.Rows[0].Selected = true;
             }
+            txtFuncionario.Text = Fun.Persona.Nombres.Split(' ')[0] + " " + Fun.Persona.Apellidos.Split(' ')[0];
         }
         private void btnAgendar_Click(object sender, EventArgs e)
         {
@@ -144,10 +156,10 @@ namespace TurismoRealEscritorio.Vistas.Deptos
         {
             Mantencion m = new Mantencion();
             m.Fecha = dtFecha.Value;
-            m.Id_depto = Int32.Parse(IdDepto);
+            m.Id_depto = Depto.Id_depto;
             m.Hecho = '0';
             m.Id_tipo = (int)cbTipo.SelectedValue;
-            m.Username = (String)cbFuncionario.SelectedValue;
+            m.Username = Fun.Usuario.Username;
             ClienteHttp.Peticion.Send<Mantencion>(HttpMethod.Post, m, token: SesionManager.Token);
             CargarDatos();
             expand = true;
@@ -160,8 +172,15 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            frm.Focus();
+            Main.Enabled = true;
+            Main.Focus();
             this.Dispose();
+        }
+
+        private void frmMantenciones_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Main.Enabled = true;
+            Main.Focus();
         }
     }
 }

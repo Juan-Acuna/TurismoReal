@@ -254,7 +254,14 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             txtRut.Enabled = false;
             txtNombres.Text = p.Nombres;
             txtApellidos.Text = p.Apellidos;
-            dtNacimiento.Value = p.Nacimiento;
+            try
+            {
+                dtNacimiento.Value = p.Nacimiento;
+            }
+            catch(Exception e)
+            {
+                dtNacimiento.Value = dtNacimiento.MaxDate;
+            }
             txtEmail.Text = p.Email;
             txtTelefono.Text = p.Telefono.ToString();
             txtDireccion.Text = p.Direccion;
@@ -275,7 +282,7 @@ namespace TurismoRealEscritorio.Vistas.Usuarios
             txtRut.Text = "";
             txtNombres.Text = "";
             txtApellidos.Text = "";
-            dtNacimiento.Value = DateTime.Now;
+            dtNacimiento.Value = dtNacimiento.MaxDate;
             txtEmail.Text = "";
             txtTelefono.Text = "";
             txtDireccion.Text = "";

@@ -85,7 +85,7 @@
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(283, 35);
             this.btnIniciar.TabIndex = 2;
-            this.btnIniciar.Text = "Login";
+            this.btnIniciar.Text = "Iniciar sesión";
             this.btnIniciar.UseVisualStyleBackColor = true;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             this.btnIniciar.MouseEnter += new System.EventHandler(this.btnIniciar_MouseEnter);
@@ -189,11 +189,11 @@
             this.lbLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbLogin.Font = new System.Drawing.Font("Microsoft YaHei UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLogin.ForeColor = System.Drawing.Color.White;
-            this.lbLogin.Location = new System.Drawing.Point(400, 82);
+            this.lbLogin.Location = new System.Drawing.Point(355, 82);
             this.lbLogin.Name = "lbLogin";
-            this.lbLogin.Size = new System.Drawing.Size(87, 35);
+            this.lbLogin.Size = new System.Drawing.Size(183, 35);
             this.lbLogin.TabIndex = 99;
-            this.lbLogin.Text = "Login";
+            this.lbLogin.Text = "Iniciar sesión";
             // 
             // frmLogin
             // 

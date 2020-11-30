@@ -31,11 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInformes));
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tablaInformes = new System.Windows.Forms.DataGridView();
             this.txtInforme = new System.Windows.Forms.TextBox();
+            this.tablaInformes = new System.Windows.Forms.DataGridView();
+            this.idInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cellinformes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pBotones = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.tablaServicios = new System.Windows.Forms.DataGridView();
+            this.deptoE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dividendo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contribuciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mantenciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label13 = new System.Windows.Forms.Label();
             this.tablaReservas = new System.Windows.Forms.DataGridView();
             this.depto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,17 +61,11 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.tablaUtilidades = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.deptoE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dividendo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contribuciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mantenciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cellinformes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaInformes)).BeginInit();
             this.pBotones.SuspendLayout();
@@ -99,6 +99,20 @@
             this.panel1.Size = new System.Drawing.Size(200, 629);
             this.panel1.TabIndex = 1;
             // 
+            // txtInforme
+            // 
+            this.txtInforme.BackColor = System.Drawing.Color.White;
+            this.txtInforme.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtInforme.Enabled = false;
+            this.txtInforme.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
+            this.txtInforme.Location = new System.Drawing.Point(13, 12);
+            this.txtInforme.Multiline = true;
+            this.txtInforme.Name = "txtInforme";
+            this.txtInforme.ReadOnly = true;
+            this.txtInforme.Size = new System.Drawing.Size(174, 55);
+            this.txtInforme.TabIndex = 32;
+            this.txtInforme.Text = "A continuación, seleccione un informe para visualizar";
+            // 
             // tablaInformes
             // 
             this.tablaInformes.AllowUserToAddRows = false;
@@ -120,19 +134,18 @@
             this.tablaInformes.TabIndex = 0;
             this.tablaInformes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CambiarElegido);
             // 
-            // txtInforme
+            // idInfo
             // 
-            this.txtInforme.BackColor = System.Drawing.Color.White;
-            this.txtInforme.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtInforme.Enabled = false;
-            this.txtInforme.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F);
-            this.txtInforme.Location = new System.Drawing.Point(13, 12);
-            this.txtInforme.Multiline = true;
-            this.txtInforme.Name = "txtInforme";
-            this.txtInforme.ReadOnly = true;
-            this.txtInforme.Size = new System.Drawing.Size(174, 55);
-            this.txtInforme.TabIndex = 32;
-            this.txtInforme.Text = "A continuación, seleccione un informe para visualizar";
+            this.idInfo.HeaderText = "id";
+            this.idInfo.Name = "idInfo";
+            this.idInfo.Visible = false;
+            // 
+            // cellinformes
+            // 
+            this.cellinformes.HeaderText = "Informes";
+            this.cellinformes.Name = "cellinformes";
+            this.cellinformes.ReadOnly = true;
+            this.cellinformes.Width = 174;
             // 
             // pBotones
             // 
@@ -178,6 +191,34 @@
             this.tablaServicios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaServicios.Size = new System.Drawing.Size(543, 126);
             this.tablaServicios.TabIndex = 29;
+            // 
+            // deptoE
+            // 
+            this.deptoE.HeaderText = "Servicio";
+            this.deptoE.Name = "deptoE";
+            this.deptoE.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.deptoE.Width = 200;
+            // 
+            // dividendo
+            // 
+            this.dividendo.HeaderText = "Costo contratación";
+            this.dividendo.Name = "dividendo";
+            this.dividendo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dividendo.Width = 110;
+            // 
+            // contribuciones
+            // 
+            this.contribuciones.HeaderText = "Contrataciones";
+            this.contribuciones.Name = "contribuciones";
+            this.contribuciones.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.contribuciones.Width = 110;
+            // 
+            // mantenciones
+            // 
+            this.mantenciones.HeaderText = "Ganancias";
+            this.mantenciones.Name = "mantenciones";
+            this.mantenciones.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.mantenciones.Width = 120;
             // 
             // label13
             // 
@@ -283,9 +324,9 @@
             this.lbInformes.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbInformes.Location = new System.Drawing.Point(16, 12);
             this.lbInformes.Name = "lbInformes";
-            this.lbInformes.Size = new System.Drawing.Size(564, 41);
+            this.lbInformes.Size = new System.Drawing.Size(317, 41);
             this.lbInformes.TabIndex = 26;
-            this.lbInformes.Text = "Informe periodo <MES>, año <AÑO>";
+            this.lbInformes.Text = "Cargando informes...";
             // 
             // tablaEgresos
             // 
@@ -376,44 +417,6 @@
             this.tablaUtilidades.Size = new System.Drawing.Size(543, 126);
             this.tablaUtilidades.TabIndex = 34;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(786, 300);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(170, 41);
-            this.label3.TabIndex = 33;
-            this.label3.Text = "Utilidades*";
-            // 
-            // deptoE
-            // 
-            this.deptoE.HeaderText = "Servicio";
-            this.deptoE.Name = "deptoE";
-            this.deptoE.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.deptoE.Width = 200;
-            // 
-            // dividendo
-            // 
-            this.dividendo.HeaderText = "Costo contratación";
-            this.dividendo.Name = "dividendo";
-            this.dividendo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dividendo.Width = 110;
-            // 
-            // contribuciones
-            // 
-            this.contribuciones.HeaderText = "Contrataciones";
-            this.contribuciones.Name = "contribuciones";
-            this.contribuciones.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.contribuciones.Width = 110;
-            // 
-            // mantenciones
-            // 
-            this.mantenciones.HeaderText = "Ganancias";
-            this.mantenciones.Name = "mantenciones";
-            this.mantenciones.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.mantenciones.Width = 120;
-            // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.HeaderText = "Departamento";
@@ -442,24 +445,22 @@
             this.dataGridViewTextBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn9.Width = 120;
             // 
-            // idInfo
+            // label3
             // 
-            this.idInfo.HeaderText = "id";
-            this.idInfo.Name = "idInfo";
-            this.idInfo.Visible = false;
-            // 
-            // cellinformes
-            // 
-            this.cellinformes.HeaderText = "Informes";
-            this.cellinformes.Name = "cellinformes";
-            this.cellinformes.ReadOnly = true;
-            this.cellinformes.Width = 174;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(786, 300);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(170, 41);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "Utilidades*";
             // 
             // frmInformes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1360, 702);
+            this.ControlBox = false;
             this.Controls.Add(this.tablaUtilidades);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tablaEgresos);
@@ -472,6 +473,7 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pBotones);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmInformes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

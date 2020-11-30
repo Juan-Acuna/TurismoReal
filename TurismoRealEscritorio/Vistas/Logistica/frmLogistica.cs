@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TurismoRealEscritorio.Controlador;
@@ -57,7 +58,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
             {
                 if (i.Usuario.Id_rol == 4)
                 {
-                    funcionarios.Add(new Funcionario { Username = i.Usuario.Username, Nombre = i.Persona.Nombres.Split(' ')[0] + i.Persona.Apellidos.Split(' ')[0] + " [" + i.Usuario.Username + "]" });
+                    funcionarios.Add(new Funcionario { Username = i.Usuario.Username, Nombre = i.Persona.Nombres.Split(' ')[0] + " " + i.Persona.Apellidos.Split(' ')[0] + " [" + i.Usuario.Username + "]" });
                 }
             }
         }
@@ -405,31 +406,7 @@ namespace TurismoRealEscritorio.Vistas.Logistica
             {
                 return;
             }
-            switch (actual)
-            {
-                case Logistica.Inventario:
-
-                    Task.WaitAll(ClienteHttp.Peticion.Delete<Articulo>(tablaArticulo.SelectedRows[0].Cells["id"].Value.ToString(), SesionManager.Token));
-                    MessageBox.Show("Se ha eliminado " + p + " " + s + " de la plataforma satisfactoriamente.", "Eliminar exitoso", MessageBoxButtons.OK);
-                    CargarArticulos();
-                    return;
-                case Logistica.Localidades:
-                    Task.WaitAll(ClienteHttp.Peticion.Delete<Localidad>(tablaLocalidad.SelectedRows[0].Cells["id"].Value.ToString(), SesionManager.Token));
-                    MessageBox.Show("Se ha eliminado " + p + " " + s + " de la plataforma satisfactoriamente.", "Eliminar exitoso", MessageBoxButtons.OK);
-                    CargarLocalidades();
-                    return;
-                case Logistica.Vehiculos:
-                    Task.WaitAll(ClienteHttp.Peticion.Delete<Vehiculo>(tablaVehiculo.SelectedRows[0].Cells["patente"].Value.ToString(), SesionManager.Token));
-                    MessageBox.Show("Se ha eliminado " + p + " " + s + " de la plataforma satisfactoriamente.", "Eliminar exitoso", MessageBoxButtons.OK);
-                    CargarVehiculos();
-                    return;
-                case Logistica.Choferes:
-                    Task.WaitAll(ClienteHttp.Peticion.Delete<Chofer>(tablaChofer.SelectedRows[0].Cells["id"].Value.ToString(), SesionManager.Token));
-                    MessageBox.Show("Se ha eliminado " + p + " " + s + " de la plataforma satisfactoriamente.", "Eliminar exitoso", MessageBoxButtons.OK);
-                    CargarChoferes();
-                    return;
-            }
-            MessageBox.Show("No ha sido posible eliminar " + p + " " + s + ". Compruebe su conexión a internet.", "Problema al desasignar " + p + " " + s, MessageBoxButtons.OK);
+            Eliminar(s,p);
         }
         private void BotonesAsignar(object sender, EventArgs e)
         {
@@ -450,16 +427,16 @@ namespace TurismoRealEscritorio.Vistas.Logistica
                     frmd.Show();
                     break;
                 case Logistica.Localidades:
-                    var pl = new ProxyLocalidad
+                    var pl = new ProxyLocalidad();
+                    pl.Asignado = (bool)tablaLocalidad.SelectedRows[0].Cells["asignado"].Value;
+                    if (pl.Asignado)
                     {
-                        Asignado = (bool)tablaLocalidad.SelectedRows[0].Cells["asignado"].Value,
-                        Username = tablaLocalidad.SelectedRows[0].Cells["username"].Value.ToString(),
-                        Localidad = new Localidad
-                        {
-                            Id_localidad = (int)tablaLocalidad.SelectedRows[0].Cells["id"].Value,
-                            Nombre = tablaLocalidad.SelectedRows[0].Cells["nombre"].Value.ToString()
-                        }
-                    };
+                        pl.Username = tablaLocalidad.SelectedRows[0].Cells["username"].Value.ToString();
+                    }
+                    var ll = new Localidad();
+                    pl.Localidad = ll;
+                    ll.Id_localidad = (int)tablaLocalidad.SelectedRows[0].Cells["id"].Value;
+                    ll.Nombre = tablaLocalidad.SelectedRows[0].Cells["nombre"].Value.ToString();
                     frmAsignarF frmf = new frmAsignarF(this, Main, pl, funcionarios);
                     frmf.Show();
                     break;
@@ -484,7 +461,56 @@ namespace TurismoRealEscritorio.Vistas.Logistica
         {
             CargarChoferes();
         }
+        /* ZONA ELIMINAR */
+        private async void Eliminar(String s, String p)
+        {
+            bool b = false;
+            switch (actual)
+            {
+                case Logistica.Inventario:
+                    b = await ClienteHttp.Peticion.Delete<Articulo>(tablaArticulo.SelectedRows[0].Cells["id"].Value.ToString(), SesionManager.Token);
+                    Thread.Sleep(2000);
+                    if (b)
+                    {
+                        MessageBox.Show("Se ha eliminado " + p + " " + s + " de la plataforma satisfactoriamente.", "Eliminar exitoso", MessageBoxButtons.OK);
+                        CargarArticulos();
+                        return;
+                    }
+                    break;
+                case Logistica.Localidades:
+                    b = await ClienteHttp.Peticion.Delete<Localidad>(tablaLocalidad.SelectedRows[0].Cells["id"].Value.ToString(), SesionManager.Token);
+                    Thread.Sleep(2000);
+                    if (b)
+                    {
+                        MessageBox.Show("Se ha eliminado " + p + " " + s + " de la plataforma satisfactoriamente.", "Eliminar exitoso", MessageBoxButtons.OK);
+                        CargarLocalidades();
+                        return;
+                    }
+                    break;
+                case Logistica.Vehiculos:
+                    b = await ClienteHttp.Peticion.Delete<Vehiculo>(tablaVehiculo.SelectedRows[0].Cells["patente"].Value.ToString(), SesionManager.Token);
+                    Thread.Sleep(2000);
+                    if (b)
+                    {
+                        MessageBox.Show("Se ha eliminado " + p + " " + s + " de la plataforma satisfactoriamente.", "Eliminar exitoso", MessageBoxButtons.OK);
+                        CargarVehiculos();
+                        return;
+                    }
+                    break;
+                case Logistica.Choferes:
+                    b = await ClienteHttp.Peticion.Delete<Chofer>(tablaChofer.SelectedRows[0].Cells["id"].Value.ToString(), SesionManager.Token);
+                    Thread.Sleep(2000);
+                    if (b)
+                    {
+                        MessageBox.Show("Se ha eliminado " + p + " " + s + " de la plataforma satisfactoriamente.", "Eliminar exitoso", MessageBoxButtons.OK);
+                        CargarChoferes();
+                        return;
+                    }
+                    break;
+            }
+            MessageBox.Show("No ha sido posible eliminar " + p + " " + s + ". Compruebe su conexión a internet.", "Problema al desasignar " + p + " " + s, MessageBoxButtons.OK);
 
+        }
         /* ZONA DE LOS DATA GRID VIEW */
 
         public async void CargarArticulos()

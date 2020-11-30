@@ -93,6 +93,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             {
                 cbLocalidad.DataSource = Main.Repos.Localidades;
             } while (cbLocalidad.DataSource==null);
+            cbLocalidad.SelectedItem = null;
             cbLocalidad.Text = "Seleccione Localidad";
         }
 
@@ -117,7 +118,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
             txtId.Text = depto.Id_depto.ToString();
             txtNombre.Text = depto.Nombre;
             txtDireccion.Text = depto.Direccion;
-            cbLocalidad.SelectedItem = Repositorios.Buscar((List<Localidad>)cbLocalidad.DataSource, "Id_localidad", depto.Id_localidad).Nombre;
+            cbLocalidad.SelectedItem = Tools.BuscarEnLista((List<Localidad>)cbLocalidad.DataSource, "Id_localidad", depto.Id_localidad);
             txtMCuadrados.Text = depto.Mts_cuadrados.ToString();
             txtHabitaciones.Text = depto.Habitaciones.ToString();
             txtBanos.Text = depto.Banos.ToString();
@@ -242,7 +243,7 @@ namespace TurismoRealEscritorio.Vistas.Deptos
 
         private void btnMantenciones_Click(object sender, EventArgs e)
         {
-            frmMantenciones frm = new frmMantenciones(this, tablaDeptos.SelectedRows[0].Cells[0].Value.ToString());
+            frmMantenciones frm = new frmMantenciones(Main, tablaDeptos.SelectedRows[0].Cells[0].Value.ToString());
             frm.Show();
             frm.Focus();
         }
