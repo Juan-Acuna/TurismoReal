@@ -418,10 +418,6 @@ namespace TurismoRealEscritorio.Controlador
             }
             return false;
         }
-        public async Task<bool> RecuperarContraseña(String username, String token)
-        {
-            return true;
-        }
         public async Task<bool> Test()
         {
             HttpResponseMessage r;
