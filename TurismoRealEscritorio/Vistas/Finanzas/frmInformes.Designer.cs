@@ -66,6 +66,7 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
+            this.saveDialog = new System.Windows.Forms.SaveFileDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaInformes)).BeginInit();
             this.pBotones.SuspendLayout();
@@ -455,6 +456,10 @@
             this.label3.TabIndex = 33;
             this.label3.Text = "Utilidades*";
             // 
+            // saveDialog
+            // 
+            this.saveDialog.Filter = "Documento PDF|*.pdf|Todos los archivos|*.*";
+            // 
             // frmInformes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -534,5 +539,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn idInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cellinformes;
+        private System.Windows.Forms.SaveFileDialog saveDialog;
     }
 }

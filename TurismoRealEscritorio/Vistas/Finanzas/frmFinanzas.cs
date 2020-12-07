@@ -214,12 +214,12 @@ namespace TurismoRealEscritorio.Vistas.Finanzas
         /* INFORME */
         private void btnPDF_Click(object sender, EventArgs e)
         {
-            GenerarInforme(@"C:\Users\Juancho\Desktop\TEST_PDF", informe);
+            GenerarInforme();
         }
 
-        private void GenerarInforme(String ruta, Informe informe)
+        private void GenerarInforme()
         {
-            PDFTools.GenerarInformePDF(ruta, informe);
+            PDFTools.GenerarInformePDF(informe, saveDialog);
         }
 
         private void button1_Click(object sender, EventArgs e)

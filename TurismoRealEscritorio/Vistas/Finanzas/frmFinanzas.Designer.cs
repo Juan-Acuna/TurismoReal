@@ -56,10 +56,12 @@
             this.pVistaGeneral = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lbHM = new System.Windows.Forms.Label();
             this.txtMNM = new System.Windows.Forms.Label();
             this.txtNMantenciones = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lbHR = new System.Windows.Forms.Label();
             this.txtMNR = new System.Windows.Forms.Label();
             this.txtNReservas = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -96,8 +98,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbHR = new System.Windows.Forms.Label();
-            this.lbHM = new System.Windows.Forms.Label();
+            this.saveDialog = new System.Windows.Forms.SaveFileDialog();
             this.contMaestro.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.pDeptos.SuspendLayout();
@@ -455,6 +456,20 @@
             this.panel4.TabIndex = 17;
             this.panel4.Click += new System.EventHandler(this.DesactivarTips);
             // 
+            // lbHM
+            // 
+            this.lbHM.AutoSize = true;
+            this.lbHM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbHM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbHM.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHM.Location = new System.Drawing.Point(216, -1);
+            this.lbHM.Name = "lbHM";
+            this.lbHM.Size = new System.Drawing.Size(15, 18);
+            this.lbHM.TabIndex = 12;
+            this.lbHM.Text = "?";
+            this.lbHM.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbHM.Click += new System.EventHandler(this.ActivarTipMan);
+            // 
             // txtMNM
             // 
             this.txtMNM.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -501,6 +516,20 @@
             this.panel3.Size = new System.Drawing.Size(232, 87);
             this.panel3.TabIndex = 18;
             this.panel3.Click += new System.EventHandler(this.DesactivarTips);
+            // 
+            // lbHR
+            // 
+            this.lbHR.AutoSize = true;
+            this.lbHR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbHR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbHR.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHR.Location = new System.Drawing.Point(216, -1);
+            this.lbHR.Name = "lbHR";
+            this.lbHR.Size = new System.Drawing.Size(15, 18);
+            this.lbHR.TabIndex = 11;
+            this.lbHR.Text = "?";
+            this.lbHR.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbHR.Click += new System.EventHandler(this.ActivarTipRes);
             // 
             // txtMNR
             // 
@@ -908,33 +937,9 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Finanzas";
             // 
-            // lbHR
+            // saveDialog
             // 
-            this.lbHR.AutoSize = true;
-            this.lbHR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbHR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbHR.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHR.Location = new System.Drawing.Point(216, -1);
-            this.lbHR.Name = "lbHR";
-            this.lbHR.Size = new System.Drawing.Size(15, 18);
-            this.lbHR.TabIndex = 11;
-            this.lbHR.Text = "?";
-            this.lbHR.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbHR.Click += new System.EventHandler(this.ActivarTipRes);
-            // 
-            // lbHM
-            // 
-            this.lbHM.AutoSize = true;
-            this.lbHM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbHM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbHM.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHM.Location = new System.Drawing.Point(216, -1);
-            this.lbHM.Name = "lbHM";
-            this.lbHM.Size = new System.Drawing.Size(15, 18);
-            this.lbHM.TabIndex = 12;
-            this.lbHM.Text = "?";
-            this.lbHM.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbHM.Click += new System.EventHandler(this.ActivarTipMan);
+            this.saveDialog.Filter = "Documento PDF|*.pdf|Todos los archivos|*.*";
             // 
             // frmFinanzas
             // 
@@ -1057,5 +1062,6 @@
         private System.Windows.Forms.Label lbHT;
         private System.Windows.Forms.Label lbHM;
         private System.Windows.Forms.Label lbHR;
+        private System.Windows.Forms.SaveFileDialog saveDialog;
     }
 }

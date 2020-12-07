@@ -84,7 +84,7 @@ namespace TurismoRealEscritorio.Vistas.Finanzas
 
         private void button2_Click(object sender, EventArgs e)
         {
-            PDFTools.GenerarInformePDF(@"C:\Users\Juancho\Desktop\TEST_PDF", actual);
+            PDFTools.GenerarInformePDF(actual, saveDialog);
         }
 
         private void button1_Click(object sender, EventArgs e)

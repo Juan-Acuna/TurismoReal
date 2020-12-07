@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using iText.Kernel.Colors;
 using iText.Kernel.Font;
 using iText.Kernel.Geom;
@@ -67,9 +68,16 @@ namespace TurismoRealEscritorio.Controlador
             c.Add(p);
             return c;
         }
-        public static void GenerarInformePDF(String ruta, Informe informe)
+        public static void GenerarInformePDF(Informe informe, SaveFileDialog save)
         {
-            using (PdfWriter pw = new PdfWriter(ruta + ("\\informe_periodo_"+informe.mes+"_"+informe.ano.ToString()).ToUpper()+".pdf"))
+            save.FileName = ("informe_periodo_" + informe.mes + "_" + informe.ano.ToString()).ToUpper() + ".pdf";
+            Console.WriteLine(save.FileName);
+            if(save.ShowDialog()== DialogResult.Cancel)
+            {
+                return;
+            }
+            Console.WriteLine(save.FileName);
+            using (PdfWriter pw = new PdfWriter(save.FileName))
             {
                 using (PdfDocument pd = new PdfDocument(pw))
                 {
@@ -175,7 +183,7 @@ namespace TurismoRealEscritorio.Controlador
                     }
                 }
             }
-            Process.Start(ruta + ("\\informe_periodo_" + informe.mes + "_" + informe.ano.ToString()).ToUpper() + ".pdf");
+            Process.Start(save.FileName);
         }
     }
 }
